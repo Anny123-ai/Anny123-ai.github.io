@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李艺 - 个人主页</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 配置Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00D4FF',
+                        secondary: '#7B61FF',
+                        accent: '#FF6B6B',
+                        dark: '#0F172A',
+                        light: '#F8FAFC',
+                        cyan: '#06B6D4',
+                        purple: '#8B5CF6'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            }
+            .text-glow {
+                text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            }
+            .bg-gradient-future {
+                background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            }
+            .card-glow {
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            }
+            .border-glow {
+                box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body class="bg-dark text-light">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 bg-dark/80 backdrop-blur-md z-50 border-b border-primary/20">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary text-glow">李艺</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="hover:text-primary transition-all-300">首页</a>
+                <a href="#profile" class="hover:text-primary transition-all-300">个人信息</a>
+                <a href="#dashboard" class="hover:text-primary transition-all-300">数据看板</a>
+                <a href="python-course.html" class="hover:text-primary transition-all-300">Python课程</a>
+                <a href="#goals" class="hover:text-primary transition-all-300">职业目标</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="md:hidden text-light" id="menu-toggle">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-dark/95 backdrop-blur-md absolute w-full border-b border-primary/20" id="mobile-menu">
+                <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                    <a href="#home" class="hover:text-primary transition-all-300 py-2">首页</a>
+                    <a href="#profile" class="hover:text-primary transition-all-300 py-2">个人信息</a>
+                    <a href="#dashboard" class="hover:text-primary transition-all-300 py-2">数据看板</a>
+                    <a href="python-course.html" class="hover:text-primary transition-all-300 py-2">Python课程</a>
+                    <a href="#goals" class="hover:text-primary transition-all-300 py-2">职业目标</a>
+                </div>
+            </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="pt-32 pb-20 bg-gradient-future">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-glow">你好，我是 <span class="text-primary">李艺</span></h1>
+                    <p class="text-xl md:text-2xl mb-6 text-gray-300">商务数据分析与应用专业学生</p>
+                    <p class="text-gray-400 mb-8 max-w-lg">致力于成为一名优秀的商务数据分析师，深耕电商数据分析领域</p>
+                    <div class="flex space-x-4 flex-wrap">
+                        <a href="#dashboard" class="bg-primary hover:bg-cyan text-dark px-6 py-3 rounded-lg transition-all-300 font-medium">查看数据看板</a>
+                        <a href="python-course.html" class="bg-secondary hover:bg-purple text-dark px-6 py-3 rounded-lg transition-all-300 font-medium">Python课程</a>
+                        <a href="#goals" class="border border-primary text-primary hover:bg-primary hover:text-dark px-6 py-3 rounded-lg transition-all-300 font-medium">职业目标</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative animate-float">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary card-glow">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=futuristic%20digital%20avatar%20of%20a%20young%20Chinese%20woman%2C%20tech%20style%2C%20glowing%20elements%2C%20professional%20appearance%2C%20blue%20and%20purple%20hues%2C%20female%20features&image_size=square" alt="数字人头像" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-dark p-4 rounded-lg border border-primary card-glow">
+                            <p class="text-sm font-medium text-primary">商务数据分析</p>
+                            <p class="text-xs text-gray-400">大一学生</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 个人信息 -->
+    <section id="profile" class="py-20 bg-dark border-t border-primary/20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-glow">个人信息</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-900 p-8 rounded-lg border border-primary/30 card-glow">
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">基本信息</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <i class="fa fa-user-circle text-primary text-xl mr-4"></i>
+                            <div>
+                                <span class="text-gray-400 block">姓名</span>
+                                <span class="text-lg font-medium">李艺</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-venus text-primary text-xl mr-4"></i>
+                            <div>
+                                <span class="text-gray-400 block">性别</span>
+                                <span class="text-lg font-medium">女</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-map-marker text-primary text-xl mr-4"></i>
+                            <div>
+                                <span class="text-gray-400 block">籍贯</span>
+                                <span class="text-lg font-medium">广东</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-graduation-cap text-primary text-xl mr-4"></i>
+                            <div>
+                                <span class="text-gray-400 block">学校</span>
+                                <span class="text-lg font-medium">广东科学技术职业学院</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-book text-primary text-xl mr-4"></i>
+                            <div>
+                                <span class="text-gray-400 block">专业</span>
+                                <span class="text-lg font-medium">商务数据分析与应用</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-users text-primary text-xl mr-4"></i>
+                            <div>
+                                <span class="text-gray-400 block">班级</span>
+                                <span class="text-lg font-medium">25商数1班</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-id-card text-primary text-xl mr-4"></i>
+                            <div>
+                                <span class="text-gray-400 block">学号</span>
+                                <span class="text-lg font-medium">0220250205</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary text-xl mr-4"></i>
+                            <div>
+                                <span class="text-gray-400 block">邮箱</span>
+                                <span class="text-lg font-medium">1647057717@qq.com</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-lg border border-primary/30 card-glow">
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">兴趣爱好</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex flex-col items-center p-6 bg-gray-800 rounded-lg hover-scale">
+                            <i class="fa fa-shuttlecock text-4xl text-primary mb-4"></i>
+                            <h4 class="text-xl font-medium mb-2">打羽毛球</h4>
+                            <p class="text-gray-400 text-center">每周定期参加羽毛球活动，保持身体健康</p>
+                        </div>
+                        <div class="flex flex-col items-center p-6 bg-gray-800 rounded-lg hover-scale">
+                            <i class="fa fa-music text-4xl text-primary mb-4"></i>
+                            <h4 class="text-xl font-medium mb-2">听音乐</h4>
+                            <p class="text-gray-400 text-center">喜欢各种类型的音乐，放松心情</p>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold mb-6 text-primary">学习进度</h3>
+                        <div class="h-80">
+                            <canvas id="learningProgressChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据看板 -->
+    <section id="dashboard" class="py-20 bg-gradient-future">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-glow">数据看板</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto">学习数据可视化，展示成长轨迹</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gray-900/80 p-6 rounded-lg border border-primary/30 card-glow hover-scale">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-primary">总学习时长</h3>
+                        <i class="fa fa-clock-o text-2xl text-primary"></i>
+                    </div>
+                    <p class="text-4xl font-bold mb-2">120+</p>
+                    <p class="text-gray-400">小时</p>
+                </div>
+                <div class="bg-gray-900/80 p-6 rounded-lg border border-primary/30 card-glow hover-scale">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-primary">技能掌握</h3>
+                        <i class="fa fa-line-chart text-2xl text-primary"></i>
+                    </div>
+                    <p class="text-4xl font-bold mb-2">85%</p>
+                    <p class="text-gray-400">完成率</p>
+                </div>
+                <div class="bg-gray-900/80 p-6 rounded-lg border border-primary/30 card-glow hover-scale">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-primary">学习目标</h3>
+                        <i class="fa fa-bullseye text-2xl text-primary"></i>
+                    </div>
+                    <p class="text-4xl font-bold mb-2">60%</p>
+                    <p class="text-gray-400">达成率</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-900/80 p-6 rounded-lg border border-primary/30 card-glow">
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">学习时长统计</h3>
+                    <div class="h-80">
+                        <canvas id="studyHoursChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-gray-900/80 p-6 rounded-lg border border-primary/30 card-glow">
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">技能熟练度</h3>
+                    <div class="h-80">
+                        <canvas id="skillProficiencyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 职业目标 -->
+    <section id="goals" class="py-20 bg-dark border-t border-primary/20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-glow">职业目标</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-900 p-8 rounded-lg border border-primary/30 card-glow">
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">我的职业规划</h3>
+                    <p class="text-gray-300 mb-8 text-lg">我的职业目标是成为一名优秀的商务数据分析师，深耕电商数据分析领域。我计划通过系统学习数据分析技能，掌握数据可视化工具，提升商业分析能力，为企业的决策提供数据支持。</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-primary/20 rounded-full text-primary text-xl font-bold">1</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold mb-2">夯实专业基础</h4>
+                                <p class="text-gray-400">在大学期间，认真学习商务数据分析与应用专业的核心课程，掌握数据分析的基本理论和方法。</p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-primary/20 rounded-full text-primary text-xl font-bold">2</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold mb-2">提升技术能力</h4>
+                                <p class="text-gray-400">学习Python、SQL等数据处理工具，掌握Excel高级函数和数据可视化技巧，提高数据处理和分析能力。</p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-primary/20 rounded-full text-primary text-xl font-bold">3</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold mb-2">积累实践经验</h4>
+                                <p class="text-gray-400">通过实习、项目实践等方式，积累电商数据分析的实际经验，了解行业需求和工作流程。</p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-primary/20 rounded-full text-primary text-xl font-bold">4</div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-semibold mb-2">成为行业专家</h4>
+                                <p class="text-gray-400">毕业后进入电商行业，专注于数据分析领域，不断学习和创新，成为一名专业的商务数据分析师。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12 border-t border-primary/20">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4 text-primary text-glow">李艺</h3>
+                <p class="text-gray-400 mb-6">商务数据分析与应用专业 | 广东科学技术职业学院</p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="mailto:1647057717@qq.com" class="text-gray-400 hover:text-primary transition-all-300">
+                        <i class="fa fa-envelope text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-all-300">
+                        <i class="fa fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                    <p>&copy; 2026 李艺. 保留所有权利.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
