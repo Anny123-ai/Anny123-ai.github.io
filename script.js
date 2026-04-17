@@ -1,325 +1,167 @@
-// 页面加载完成后执行
-document.addEventListener('DOMContentLoaded', function() {
-    // 移动端菜单切换
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
+// 代码运行器组件
+class CodeRunner {
+    constructor() {
+        this.runners = new Map();
+        this.init();
     }
-    
-    // 导航栏滚动效果
-    const nav = document.querySelector('nav');
-    
-    if (nav) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md');
-            } else {
-                nav.classList.remove('shadow-md');
+
+    init() {
+        // 为所有代码块添加运行功能
+        document.querySelectorAll('pre code').forEach((codeBlock, index) => {
+            const pre = codeBlock.parentElement;
+            if (pre.dataset.language === 'python' || codeBlock.textContent.includes('python')) {
+                this.createCodeRunner(pre, index);
             }
         });
     }
-    
-    // 平滑滚动到锚点
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // 关闭移动端菜单
-                if (mobileMenu) {
-                    mobileMenu.classList.add('hidden');
-                }
-                
-                // 滚动到目标位置
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+
+    createCodeRunner(pre, index) {
+        const originalCode = pre.querySelector('code').textContent;
+        const runnerId = `code-runner-${index}`;
+
+        // 创建运行器容器
+        const runnerContainer = document.createElement('div');
+        runnerContainer.className = 'code-runner';
+        runnerContainer.id = runnerId;
+
+        // 创建控制栏
+        const controlBar = document.createElement('div');
+        controlBar.className = 'code-runner-controls';
+        controlBar.innerHTML = `
+            <div class="control-left">
+                <span class="language">Python</span>
+                <button class="run-btn">运行</button>
+                <button class="reset-btn">重置</button>
+            </div>
+            <div class="control-right">
+                <button class="collapse-btn">收起</button>
+            </div>
+        `;
+
+        // 创建输出区域
+        const outputContainer = document.createElement('div');
+        outputContainer.className = 'code-runner-output';
+        outputContainer.innerHTML = '<div class="output-content">点击运行按钮执行代码</div>';
+
+        // 组装运行器
+        runnerContainer.appendChild(controlBar);
+        runnerContainer.appendChild(outputContainer);
+
+        // 插入到代码块下方
+        pre.parentNode.insertBefore(runnerContainer, pre.nextSibling);
+
+        // 保存运行器实例
+        this.runners.set(runnerId, {
+            container: runnerContainer,
+            originalCode,
+            outputContainer,
+            pre
         });
-    });
-    
-    // 页面滚动动画
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('opacity-100', 'translate-y-0');
-                entry.target.classList.remove('opacity-0', 'translate-y-10');
-                observer.unobserve(entry.target);
+
+        // 绑定事件
+        this.bindEvents(runnerId);
+    }
+
+    bindEvents(runnerId) {
+        const runner = this.runners.get(runnerId);
+        if (!runner) return;
+
+        // 运行按钮
+        const runBtn = runner.container.querySelector('.run-btn');
+        runBtn.addEventListener('click', () => this.runCode(runnerId));
+
+        // 重置按钮
+        const resetBtn = runner.container.querySelector('.reset-btn');
+        resetBtn.addEventListener('click', () => this.resetCode(runnerId));
+
+        // 收起按钮
+        const collapseBtn = runner.container.querySelector('.collapse-btn');
+        collapseBtn.addEventListener('click', () => this.toggleCollapse(runnerId));
+    }
+
+    async runCode(runnerId) {
+        const runner = this.runners.get(runnerId);
+        if (!runner) return;
+
+        const outputContent = runner.outputContainer.querySelector('.output-content');
+        outputContent.innerHTML = '<div class="loading">运行中...</div>';
+
+        try {
+            // 使用 Pyodide 运行 Python 代码
+            if (!window.pyodide) {
+                outputContent.innerHTML = '<div class="error">Pyodide 加载中...</div>';
+                await this.loadPyodide();
             }
-        });
-    }, observerOptions);
-    
-    // 观察所有需要动画的元素
-    document.querySelectorAll('section').forEach(section => {
-        section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
-        observer.observe(section);
-    });
-    
-    // 初始化图表
-    initCharts();
-    
-    // 课程章节展开/折叠功能
-    const chapterToggles = document.querySelectorAll('.chapter-toggle');
-    chapterToggles.forEach(toggle => {
-        toggle.addEventListener('click', function() {
-            const content = this.nextElementSibling;
-            const icon = this.querySelector('i');
-            
-            if (content) {
-                content.classList.toggle('hidden');
-                if (icon) {
-                    icon.classList.toggle('fa-chevron-down');
-                    icon.classList.toggle('fa-chevron-up');
-                }
-            }
-        });
-    });
-    
-    // 响应式调整
-    function handleResize() {
-        // 当窗口大小改变时，关闭移动端菜单
-        if (window.innerWidth >= 768 && mobileMenu) {
-            mobileMenu.classList.add('hidden');
+
+            // 捕获标准输出
+            let output = '';
+            window.pyodide.setStdout({ write: (text) => output += text });
+            window.pyodide.setStderr({ write: (text) => output += text });
+
+            // 运行代码（始终使用原始代码，确保示例代码不被修改）
+            await window.pyodide.runPythonAsync(runner.originalCode);
+
+            // 显示输出
+            outputContent.innerHTML = output ? 
+                `<pre class="output-text">${this.escapeHtml(output)}</pre>` : 
+                '<div class="success">代码执行成功，无输出</div>';
+        } catch (error) {
+            outputContent.innerHTML = `<div class="error">错误: ${this.escapeHtml(error.message)}</div>`;
         }
     }
-    
-    window.addEventListener('resize', handleResize);
-    
-    // 初始化
-    handleResize();
-    
-    // 添加页面加载动画
-    window.addEventListener('load', function() {
-        document.body.classList.add('loaded');
-    });
+
+    resetCode(runnerId) {
+        const runner = this.runners.get(runnerId);
+        if (!runner) return;
+
+        // 重置输出区域
+        const outputContent = runner.outputContainer.querySelector('.output-content');
+        outputContent.innerHTML = '<div class="success">代码已重置</div>';
+
+        // 确保代码块显示原始代码
+        const codeElement = runner.pre.querySelector('code');
+        if (codeElement) {
+            codeElement.textContent = runner.originalCode;
+        }
+    }
+
+    toggleCollapse(runnerId) {
+        const runner = this.runners.get(runnerId);
+        if (!runner) return;
+
+        const outputContainer = runner.outputContainer;
+        const collapseBtn = runner.container.querySelector('.collapse-btn');
+
+        if (outputContainer.classList.contains('collapsed')) {
+            outputContainer.classList.remove('collapsed');
+            collapseBtn.textContent = '收起';
+        } else {
+            outputContainer.classList.add('collapsed');
+            collapseBtn.textContent = '展开';
+        }
+    }
+
+    async loadPyodide() {
+        // 加载 Pyodide
+        window.pyodide = await loadPyodide({
+            indexURL: "https://cdn.jsdelivr.net/pyodide/v0.25.1/full/"
+        });
+    }
+
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+}
+
+// 页面加载完成后初始化
+window.addEventListener('DOMContentLoaded', () => {
+    // 加载 Pyodide
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js';
+    script.onload = () => {
+        new CodeRunner();
+    };
+    document.head.appendChild(script);
 });
-
-// 初始化图表
-function initCharts() {
-    // 学习进度图表
-    const learningProgressCtx = document.getElementById('learningProgressChart');
-    if (learningProgressCtx) {
-        new Chart(learningProgressCtx, {
-            type: 'line',
-            data: {
-                labels: ['第1周', '第2周', '第3周', '第4周', '第5周', '第6周'],
-                datasets: [{
-                    label: '学习进度',
-                    data: [15, 30, 45, 60, 75, 85],
-                    borderColor: '#00D4FF',
-                    backgroundColor: 'rgba(0, 212, 255, 0.1)',
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    }
-                }
-            }
-        });
-    }
-    
-    // 学习时长统计图表
-    const studyHoursCtx = document.getElementById('studyHoursChart');
-    if (studyHoursCtx) {
-        new Chart(studyHoursCtx, {
-            type: 'bar',
-            data: {
-                labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-                datasets: [{
-                    label: '学习时长（小时）',
-                    data: [3, 4, 2, 5, 3, 6, 4],
-                    backgroundColor: 'rgba(0, 212, 255, 0.7)',
-                    borderColor: 'rgba(0, 212, 255, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    }
-                }
-            }
-        });
-    }
-    
-    // 技能熟练度图表
-    const skillProficiencyCtx = document.getElementById('skillProficiencyChart');
-    if (skillProficiencyCtx) {
-        new Chart(skillProficiencyCtx, {
-            type: 'radar',
-            data: {
-                labels: ['Excel', 'SQL', 'Python', '数据可视化', '商业分析', '沟通能力'],
-                datasets: [{
-                    label: '技能熟练度',
-                    data: [85, 65, 70, 80, 75, 90],
-                    backgroundColor: 'rgba(0, 212, 255, 0.2)',
-                    borderColor: 'rgba(0, 212, 255, 1)',
-                    pointBackgroundColor: 'rgba(0, 212, 255, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(0, 212, 255, 1)'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        pointLabels: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.7)',
-                            backdropColor: 'transparent'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    }
-                }
-            }
-        });
-    }
-    
-    // 课程进度图表（用于Python课程页面）
-    const courseProgressCtx = document.getElementById('courseProgressChart');
-    if (courseProgressCtx) {
-        new Chart(courseProgressCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['已完成', '未完成'],
-                datasets: [{
-                    data: [60, 40],
-                    backgroundColor: ['#00D4FF', '#334155'],
-                    borderColor: ['#00D4FF', '#334155'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const label = context.label || '';
-                                const value = context.raw || 0;
-                                return `${label}: ${value}%`;
-                            }
-                        }
-                    }
-                },
-                cutout: '70%'
-            }
-        });
-    }
-}
-
-// 工具函数：防抖
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// 工具函数：节流
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
