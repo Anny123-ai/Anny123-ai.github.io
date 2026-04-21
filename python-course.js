@@ -471,55 +471,362 @@ while guess != secret_number:
     {
         title: "第3课：数据结构",
         content: `
+            <div class="lesson-intro">
+                <h3>Python 数据结构入门</h3>
+                <p>在这一课中，我们将学习 Python 中常用的数据结构，包括列表、元组、字典和集合。这些数据结构可以帮助你更有效地组织和管理数据。</p>
+                <div class="python-logo">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20data%20structures%20visualization%2C%20colorful%20diagrams%20of%20lists%2C%20tuples%2C%20dictionaries%20and%20sets%2C%20beginner%20friendly%2C%20simple%20background&image_size=square" alt="Data Structures" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                </div>
+            </div>
+
             <h4>列表 (List)</h4>
-            <p>列表是Python中最常用的数据结构，用于存储多个元素。</p>
-            <pre><code># 创建列表
+            <p>列表是 Python 中最常用的数据结构，用于存储多个元素。列表是可变的，这意味着你可以修改、添加或删除元素。</p>
+
+            <h5>创建列表</h5>
+            <pre><code># 创建空列表
+empty_list = []
+
+# 创建带有元素的列表
 fruits = ["苹果", "香蕉", "橙子"]
+numbers = [1, 2, 3, 4, 5]
+mixed = ["Python", 3.14, True, 42]
 
-# 访问元素
+print(fruits)
+print(numbers)
+print(mixed)</code></pre>
+
+            <h5>访问列表元素</h5>
+            <pre><code>fruits = ["苹果", "香蕉", "橙子", "葡萄"]
+
+# 通过索引访问元素（索引从 0 开始）
 print(fruits[0])  # 苹果
+print(fruits[2])  # 橙子
 
-# 添加元素
-fruits.append("葡萄")
+# 负索引（从列表末尾开始计数）
+print(fruits[-1])  # 葡萄
+print(fruits[-2])  # 橙子
+
+# 切片操作
+print(fruits[1:3])  # ["香蕉", "橙子"]
+print(fruits[:2])   # ["苹果", "香蕉"]
+print(fruits[2:])   # ["橙子", "葡萄"]</code></pre>
+
+            <h5>修改列表元素</h5>
+            <pre><code>fruits = ["苹果", "香蕉", "橙子"]
 
 # 修改元素
 fruits[1] = "梨"
+print(fruits)  # ["苹果", "梨", "橙子"]
 
-# 删除元素
-del fruits[2]</code></pre>
-            
+# 修改多个元素（切片赋值）
+fruits[0:2] = ["草莓", "蓝莓"]
+print(fruits)  # ["草莓", "蓝莓", "橙子"]</code></pre>
+
+            <h5>列表方法</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">➕</div>
+                    <h5>append()</h5>
+                    <p>在列表末尾添加元素</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">➡️</div>
+                    <h5>extend()</h5>
+                    <p>添加另一个列表的所有元素</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h5>insert()</h5>
+                    <p>在指定位置插入元素</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">❌</div>
+                    <h5>remove()</h5>
+                    <p>移除指定值的元素</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📏</div>
+                    <h5>len()</h5>
+                    <p>获取列表长度</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h5>in 运算符</h5>
+                    <p>检查元素是否在列表中</p>
+                </div>
+            </div>
+
+            <h5>列表方法示例</h5>
+            <pre><code>fruits = ["苹果", "香蕉", "橙子"]
+
+# append() - 添加元素到末尾
+fruits.append("葡萄")
+print(fruits)  # ["苹果", "香蕉", "橙子", "葡萄"]
+
+# extend() - 添加另一个列表
+more_fruits = ["草莓", "蓝莓"]
+fruits.extend(more_fruits)
+print(fruits)  # ["苹果", "香蕉", "橙子", "葡萄", "草莓", "蓝莓"]
+
+# insert() - 在指定位置插入
+fruits.insert(1, "梨")
+print(fruits)  # ["苹果", "梨", "香蕉", "橙子", "葡萄", "草莓", "蓝莓"]
+
+# remove() - 移除指定元素
+fruits.remove("香蕉")
+print(fruits)  # ["苹果", "梨", "橙子", "葡萄", "草莓", "蓝莓"]
+
+# len() - 获取长度
+print(len(fruits))  # 6
+
+# in 运算符 - 检查元素是否存在
+print("苹果" in fruits)  # True
+print("香蕉" in fruits)  # False</code></pre>
+
             <h4>元组 (Tuple)</h4>
-            <p>元组是不可变的序列。</p>
+            <p>元组是不可变的序列，一旦创建就不能修改。元组使用圆括号表示。</p>
+
+            <h5>创建元组</h5>
             <pre><code># 创建元组
 point = (10, 20)
+colors = ("红", "绿", "蓝")
+single = ("唯一元素",)  # 注意单个元素后面的逗号
 
-# 访问元素
-print(point[0])  # 10</code></pre>
-            
+# 不使用括号创建元组
+numbers = 1, 2, 3, 4, 5
+
+print(point)
+print(colors)
+print(single)
+print(numbers)</code></pre>
+
+            <h5>访问元组元素</h5>
+            <pre><code>point = (10, 20, 30)
+
+# 通过索引访问
+print(point[0])  # 10
+print(point[2])  # 30
+
+# 负索引
+print(point[-1])  # 30
+
+# 切片操作
+print(point[1:3])  # (20, 30)</code></pre>
+
+            <h5>元组的不可变性</h5>
+            <div class="info-box">
+                <h5>💡 小提示</h5>
+                <p>元组是不可变的，这意味着你不能修改、添加或删除元组中的元素。如果你尝试这样做，会得到一个错误。</p>
+            </div>
+
+            <pre><code>point = (10, 20)
+
+# 尝试修改元组（会出错）
+# point[0] = 50  # 这会引发 TypeError
+
+# 但是你可以创建一个新的元组
+new_point = (50, point[1])
+print(new_point)  # (50, 20)</code></pre>
+
             <h4>字典 (Dictionary)</h4>
-            <p>字典用于存储键值对。</p>
-            <pre><code># 创建字典
-person = {"name": "张三", "age": 25, "city": "北京"}
+            <p>字典用于存储键值对，每个键映射到一个值。字典使用花括号表示，键和值之间用冒号分隔。</p>
 
-# 访问值
-print(person["name"])  # 张三
+            <h5>创建字典</h5>
+            <pre><code># 创建空字典
+empty_dict = {}
 
-# 添加或修改
-person["job"] = "工程师"
+# 创建带有键值对的字典
+person = {
+    "name": "李艺",
+    "age": 18,
+    "city": "广州",
+    "is_student": True
+}
 
-# 删除
-del person["age"]</code></pre>
-            
+print(person)</code></pre>
+
+            <h5>访问字典值</h5>
+            <pre><code>person = {"name": "李艺", "age": 18, "city": "广州"}
+
+# 通过键访问值
+print(person["name"])  # 李艺
+print(person["age"])   # 18
+
+# 使用 get() 方法（更安全）
+print(person.get("city"))      # 广州
+print(person.get("job"))       # None
+print(person.get("job", "未知"))  # 未知</code></pre>
+
+            <h5>修改字典</h5>
+            <pre><code>person = {"name": "李艺", "age": 18, "city": "广州"}
+
+# 添加新键值对
+person["job"] = "学生"
+print(person)  # {"name": "李艺", "age": 18, "city": "广州", "job": "学生"}
+
+# 修改现有值
+person["age"] = 19
+print(person)  # {"name": "李艺", "age": 19, "city": "广州", "job": "学生"}
+
+# 删除键值对
+del person["city"]
+print(person)  # {"name": "李艺", "age": 19, "job": "学生"}</code></pre>
+
+            <h5>字典方法</h5>
+            <pre><code>person = {"name": "李艺", "age": 18, "city": "广州"}
+
+# keys() - 获取所有键
+print(person.keys())  # dict_keys(["name", "age", "city"])
+
+# values() - 获取所有值
+print(person.values())  # dict_values(["李艺", 18, "广州"])
+
+# items() - 获取所有键值对
+print(person.items())  # dict_items([("name", "李艺"), ("age", 18), ("city", "广州")])
+
+# 遍历字典
+for key, value in person.items():
+    print(f"{key}: {value}")</code></pre>
+
             <h4>集合 (Set)</h4>
-            <p>集合用于存储唯一元素。</p>
-            <pre><code># 创建集合
+            <p>集合用于存储唯一元素，不允许重复。集合使用花括号表示。</p>
+
+            <h5>创建集合</h5>
+            <pre><code># 创建空集合
+empty_set = set()
+
+# 创建带有元素的集合
 numbers = {1, 2, 3, 4, 5}
+
+# 从列表创建集合（自动去重）
+fruits = set(["苹果", "香蕉", "苹果", "橙子"])
+print(fruits)  # {"苹果", "香蕉", "橙子"}</code></pre>
+
+            <h5>集合操作</h5>
+            <pre><code>numbers = {1, 2, 3, 4, 5}
 
 # 添加元素
 numbers.add(6)
+print(numbers)  # {1, 2, 3, 4, 5, 6}
 
 # 移除元素
-numbers.remove(3)</code></pre>
+numbers.remove(3)
+print(numbers)  # {1, 2, 4, 5, 6}
+
+# 检查元素是否存在
+print(2 in numbers)  # True
+print(3 in numbers)  # False
+
+# 集合运算
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+# 并集
+print(a | b)  # {1, 2, 3, 4, 5, 6}
+
+# 交集
+print(a & b)  # {3, 4}
+
+# 差集
+print(a - b)  # {1, 2}
+print(b - a)  # {5, 6}</code></pre>
+
+            <h4>数据结构比较</h4>
+            <table class="operator-table">
+                <tr>
+                    <th>数据结构</th>
+                    <th>表示方式</th>
+                    <th>是否可变</th>
+                    <th>特点</th>
+                </tr>
+                <tr>
+                    <td>列表 (List)</td>
+                    <td>[ ]</td>
+                    <td>是</td>
+                    <td>存储有序元素，允许重复</td>
+                </tr>
+                <tr>
+                    <td>元组 (Tuple)</td>
+                    <td>( )</td>
+                    <td>否</td>
+                    <td>存储有序元素，允许重复</td>
+                </tr>
+                <tr>
+                    <td>字典 (Dictionary)</td>
+                    <td>{ }</td>
+                    <td>是</td>
+                    <td>存储键值对，键唯一</td>
+                </tr>
+                <tr>
+                    <td>集合 (Set)</td>
+                    <td>{ }</td>
+                    <td>是</td>
+                    <td>存储唯一元素，无序</td>
+                </tr>
+            </table>
+
+            <h4>综合练习</h4>
+            <p>让我们创建一个学生管理系统的简单示例：</p>
+            <pre><code># 学生管理系统
+students = []
+
+# 添加学生
+def add_student():
+    name = input("请输入学生姓名：")
+    age = int(input("请输入学生年龄："))
+    grade = input("请输入学生年级：")
+    
+    student = {
+        "name": name,
+        "age": age,
+        "grade": grade
+    }
+    
+    students.append(student)
+    print(f"已添加学生：{name}")
+
+# 显示所有学生
+def show_students():
+    if not students:
+        print("没有学生记录")
+        return
+    
+    print("\n学生列表：")
+    for i, student in enumerate(students, 1):
+        print(f"{i}. 姓名：{student['name']}, 年龄：{student['age']}, 年级：{student['grade']}")
+
+# 主程序
+while True:
+    print("\n学生管理系统")
+    print("1. 添加学生")
+    print("2. 显示所有学生")
+    print("3. 退出")
+    
+    choice = input("请选择操作：")
+    
+    if choice == "1":
+        add_student()
+    elif choice == "2":
+        show_students()
+    elif choice == "3":
+        print("再见！")
+        break
+    else:
+        print("无效选择，请重新输入")</code></pre>
+
+            <h4>小结</h4>
+            <ul>
+                <li>列表是可变的有序集合，用于存储多个元素</li>
+                <li>元组是不可变的有序集合，用于存储不需要修改的数据</li>
+                <li>字典是可变的键值对集合，用于存储关联数据</li>
+                <li>集合是可变的唯一元素集合，用于存储不重复的数据</li>
+                <li>每种数据结构都有其特定的用途和优势</li>
+            </ul>
+
+            <div class="next-step">
+                <h5>🚀 下一步</h5>
+                <p>现在你已经掌握了 Python 的基本数据结构，下一课我们将学习函数与模块，这将帮助你组织和重用代码。</p>
+            </div>
         `
     },
     {
