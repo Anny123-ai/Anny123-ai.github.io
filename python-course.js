@@ -2,24 +2,146 @@ const lessons = [
     {
         title: "第1课：Python 介绍与安装",
         content: `
+            <div class="lesson-intro">
+                <h3>欢迎来到 Python 世界！</h3>
+                <p>这是你学习 Python 编程的第一堂课，我们将一起了解 Python 是什么，以及如何在你的电脑上安装它。</p>
+                <div class="python-logo">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20programming%20language%20logo%20with%20snake%20symbol%2C%20colorful%2C%20friendly%20design%2C%20simple%20background&image_size=square" alt="Python Logo" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                </div>
+            </div>
+
             <h4>什么是 Python？</h4>
-            <p>Python 是一种高级、解释型、通用的编程语言。它的设计哲学强调代码的可读性，使用显著的缩进。</p>
+            <p>Python 是一种<strong>高级、解释型、通用</strong>的编程语言。它的设计哲学强调代码的可读性，使用显著的缩进，让代码看起来更加整洁美观。</p>
             
+            <div class="info-box">
+                <h5>为什么叫 Python？</h5>
+                <p>Python 的名字来源于英国喜剧团体 Monty Python，而不是蛇哦！创始人 Guido van Rossum 希望这门语言能够有趣且易于使用。</p>
+            </div>
+
             <h4>Python 的特点</h4>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h5>简单易学</h5>
+                    <p>语法简洁明了，接近自然语言，非常适合初学者</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h5>免费开源</h5>
+                    <p>完全免费使用，源代码开放，社区活跃</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h5>跨平台</h5>
+                    <p>可以在 Windows、Mac、Linux 等多种操作系统上运行</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h5>丰富的库</h5>
+                    <p>拥有大量现成的库，可以轻松实现各种功能</p>
+                </div>
+            </div>
+
+            <h4>Python 能做什么？</h4>
             <ul>
-                <li>简单易学</li>
-                <li>免费开源</li>
-                <li>跨平台</li>
-                <li>丰富的库</li>
+                <li><strong>Web 开发</strong>：使用 Django、Flask 等框架</li>
+                <li><strong>数据分析</strong>：使用 Pandas、NumPy 等库</li>
+                <li><strong>人工智能</strong>：使用 TensorFlow、PyTorch 等库</li>
+                <li><strong>自动化脚本</strong>：简化日常工作</li>
+                <li><strong>游戏开发</strong>：使用 Pygame 等库</li>
+                <li><strong>科学计算</strong>：解决复杂的数学问题</li>
             </ul>
+
+            <h4>安装 Python（详细步骤）</h4>
             
-            <h4>安装 Python</h4>
-            <p>访问 <a href="https://www.python.org/downloads/" target="_blank">python.org</a> 下载最新版本的 Python。</p>
-            
+            <h5>步骤 1：下载 Python</h5>
+            <ol>
+                <li>打开浏览器，访问 <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></li>
+                <li>网站会自动检测你的操作系统，并推荐适合的版本</li>
+                <li>点击「Download Python XXX」按钮（XXX 是版本号）</li>
+            </ol>
+
+            <h5>步骤 2：安装 Python（Windows）</h5>
+            <ol>
+                <li>双击下载的安装文件</li>
+                <li><strong>重要</strong>：勾选「Add Python XXX to PATH」选项</li>
+                <li>点击「Install Now」按钮</li>
+                <li>等待安装完成，点击「Close」按钮</li>
+            </ol>
+
+            <h5>步骤 2：安装 Python（Mac）</h5>
+            <ol>
+                <li>双击下载的 .pkg 文件</li>
+                <li>按照安装向导的提示进行操作</li>
+                <li>输入管理员密码（如果需要）</li>
+                <li>等待安装完成</li>
+            </ol>
+
+            <h5>步骤 2：安装 Python（Linux）</h5>
+            <p>大多数 Linux 发行版已经预装了 Python，你可以直接使用。如果需要更新版本，可以使用包管理器：</p>
+            <pre><code># Ubuntu/Debian
+sudo apt update
+sudo apt install python3
+
+# CentOS/RHEL
+sudo yum install python3</code></pre>
+
             <h4>验证安装</h4>
-            <p>打开终端或命令提示符，输入：</p>
+            <h5>方法 1：使用命令行</h5>
+            <p>打开终端或命令提示符，输入以下命令：</p>
             <pre><code>python --version</code></pre>
+            <p>或者在某些系统上：</p>
+            <pre><code>python3 --version</code></pre>
             <p>如果显示 Python 版本号，说明安装成功！</p>
+
+            <h5>方法 2：使用 Python 解释器</h5>
+            <p>在终端中输入：</p>
+            <pre><code>python</code></pre>
+            <p>你应该会看到 Python 解释器的欢迎信息，显示版本号。输入 <code>exit()</code> 可以退出解释器。</p>
+
+            <div class="success-box">
+                <h5>🎉 安装成功！</h5>
+                <p>恭喜你已经成功安装了 Python！现在你可以开始编写你的第一个 Python 程序了。</p>
+            </div>
+
+            <h4>第一个 Python 程序</h4>
+            <p>让我们编写一个简单的程序来验证一切正常工作：</p>
+            <pre><code>print("Hello, Python!")
+print("欢迎来到 Python 编程世界！")</code></pre>
+
+            <h5>如何运行这个程序</h5>
+            <ol>
+                <li>打开文本编辑器（如记事本、VS Code 等）</li>
+                <li>复制上面的代码并保存为 <code>hello.py</code></li>
+                <li>在终端中导航到文件所在的目录</li>
+                <li>输入命令：<code>python hello.py</code></li>
+                <li>你应该会看到程序输出的文字</li>
+            </ol>
+
+            <h4>常见问题与解决方案</h4>
+            <div class="faq">
+                <h5>Q: 安装后在命令行中输入 <code>python</code> 显示「命令未找到」</h5>
+                <p>A: 这可能是因为 Python 没有添加到系统 PATH 中。你可以重新运行安装程序，确保勾选「Add Python to PATH」选项，或者手动将 Python 安装目录添加到 PATH 中。</p>
+                
+                <h5>Q: 运行程序时出现语法错误</h5>
+                <p>A: 检查你的代码是否正确，特别是缩进和标点符号。Python 对缩进非常严格。</p>
+                
+                <h5>Q: 我应该安装哪个版本的 Python？</h5>
+                <p>A: 建议安装最新的稳定版本（Python 3.x）。Python 2.x 已经不再维护，不推荐使用。</p>
+            </div>
+
+            <h4>小结</h4>
+            <ul>
+                <li>Python 是一种简单易学、功能强大的编程语言</li>
+                <li>它可以在各种操作系统上运行</li>
+                <li>安装 Python 非常简单，只需几个步骤</li>
+                <li>你已经成功安装了 Python 并运行了第一个程序</li>
+            </ul>
+
+            <div class="next-step">
+                <h5>🚀 下一步</h5>
+                <p>现在你已经准备好开始学习 Python 的基础语法了。下一课我们将学习变量、数据类型和基本运算符。</p>
+            </div>
         `
     },
     {
