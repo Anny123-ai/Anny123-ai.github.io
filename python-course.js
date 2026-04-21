@@ -832,60 +832,411 @@ while True:
     {
         title: "第4课：函数与模块",
         content: `
+            <div class="lesson-intro">
+                <h3>Python 函数与模块</h3>
+                <p>在这一课中，我们将学习 Python 中的函数和模块。函数可以帮助你组织代码，模块则可以帮助你重用代码，让你的程序更加模块化和易于维护。</p>
+                <div class="python-logo">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20functions%20and%20modules%20visualization%2C%20colorful%20code%20blocks%2C%20function%20diagrams%2C%20beginner%20friendly%2C%20simple%20background&image_size=square" alt="Functions and Modules" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                </div>
+            </div>
+
             <h4>函数定义与调用</h4>
+            <p>函数是一段可重用的代码块，用于执行特定的任务。通过函数，你可以将复杂的问题分解成更小、更易管理的部分。</p>
+
+            <h5>定义函数</h5>
             <pre><code>def greet(name):
-    """函数文档字符串"""
+    """
+    向用户打招呼的函数
+    
+    参数:
+        name: 字符串，用户的名字
+    
+    返回:
+        打招呼的字符串
+    """
     return f"你好，{name}！"
 
 # 调用函数
-print(greet("张三"))</code></pre>
-            
+print(greet("李艺"))  # 你好，李艺！</code></pre>
+
+            <h5>函数的组成部分</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h5>def 关键字</h5>
+                    <p>用于定义函数</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔤</div>
+                    <h5>函数名</h5>
+                    <p>函数的名称，遵循变量命名规则</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h5>参数</h5>
+                    <p>函数接收的输入值</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h5>文档字符串</h5>
+                    <p>描述函数功能的注释</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h5>函数体</h5>
+                    <p>函数执行的代码</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">↩️</div>
+                    <h5>return 语句</h5>
+                    <p>返回函数的结果</p>
+                </div>
+            </div>
+
             <h4>函数参数</h4>
-            <pre><code># 默认参数
-def power(x, n=2):
+            <p>Python 函数支持多种类型的参数，让函数更加灵活。</p>
+
+            <h5>位置参数</h5>
+            <pre><code>def add(a, b):
+    return a + b
+
+print(add(3, 5))  # 8</code></pre>
+
+            <h5>默认参数</h5>
+            <pre><code>def power(x, n=2):
+    """计算 x 的 n 次方"""
     return x ** n
 
-# 关键字参数
-print(power(n=3, x=2))  # 8
+print(power(2))    # 4（使用默认参数 n=2）
+print(power(2, 3)) # 8（使用指定参数 n=3）</code></pre>
 
-# 可变参数
-def sum_numbers(*args):
+            <h5>关键字参数</h5>
+            <pre><code>def describe_person(name, age, city):
+    return f"姓名：{name}，年龄：{age}，城市：{city}"
+
+# 使用关键字参数
+print(describe_person(name="李艺", age=18, city="广州"))
+
+# 可以改变参数顺序
+print(describe_person(city="北京", name="张三", age=20))</code></pre>
+
+            <h5>可变参数</h5>
+            <pre><code>def sum_numbers(*args):
+    """计算任意数量数字的和"""
     return sum(args)
 
-# 关键字可变参数
-def print_info(**kwargs):
+print(sum_numbers(1, 2, 3))      # 6
+print(sum_numbers(10, 20, 30, 40))  # 100</code></pre>
+
+            <h5>关键字可变参数</h5>
+            <pre><code>def print_info(**kwargs):
+    """打印任意关键字参数"""
     for key, value in kwargs.items():
-        print(f"{key}: {value}")</code></pre>
-            
+        print(f"{key}: {value}")
+
+print_info(name="李艺", age=18, city="广州")
+# 输出：
+# name: 李艺
+# age: 18
+# city: 广州</code></pre>
+
+            <h5>混合使用参数</h5>
+            <pre><code>def mixed_params(a, b, *args, c=10, **kwargs):
+    print(f"a: {a}, b: {b}, c: {c}")
+    print(f"args: {args}")
+    print(f"kwargs: {kwargs}")
+
+mixed_params(1, 2, 3, 4, 5, c=20, name="李艺", age=18)
+# 输出：
+# a: 1, b: 2, c: 20
+# args: (3, 4, 5)
+# kwargs: {'name': '李艺', 'age': 18}</code></pre>
+
+            <div class="info-box">
+                <h5>💡 小提示</h5>
+                <p>参数的顺序很重要！正确的顺序是：位置参数 → 可变参数 → 默认参数 → 关键字可变参数</p>
+            </div>
+
+            <h4>函数的返回值</h4>
+            <pre><code># 返回单个值
+def square(x):
+    return x * x
+
+print(square(5))  # 25
+
+# 返回多个值
+def get_coordinates():
+    return 10, 20, 30
+
+x, y, z = get_coordinates()
+print(f"x: {x}, y: {y}, z: {z}")  # x: 10, y: 20, z: 30
+
+# 无返回值的函数
+def say_hello(name):
+    print(f"你好，{name}！")
+
+result = say_hello("李艺")
+print(result)  # None</code></pre>
+
             <h4>模块</h4>
-            <pre><code># 导入模块
+            <p>模块是一个包含 Python 定义和语句的文件。通过模块，你可以将代码组织成可重用的单元。</p>
+
+            <h5>内置模块</h5>
+            <pre><code># 导入整个模块
 import math
 
 # 使用模块中的函数
 print(math.sqrt(16))  # 4.0
+print(math.pi)       # 3.141592653589793
 
 # 导入特定函数
 from math import pi, sin
+print(pi)    # 3.141592653589793
+print(sin(pi/2))  # 1.0
 
-# 导入所有函数
-from math import *</code></pre>
-            
-            <h4>创建模块</h4>
-            <p>创建一个.py文件，然后在其他文件中导入它。</p>
+# 导入所有函数（不推荐）
+from math import *
+print(cos(0))  # 1.0</code></pre>
+
+            <h5>常用内置模块</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔢</div>
+                    <h5>math</h5>
+                    <p>数学函数</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h5>datetime</h5>
+                    <p>日期和时间</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎲</div>
+                    <h5>random</h5>
+                    <p>随机数生成</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h5>os</h5>
+                    <p>操作系统接口</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h5>urllib</h5>
+                    <p>网络请求</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h5>json</h5>
+                    <p>JSON 处理</p>
+                </div>
+            </div>
+
+            <h5>创建自己的模块</h5>
+            <p>创建一个名为 <code>mymodule.py</code> 的文件，内容如下：</p>
             <pre><code># mymodule.py
-def say_hello():
-    print("Hello from my module!")
+"""我的第一个模块"""
 
-# 在其他文件中导入
+def say_hello(name):
+    """向用户打招呼"""
+    return f"你好，{name}！"
+
+def calculate_area(radius):
+    """计算圆的面积"""
+    import math
+    return math.pi * radius ** 2
+
+# 模块级变量
+VERSION = "1.0.0"
+AUTHOR = "李艺"
+</code></pre>
+
+            <p>然后在另一个文件中导入并使用它：</p>
+            <pre><code># main.py
 import mymodule
-mymodule.say_hello()</code></pre>
+
+print(mymodule.say_hello("张三"))
+print(mymodule.calculate_area(5))
+print(f"模块版本：{mymodule.VERSION}")
+print(f"作者：{mymodule.AUTHOR}")</code></pre>
+
+            <h5>模块的搜索路径</h5>
+            <pre><code>import sys
+print(sys.path)</code></pre>
+
+            <h4>包</h4>
+            <p>包是一个包含多个模块的目录，用于组织相关的模块。</p>
+
+            <h5>创建包</h5>
+            <ol>
+                <li>创建一个目录，例如 <code>mypackage</code></li>
+                <li>在目录中创建一个 <code>__init__.py</code> 文件</li>
+                <li>在目录中创建多个模块文件</li>
+            </ol>
+
+            <pre><code># mypackage/__init__.py
+"""我的包"""
+
+# mypackage/calculator.py
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+# mypackage/greeter.py
+def greet(name):
+    return f"你好，{name}！"
+</code></pre>
+
+            <h5>使用包</h5>
+            <pre><code># 导入整个包
+import mypackage
+
+# 导入包中的模块
+import mypackage.calculator
+print(mypackage.calculator.add(3, 5))
+
+# 从包中导入特定模块
+from mypackage import greeter
+print(greeter.greet("李艺"))
+
+# 从包的模块中导入特定函数
+from mypackage.calculator import subtract
+print(subtract(10, 3))</code></pre>
+
+            <h4>综合练习</h4>
+            <p>让我们创建一个简单的计算器模块：</p>
+            <pre><code># calculator.py
+"""简单计算器模块"""
+
+def add(*args):
+    """计算多个数的和"""
+    return sum(args)
+
+def subtract(a, b):
+    """计算两个数的差"""
+    return a - b
+
+def multiply(*args):
+    """计算多个数的乘积"""
+    result = 1
+    for num in args:
+        result *= num
+    return result
+
+def divide(a, b):
+    """计算两个数的商"""
+    if b == 0:
+        return "错误：除数不能为零"
+    return a / b
+
+# 使用示例
+if __name__ == "__main__":
+    print("计算器模块测试")
+    print(f"3 + 5 = {add(3, 5)}")
+    print(f"10 - 4 = {subtract(10, 4)}")
+    print(f"2 * 3 * 4 = {multiply(2, 3, 4)}")
+    print(f"10 / 2 = {divide(10, 2)}")
+    print(f"10 / 0 = {divide(10, 0)}")
+</code></pre>
+
+            <h4>小结</h4>
+            <ul>
+                <li>函数是可重用的代码块，用于执行特定任务</li>
+                <li>函数可以接收不同类型的参数：位置参数、默认参数、关键字参数、可变参数</li>
+                <li>函数可以返回单个值或多个值</li>
+                <li>模块是包含 Python 代码的文件，用于组织和重用代码</li>
+                <li>包是包含多个模块的目录，用于组织相关的模块</li>
+                <li>通过导入模块和包，你可以使用其中定义的函数和变量</li>
+            </ul>
+
+            <div class="next-step">
+                <h5>🚀 下一步</h5>
+                <p>现在你已经掌握了 Python 的函数与模块，下一课我们将学习面向对象编程，这是一种更高级的编程范式。</p>
+            </div>
         `
     },
     {
         title: "第5课：面向对象编程",
         content: `
+            <div class="lesson-intro">
+                <h3>Python 面向对象编程</h3>
+                <p>在这一课中，我们将学习 Python 的面向对象编程（OOP）。面向对象编程是一种编程范式，它将数据和操作数据的方法组织成对象，使代码更加模块化、可重用和易于维护。</p>
+                <div class="python-logo">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20object%20oriented%20programming%20visualization%2C%20class%20diagrams%2C%20objects%2C%20inheritance%20hierarchy%2C%20beginner%20friendly%2C%20simple%20background&image_size=square" alt="Object Oriented Programming" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                </div>
+            </div>
+
             <h4>类与对象</h4>
+            <p>在面向对象编程中，<strong>类</strong>是一个模板，定义了对象的属性和方法；而<strong>对象</strong>是类的实例。</p>
+
+            <h5>定义类</h5>
             <pre><code>class Person:
+    """人员类"""
+    
+    def __init__(self, name, age):
+        """初始化方法"""
+        self.name = name  # 实例属性
+        self.age = age    # 实例属性
+    
+    def greet(self):
+        """打招呼方法"""
+        return f"你好，我是{self.name}，今年{self.age}岁。"
+
+# 创建对象
+person1 = Person("李艺", 18)
+person2 = Person("张三", 25)
+
+# 访问属性
+print(person1.name)  # 李艺
+print(person2.age)   # 25
+
+# 调用方法
+print(person1.greet())  # 你好，我是李艺，今年18岁。
+print(person2.greet())  # 你好，我是张三，今年25岁。</code></pre>
+
+            <h5>类的组成部分</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h5>class 关键字</h5>
+                    <p>用于定义类</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔤</div>
+                    <h5>类名</h5>
+                    <p>类的名称，通常使用驼峰命名法</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h5>文档字符串</h5>
+                    <p>描述类的功能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h5>__init__ 方法</h5>
+                    <p>初始化方法，创建对象时调用</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h5>属性</h5>
+                    <p>存储对象的数据</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h5>方法</h5>
+                    <p>对象的行为和功能</p>
+                </div>
+            </div>
+
+            <h4>继承</h4>
+            <p>继承是面向对象编程的重要特性，它允许创建一个新类（子类）来继承现有类（父类）的属性和方法。</p>
+
+            <h5>基本继承</h5>
+            <pre><code>class Person:
+    """人员类"""
+    
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -893,111 +1244,637 @@ mymodule.say_hello()</code></pre>
     def greet(self):
         return f"你好，我是{self.name}，今年{self.age}岁。"
 
-# 创建对象
-p1 = Person("张三", 25)
-print(p1.greet())</code></pre>
-            
-            <h4>继承</h4>
-            <pre><code>class Student(Person):
+class Student(Person):
+    """学生类（继承自 Person）"""
+    
     def __init__(self, name, age, student_id):
+        # 调用父类的初始化方法
         super().__init__(name, age)
+        # 添加子类特有的属性
         self.student_id = student_id
     
     def study(self):
+        """学习方法"""
         return f"{self.name}正在学习。"
 
 # 创建学生对象
-s1 = Student("李四", 20, "2026001")
-print(s1.greet())
-print(s1.study())</code></pre>
-            
+student = Student("李艺", 18, "2026001")
+
+# 调用继承的方法
+print(student.greet())  # 你好，我是李艺，今年18岁。
+
+# 调用子类特有的方法
+print(student.study())  # 李艺正在学习。
+
+# 访问所有属性
+print(f"姓名：{student.name}，年龄：{student.age}，学号：{student.student_id}")</code></pre>
+
+            <h5>多级继承</h5>
+            <pre><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)
+        self.student_id = student_id
+
+class CollegeStudent(Student):
+    def __init__(self, name, age, student_id, major):
+        super().__init__(name, age, student_id)
+        self.major = major
+    
+    def study_major(self):
+        return f"{self.name}正在学习{self.major}专业。"
+
+# 创建大学生对象
+college_student = CollegeStudent("李艺", 18, "2026001", "商务数据分析")
+print(college_student.greet())  # 继承自 Person
+print(college_student.study())  # 继承自 Student
+print(college_student.study_major())  # 特有的方法</code></pre>
+
             <h4>封装</h4>
+            <p>封装是指将对象的内部状态隐藏起来，只通过公共方法来访问和修改。在 Python 中，我们使用下划线来表示私有属性和方法。</p>
+
+            <h5>私有属性</h5>
             <pre><code>class BankAccount:
+    """银行账户类"""
+    
     def __init__(self, balance):
-        self.__balance = balance  # 私有属性
+        self.__balance = balance  # 私有属性（双下划线开头）
     
     def deposit(self, amount):
+        """存款方法"""
         if amount > 0:
             self.__balance += amount
             return True
         return False
     
+    def withdraw(self, amount):
+        """取款方法"""
+        if amount > 0 and amount <= self.__balance:
+            self.__balance -= amount
+            return True
+        return False
+    
     def get_balance(self):
-        return self.__balance</code></pre>
-            
+        """获取余额方法"""
+        return self.__balance
+
+# 创建账户对象
+account = BankAccount(1000)
+
+# 尝试直接访问私有属性（会出错）
+# print(account.__balance)  # 这会引发 AttributeError
+
+# 通过公共方法访问
+print(account.get_balance())  # 1000
+
+# 存款
+account.deposit(500)
+print(account.get_balance())  # 1500
+
+# 取款
+account.withdraw(300)
+print(account.get_balance())  # 1200</code></pre>
+
+            <div class="info-box">
+                <h5>💡 小提示</h5>
+                <p>在 Python 中，双下划线开头的属性会被名称修饰（name mangling），实际上会变成 <code>_ClassName__attribute</code> 的形式。但这不是真正的私有，只是一种约定。</p>
+            </div>
+
             <h4>多态</h4>
+            <p>多态是指不同类的对象可以响应相同的方法调用，但根据对象的实际类型执行不同的行为。</p>
+
+            <h5>多态示例</h5>
             <pre><code>class Animal:
+    """动物基类"""
     def speak(self):
+        """发出声音"""
         pass
 
 class Dog(Animal):
+    """狗类"""
     def speak(self):
         return "汪汪！"
 
 class Cat(Animal):
+    """猫类"""
     def speak(self):
         return "喵喵！"
 
+class Bird(Animal):
+    """鸟类"""
+    def speak(self):
+        return "啾啾！"
+
+# 多态函数
 def make_animal_speak(animal):
+    """让动物发出声音"""
     print(animal.speak())
 
-# 多态调用
+# 创建不同的动物对象
 dog = Dog()
 cat = Cat()
-make_animal_speak(dog)  # 汪汪！
-make_animal_speak(cat)  # 喵喵！</code></pre>
+bird = Bird()
+
+# 调用相同的方法，得到不同的结果
+make_animal_speak(dog)   # 汪汪！
+make_animal_speak(cat)   # 喵喵！
+make_animal_speak(bird)  # 啾啾！</code></pre>
+
+            <h4>类属性和类方法</h4>
+            <p>除了实例属性和实例方法，Python 还支持类属性和类方法。</p>
+
+            <h5>类属性</h5>
+            <pre><code>class Person:
+    """人员类"""
+    # 类属性（所有实例共享）
+    species = "人类"
+    count = 0
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        # 每次创建实例时，类属性 count 加 1
+        Person.count += 1
+
+# 访问类属性
+print(Person.species)  # 人类
+print(Person.count)    # 0
+
+# 创建实例
+person1 = Person("李艺", 18)
+print(Person.count)    # 1
+
+person2 = Person("张三", 25)
+print(Person.count)    # 2
+
+# 类属性可以通过实例访问
+print(person1.species)  # 人类
+</code></pre>
+
+            <h5>类方法和静态方法</h5>
+            <pre><code>class Math:
+    """数学工具类"""
+    
+    # 类属性
+    PI = 3.141592653589793
+    
+    @classmethod
+    def circle_area(cls, radius):
+        """计算圆的面积（类方法）"""
+        return cls.PI * radius ** 2
+    
+    @staticmethod
+    def add(a, b):
+        """加法运算（静态方法）"""
+        return a + b
+
+# 调用类方法
+print(Math.circle_area(5))  # 78.53981633974483
+
+# 调用静态方法
+print(Math.add(3, 5))  # 8
+</code></pre>
+
+            <h4>特殊方法</h4>
+            <p>Python 中有许多特殊方法，它们以双下划线开头和结尾，用于实现对象的特殊行为。</p>
+
+            <h5>常用特殊方法</h5>
+            <pre><code>class Point:
+    """点类"""
+    
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __str__(self):
+        """字符串表示"""
+        return f"Point({self.x}, {self.y})"
+    
+    def __add__(self, other):
+        """加法运算"""
+        return Point(self.x + other.x, self.y + other.y)
+    
+    def __eq__(self, other):
+        """相等比较"""
+        return self.x == other.x and self.y == other.y
+
+# 创建点对象
+p1 = Point(1, 2)
+p2 = Point(3, 4)
+
+# 使用 __str__ 方法
+print(p1)  # Point(1, 2)
+
+# 使用 __add__ 方法
+p3 = p1 + p2
+print(p3)  # Point(4, 6)
+
+# 使用 __eq__ 方法
+print(p1 == p2)  # False
+print(p1 == Point(1, 2))  # True
+</code></pre>
+
+            <h4>综合练习</h4>
+            <p>让我们创建一个简单的图书管理系统：</p>
+            <pre><code>class Book:
+    """图书类"""
+    
+    def __init__(self, title, author, isbn):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+        self.available = True
+    
+    def __str__(self):
+        status = "可借" if self.available else "已借出"
+        return f"《{self.title}》 - {self.author} (ISBN: {self.isbn}) - {status}"
+
+class Library:
+    """图书馆类"""
+    
+    def __init__(self):
+        self.books = []
+    
+    def add_book(self, book):
+        """添加图书"""
+        self.books.append(book)
+        print(f"已添加图书：{book.title}")
+    
+    def borrow_book(self, isbn):
+        """借阅图书"""
+        for book in self.books:
+            if book.isbn == isbn:
+                if book.available:
+                    book.available = False
+                    print(f"成功借阅：{book.title}")
+                    return True
+                else:
+                    print(f"图书 {book.title} 已被借出")
+                    return False
+        print(f"未找到 ISBN 为 {isbn} 的图书")
+        return False
+    
+    def return_book(self, isbn):
+        """归还图书"""
+        for book in self.books:
+            if book.isbn == isbn:
+                if not book.available:
+                    book.available = True
+                    print(f"成功归还：{book.title}")
+                    return True
+                else:
+                    print(f"图书 {book.title} 未被借出")
+                    return False
+        print(f"未找到 ISBN 为 {isbn} 的图书")
+        return False
+    
+    def list_books(self):
+        """列出所有图书"""
+        if not self.books:
+            print("图书馆暂无图书")
+            return
+        print("图书馆图书列表：")
+        for book in self.books:
+            print(book)
+
+# 测试图书管理系统
+library = Library()
+
+# 添加图书
+library.add_book(Book("Python 编程入门", "张三", "978-7-123-45678-9"))
+library.add_book(Book("数据结构与算法", "李四", "978-7-987-65432-1"))
+library.add_book(Book("机器学习基础", "王五", "978-7-111-22233-3"))
+
+# 列出图书
+library.list_books()
+
+# 借阅图书
+library.borrow_book("978-7-123-45678-9")
+
+# 再次列出图书
+library.list_books()
+
+# 归还图书
+library.return_book("978-7-123-45678-9")
+
+# 再次列出图书
+library.list_books()
+</code></pre>
+
+            <h4>小结</h4>
+            <ul>
+                <li>面向对象编程将数据和方法组织成对象</li>
+                <li>类是对象的模板，对象是类的实例</li>
+                <li>继承允许创建子类来继承父类的属性和方法</li>
+                <li>封装通过私有属性和公共方法保护对象的内部状态</li>
+                <li>多态允许不同类型的对象响应相同的方法调用</li>
+                <li>类属性和类方法属于类本身，而不是实例</li>
+                <li>特殊方法可以自定义对象的行为</li>
+            </ul>
+
+            <div class="next-step">
+                <h5>🚀 下一步</h5>
+                <p>现在你已经掌握了 Python 的面向对象编程，下一课我们将学习文件操作与异常处理，这是处理实际应用中常见问题的重要技能。</p>
+            </div>
         `
     },
     {
         title: "第6课：文件操作与异常处理",
         content: `
-            <h4>文件操作</h4>
-            <h5>读取文件</h5>
-            <pre><code># 读取整个文件
-with open("example.txt", "r", encoding="utf-8") as f:
-    content = f.read()
-    print(content)
+            <div class="lesson-intro">
+                <h3>Python 文件操作与异常处理</h3>
+                <p>在这一课中，我们将学习 Python 中的文件操作和异常处理。文件操作允许你读取和写入文件，而异常处理则帮助你优雅地处理程序运行过程中可能出现的错误。</p>
+                <div class="python-logo">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20file%20operations%20and%20exception%20handling%2C%20file%20icons%2C%20error%20messages%2C%20beginner%20friendly%2C%20simple%20background&image_size=square" alt="File Operations and Exception Handling" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                </div>
+            </div>
 
-# 逐行读取
-with open("example.txt", "r", encoding="utf-8") as f:
-    for line in f:
-        print(line.strip())</code></pre>
-            
+            <h4>文件操作</h4>
+            <p>文件操作是编程中常见的任务，Python 提供了简单而强大的文件操作功能。</p>
+
+            <h5>文件打开模式</h5>
+            <table class="operator-table">
+                <tr>
+                    <th>模式</th>
+                    <th>描述</th>
+                </tr>
+                <tr>
+                    <td>r</td>
+                    <td>只读模式（默认）</td>
+                </tr>
+                <tr>
+                    <td>w</td>
+                    <td>写入模式（覆盖现有文件）</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>追加模式（在文件末尾添加内容）</td>
+                </tr>
+                <tr>
+                    <td>r+</td>
+                    <td>读写模式</td>
+                </tr>
+                <tr>
+                    <td>w+</td>
+                    <td>读写模式（覆盖现有文件）</td>
+                </tr>
+                <tr>
+                    <td>a+</td>
+                    <td>读写模式（在文件末尾添加内容）</td>
+                </tr>
+                <tr>
+                    <td>x</td>
+                    <td>创建模式（创建新文件，如果文件已存在则失败）</td>
+                </tr>
+            </table>
+
             <h5>写入文件</h5>
-            <pre><code># 写入文件（覆盖）
+            <pre><code># 写入文件（覆盖模式）
 with open("example.txt", "w", encoding="utf-8") as f:
     f.write("Hello, Python!\n")
     f.write("This is a test.\n")
+    f.write("I love programming.\n")
 
-# 追加内容
-with open("example.txt", "a", encoding="utf-8") as f:
-    f.write("This is appended.\n")</code></pre>
-            
+print("文件写入成功！")</code></pre>
+
+            <h5>读取文件</h5>
+            <h6>读取整个文件</h6>
+            <pre><code>with open("example.txt", "r", encoding="utf-8") as f:
+    content = f.read()
+    print(content)</code></pre>
+
+            <h6>逐行读取</h6>
+            <pre><code>with open("example.txt", "r", encoding="utf-8") as f:
+    for line in f:
+        print(line.strip())  # strip() 去除换行符和空白字符</code></pre>
+
+            <h6>读取指定行数</h6>
+            <pre><code>with open("example.txt", "r", encoding="utf-8") as f:
+    lines = f.readlines()
+    print(f"文件共有 {len(lines)} 行")
+    for i, line in enumerate(lines, 1):
+        print(f"第 {i} 行: {line.strip()}")</code></pre>
+
+            <h5>追加内容</h5>
+            <pre><code>with open("example.txt", "a", encoding="utf-8") as f:
+    f.write("\n这是追加的内容。\n")
+    f.write("Python 是一种很棒的编程语言！\n")
+
+print("内容追加成功！")</code></pre>
+
+            <h5>文件操作最佳实践</h5>
+            <div class="info-box">
+                <h5>💡 小提示</h5>
+                <p>使用 <code>with</code> 语句来打开文件，这样可以确保文件在使用完毕后自动关闭，避免资源泄露。</p>
+            </div>
+
             <h4>异常处理</h4>
+            <p>异常是程序运行过程中出现的错误，如文件不存在、除以零等。Python 提供了异常处理机制，让你可以优雅地处理这些错误。</p>
+
+            <h5>基本异常处理</h5>
             <pre><code>try:
     # 可能会引发异常的代码
     num = int(input("请输入一个数字："))
     result = 10 / num
     print(f"结果：{result}")
 except ValueError:
+    # 处理值错误（如输入不是数字）
     print("请输入有效的数字！")
 except ZeroDivisionError:
+    # 处理除零错误
     print("除数不能为零！")
 except Exception as e:
+    # 处理其他所有异常
     print(f"发生错误：{e}")
 finally:
+    # 无论是否发生异常都会执行的代码
     print("程序执行完毕。")</code></pre>
-            
-            <h4>自定义异常</h4>
+
+            <h5>常见异常类型</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">❌</div>
+                    <h5>ValueError</h5>
+                    <p>值错误，如无效的转换</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔢</div>
+                    <h5>ZeroDivisionError</h5>
+                    <p>除零错误</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h5>FileNotFoundError</h5>
+                    <p>文件不存在错误</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔑</div>
+                    <h5>KeyError</h5>
+                    <p>字典键不存在错误</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📏</div>
+                    <h5>IndexError</h5>
+                    <p>索引超出范围错误</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚠️</div>
+                    <h5>Exception</h5>
+                    <p>所有异常的基类</p>
+                </div>
+            </div>
+
+            <h5>异常处理的应用</h5>
+            <pre><code>def read_file(filename):
+    """读取文件内容"""
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            content = f.read()
+        return content
+    except FileNotFoundError:
+        print(f"错误：文件 {filename} 不存在")
+        return None
+    except UnicodeDecodeError:
+        print(f"错误：文件 {filename} 编码格式错误")
+        return None
+    except Exception as e:
+        print(f"错误：{e}")
+        return None
+
+# 测试函数
+content = read_file("example.txt")
+if content:
+    print("文件内容：")
+    print(content)
+
+content = read_file("nonexistent.txt")
+if content:
+    print("文件内容：")
+    print(content)</code></pre>
+
+            <h5>自定义异常</h5>
+            <p>你可以创建自己的异常类来处理特定的错误情况。</p>
             <pre><code>class CustomError(Exception):
+    """自定义异常类"""
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
 
+class AgeError(CustomError):
+    """年龄错误异常"""
+    pass
+
+def check_age(age):
+    """检查年龄是否有效"""
+    if age < 0:
+        raise AgeError("年龄不能为负数")
+    elif age > 150:
+        raise AgeError("年龄不能超过150岁")
+    else:
+        print(f"年龄 {age} 是有效的")
+
+# 测试自定义异常
 try:
-    raise CustomError("这是一个自定义异常")
-except CustomError as e:
-    print(f"捕获到自定义异常：{e}")</code></pre>
+    check_age(20)
+    check_age(-5)
+except AgeError as e:
+    print(f"年龄错误：{e}")
+except Exception as e:
+    print(f"其他错误：{e}")</code></pre>
+
+            <h4>综合练习</h4>
+            <p>让我们创建一个简单的文件管理工具：</p>
+            <pre><code>def file_manager():
+    """文件管理工具"""
+    while True:
+        print("\n文件管理工具")
+        print("1. 创建文件")
+        print("2. 读取文件")
+        print("3. 追加内容")
+        print("4. 退出")
+        
+        choice = input("请选择操作：")
+        
+        if choice == "1":
+            # 创建文件
+            filename = input("请输入文件名：")
+            content = input("请输入文件内容：")
+            try:
+                with open(filename, "w", encoding="utf-8") as f:
+                    f.write(content)
+                print(f"文件 {filename} 创建成功！")
+            except Exception as e:
+                print(f"错误：{e}")
+                
+        elif choice == "2":
+            # 读取文件
+            filename = input("请输入文件名：")
+            try:
+                with open(filename, "r", encoding="utf-8") as f:
+                    content = f.read()
+                print(f"\n文件 {filename} 的内容：")
+                print(content)
+            except FileNotFoundError:
+                print(f"错误：文件 {filename} 不存在")
+            except Exception as e:
+                print(f"错误：{e}")
+                
+        elif choice == "3":
+            # 追加内容
+            filename = input("请输入文件名：")
+            content = input("请输入要追加的内容：")
+            try:
+                with open(filename, "a", encoding="utf-8") as f:
+                    f.write("\n" + content)
+                print(f"内容追加到文件 {filename} 成功！")
+            except Exception as e:
+                print(f"错误：{e}")
+                
+        elif choice == "4":
+            # 退出
+            print("再见！")
+            break
+        else:
+            print("无效选择，请重新输入")
+
+# 运行文件管理工具
+file_manager()</code></pre>
+
+            <h4>小结</h4>
+            <ul>
+                <li>文件操作是编程中常见的任务，Python 提供了简单而强大的文件操作功能</li>
+                <li>使用 <code>with</code> 语句来打开文件，可以确保文件在使用完毕后自动关闭</li>
+                <li>文件打开模式决定了文件的操作方式（读、写、追加等）</li>
+                <li>异常是程序运行过程中出现的错误，如文件不存在、除以零等</li>
+                <li>使用 <code>try-except</code> 语句来捕获和处理异常</li>
+                <li>可以创建自定义异常类来处理特定的错误情况</li>
+                <li>异常处理可以使程序更加健壮，避免因为错误而崩溃</li>
+            </ul>
+
+            <div class="next-step">
+                <h5>🚀 学习总结</h5>
+                <p>恭喜你完成了 Python 基础课程的全部内容！你已经掌握了：</p>
+                <ul>
+                    <li>Python 介绍与安装</li>
+                    <li>Python 基础语法</li>
+                    <li>Python 数据结构</li>
+                    <li>函数与模块</li>
+                    <li>面向对象编程</li>
+                    <li>文件操作与异常处理</li>
+                </ul>
+                <p>这些知识为你打下了坚实的 Python 编程基础。接下来，你可以尝试：</p>
+                <ul>
+                    <li>学习 Python 的高级特性，如装饰器、生成器等</li>
+                    <li>尝试使用 Python 库进行数据分析、Web 开发等</li>
+                    <li>参与开源项目，提升实战经验</li>
+                    <li>解决实际问题，巩固所学知识</li>
+                </ul>
+                <p>祝你在 Python 编程的道路上越走越远！</p>
+            </div>
         `
     }
 ];

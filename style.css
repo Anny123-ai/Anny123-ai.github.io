@@ -64,6 +64,151 @@ body {
     background: rgba(255, 255, 255, 0.2);
 }
 
+/* 数字人头像样式 */
+.digital-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+    overflow: hidden;
+}
+
+/* 个人信息部分样式 */
+.profile-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.profile-section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #2d3748;
+}
+
+.profile-content {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    width: 100%;
+}
+
+.profile-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.profile-item:last-child {
+    border-bottom: none;
+}
+
+.profile-item .label {
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.profile-item .value {
+    color: #2d3748;
+}
+
+/* 数据看板部分样式 */
+.dashboard-section {
+    padding: 80px 0;
+    background: #f5f7fa;
+}
+
+.dashboard-section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #2d3748;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #2d3748;
+    text-align: center;
+}
+
+.dashboard-card.full-width {
+    grid-column: 1 / -1;
+}
+
+/* 职业目标部分样式 */
+.goals-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.goals-section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #2d3748;
+}
+
+.goals-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.goal-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.goal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.goal-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #2d3748;
+}
+
+.goal-card ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.goal-card li {
+    margin-bottom: 8px;
+    color: #4a5568;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .hero-content {
@@ -83,7 +228,7 @@ body {
         font-size: 1.5rem;
     }
     
-    .avatar {
+    .avatar, .digital-avatar {
         width: 150px;
         height: 150px;
     }
@@ -105,6 +250,28 @@ body {
     
     .lesson-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-card.full-width {
+        grid-column: 1;
+    }
+    
+    .goals-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-card {
+        padding: 20px;
+    }
+    
+    .profile-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
     }
 }
 
