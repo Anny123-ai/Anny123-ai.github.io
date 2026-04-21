@@ -692,6 +692,38 @@ footer {
     opacity: 0.9;
 }
 
+/* 运算符表格 */
+.operator-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.operator-table th,
+.operator-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.operator-table th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.operator-table tr:hover {
+    background: #f7fafc;
+}
+
+.operator-table tr:last-child td {
+    border-bottom: none;
+}
+
 .lesson-content p {
     margin-bottom: 15px;
 }

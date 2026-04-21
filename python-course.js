@@ -147,40 +147,325 @@ print("欢迎来到 Python 编程世界！")</code></pre>
     {
         title: "第2课：Python 基础语法",
         content: `
-            <h4>变量与数据类型</h4>
-            <ul>
-                <li><strong>整数 (int)</strong>：如 1, 100, -5</li>
-                <li><strong>浮点数 (float)</strong>：如 3.14, 2.0, -0.5</li>
-                <li><strong>字符串 (str)</strong>：如 "Hello", 'Python'</li>
-                <li><strong>布尔值 (bool)</strong>：True 或 False</li>
-                <li><strong>空值 (None)</strong>：表示没有值</li>
-            </ul>
-            
-            <h4>运算符</h4>
-            <ul>
-                <li><strong>算术运算符</strong>：+, -, *, /, %, **</li>
-                <li><strong>比较运算符</strong>：==, !=, >, <, >=, <=</li>
-                <li><strong>逻辑运算符</strong>：and, or, not</li>
-            </ul>
-            
-            <h4>条件语句</h4>
-            <pre><code>if 条件:
-    # 条件为真时执行
-elif 另一个条件:
-    # 另一个条件为真时执行
-else:
-    # 所有条件都为假时执行</code></pre>
-            
-            <h4>循环语句</h4>
-            <pre><code># for 循环
-for i in range(5):
-    print(i)
+            <div class="lesson-intro">
+                <h3>Python 基础语法入门</h3>
+                <p>在这一课中，我们将学习 Python 的基础语法，包括变量、数据类型、运算符、条件语句和循环语句。这些是 Python 编程的基础，掌握它们将帮助你写出更复杂的程序。</p>
+                <div class="python-logo">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20code%20syntax%20highlighting%2C%20colorful%20code%20editor%20interface%2C%20beginner%20friendly%2C%20simple%20background&image_size=square" alt="Python Syntax" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                </div>
+            </div>
 
-# while 循环
+            <h4>变量与数据类型</h4>
+            <p>变量是用来存储数据的容器，在 Python 中，你不需要声明变量的类型，Python 会自动根据你赋值的内容确定类型。</p>
+
+            <h5>变量的命名规则</h5>
+            <ul>
+                <li>变量名只能包含字母、数字和下划线</li>
+                <li>变量名不能以数字开头</li>
+                <li>变量名区分大小写</li>
+                <li>变量名不能是 Python 关键字（如 if、for、while 等）</li>
+            </ul>
+
+            <h5>创建变量</h5>
+            <pre><code># 创建变量并赋值
+name = "李艺"
+age = 18
+height = 1.75
+is_student = True
+
+# 打印变量
+print(name)
+print(age)
+print(height)
+print(is_student)</code></pre>
+
+            <h5>常见数据类型</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔢</div>
+                    <h5>整数 (int)</h5>
+                    <p>如 1, 100, -5</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📐</div>
+                    <h5>浮点数 (float)</h5>
+                    <p>如 3.14, 2.0, -0.5</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h5>字符串 (str)</h5>
+                    <p>如 "Hello", 'Python'</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h5>布尔值 (bool)</h5>
+                    <p>True 或 False</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🈳</div>
+                    <h5>空值 (None)</h5>
+                    <p>表示没有值</p>
+                </div>
+            </div>
+
+            <h5>字符串操作</h5>
+            <pre><code># 字符串连接
+first_name = "张"
+last_name = "三"
+full_name = first_name + last_name
+print(full_name)  # 张三
+
+# 字符串格式化
+name = "李艺"
+age = 18
+print(f"你好，我叫{name}，今年{age}岁。")
+
+# 字符串长度
+text = "Hello, Python!"
+print(len(text))  # 13
+
+# 字符串切片
+print(text[0:5])  # Hello
+print(text[-6:])  # Python</code></pre>
+
+            <h4>运算符</h4>
+            <p>运算符用于执行各种操作，Python 提供了多种类型的运算符：</p>
+
+            <h5>算术运算符</h5>
+            <table class="operator-table">
+                <tr>
+                    <th>运算符</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                    <th>结果</th>
+                </tr>
+                <tr>
+                    <td>+</td>
+                    <td>加法</td>
+                    <td>3 + 5</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>减法</td>
+                    <td>10 - 4</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>*</td>
+                    <td>乘法</td>
+                    <td>2 * 6</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>/</td>
+                    <td>除法</td>
+                    <td>8 / 2</td>
+                    <td>4.0</td>
+                </tr>
+                <tr>
+                    <td>%</td>
+                    <td>取余数</td>
+                    <td>7 % 3</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>**</td>
+                    <td>幂运算</td>
+                    <td>2 ** 3</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>//</td>
+                    <td>整除</td>
+                    <td>7 // 3</td>
+                    <td>2</td>
+                </tr>
+            </table>
+
+            <h5>比较运算符</h5>
+            <table class="operator-table">
+                <tr>
+                    <th>运算符</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                </tr>
+                <tr>
+                    <td>==</td>
+                    <td>等于</td>
+                    <td>5 == 5 → True</td>
+                </tr>
+                <tr>
+                    <td>!=</td>
+                    <td>不等于</td>
+                    <td>5 != 3 → True</td>
+                </tr>
+                <tr>
+                    <td>&gt;</td>
+                    <td>大于</td>
+                    <td>5 &gt; 3 → True</td>
+                </tr>
+                <tr>
+                    <td>&lt;</td>
+                    <td>小于</td>
+                    <td>3 &lt; 5 → True</td>
+                </tr>
+                <tr>
+                    <td>&gt;=</td>
+                    <td>大于等于</td>
+                    <td>5 &gt;= 5 → True</td>
+                </tr>
+                <tr>
+                    <td>&lt;=</td>
+                    <td>小于等于</td>
+                    <td>3 &lt;= 5 → True</td>
+                </tr>
+            </table>
+
+            <h5>逻辑运算符</h5>
+            <table class="operator-table">
+                <tr>
+                    <th>运算符</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                </tr>
+                <tr>
+                    <td>and</td>
+                    <td>与 - 两个条件都为真才为真</td>
+                    <td>(5 &gt; 3) and (2 &lt; 4) → True</td>
+                </tr>
+                <tr>
+                    <td>or</td>
+                    <td>或 - 至少一个条件为真就为真</td>
+                    <td>(5 &gt; 3) or (2 &gt; 4) → True</td>
+                </tr>
+                <tr>
+                    <td>not</td>
+                    <td>非 - 取反</td>
+                    <td>not (5 &gt; 3) → False</td>
+                </tr>
+            </table>
+
+            <h4>条件语句</h4>
+            <p>条件语句用于根据不同的条件执行不同的代码块。</p>
+
+            <h5>if 语句</h5>
+            <pre><code>age = 18
+
+if age >= 18:
+    print("你是成年人")
+else:
+    print("你是未成年人")</code></pre>
+
+            <h5>if-elif-else 语句</h5>
+            <pre><code>score = 85
+
+if score >= 90:
+    print("优秀")
+elif score >= 80:
+    print("良好")
+elif score >= 60:
+    print("及格")
+else:
+    print("不及格")</code></pre>
+
+            <h5>嵌套 if 语句</h5>
+            <pre><code>age = 18
+has_id = True
+
+if age >= 18:
+    if has_id:
+        print("可以进入网吧")
+    else:
+        print("需要出示身份证")
+else:
+    print("未满18岁，不能进入网吧")</code></pre>
+
+            <h4>循环语句</h4>
+            <p>循环语句用于重复执行一段代码。</p>
+
+            <h5>for 循环</h5>
+            <pre><code># 遍历数字
+for i in range(5):
+    print(i)  # 0, 1, 2, 3, 4
+
+# 遍历字符串
+for char in "Python":
+    print(char)  # P, y, t, h, o, n
+
+# 遍历列表
+fruits = ["苹果", "香蕉", "橙子"]
+for fruit in fruits:
+    print(fruit)</code></pre>
+
+            <h5>while 循环</h5>
+            <pre><code># 基本 while 循环
 count = 0
 while count < 5:
     print(count)
-    count += 1</code></pre>
+    count += 1  # 不要忘记增加计数器，否则会无限循环
+
+# 带条件的 while 循环
+password = ""
+while password != "123456":
+    password = input("请输入密码：")
+print("密码正确！")</code></pre>
+
+            <h5>循环控制语句</h5>
+            <pre><code># break - 跳出循环
+for i in range(10):
+    if i == 5:
+        break
+    print(i)  # 0, 1, 2, 3, 4
+
+# continue - 跳过当前循环，继续下一次循环
+for i in range(10):
+    if i % 2 == 0:
+        continue
+    print(i)  # 1, 3, 5, 7, 9</code></pre>
+
+            <div class="info-box">
+                <h5>💡 小提示</h5>
+                <p>在 Python 中，缩进非常重要！它决定了代码块的范围。通常使用 4 个空格作为缩进。</p>
+            </div>
+
+            <h4>综合练习</h4>
+            <p>让我们来做一个简单的猜数字游戏：</p>
+            <pre><code>import random
+
+# 生成一个 1-100 之间的随机数
+secret_number = random.randint(1, 100)
+guess = 0
+tries = 0
+
+print("猜数字游戏！")
+print("我想了一个 1-100 之间的数字，你能猜到吗？")
+
+while guess != secret_number:
+    guess = int(input("请输入你的猜测："))
+    tries += 1
+    
+    if guess < secret_number:
+        print("太小了！")
+    elif guess > secret_number:
+        print("太大了！")
+    else:
+        print(f"恭喜你猜对了！你用了 {tries} 次尝试。")</code></pre>
+
+            <h4>小结</h4>
+            <ul>
+                <li>变量是存储数据的容器，Python 会自动确定变量类型</li>
+                <li>Python 有多种数据类型：整数、浮点数、字符串、布尔值和空值</li>
+                <li>运算符用于执行各种操作，包括算术、比较和逻辑运算</li>
+                <li>条件语句用于根据不同的条件执行不同的代码</li>
+                <li>循环语句用于重复执行代码块</li>
+                <li>缩进在 Python 中非常重要，它决定了代码块的范围</li>
+            </ul>
+
+            <div class="next-step">
+                <h5>🚀 下一步</h5>
+                <p>现在你已经掌握了 Python 的基础语法，下一课我们将学习 Python 的数据结构，包括列表、元组、字典和集合。</p>
+            </div>
         `
     },
     {
