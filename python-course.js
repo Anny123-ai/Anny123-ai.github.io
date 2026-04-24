@@ -1177,548 +1177,909 @@ print(platform.get_product_analysis())</code></pre>
         `
     },
     {
-        title: "第5单元：Python基础实践与小项目",
+        title: "第5单元：函数与模块",
         content: `
             <div class="lesson-intro">
-                <h3>Python基础实践与小项目</h3>
-                <p>本单元将通过一些简单有趣的小项目，帮助你巩固前面学习的Python基础，培养编程思维和解决问题的能力，非常适合新手小白练习。</p>
+                <h3>函数与模块</h3>
+                <p>本单元将深入学习Python中的函数和模块，这是Python编程的核心概念，掌握它们将大大提高你的代码组织能力和复用性。</p>
                 <div class="python-logo">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=python%20beginner%20projects%2C%20colorful%20coding%20examples%2C%20friendly%20design%2C%20simple%20background&image_size=square" alt="Python Projects" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=python%20functions%20and%20modules%2C%20code%20organization%2C%20colorful%20modern%20design%2C%20simple%20background&image_size=square" alt="Functions and Modules" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
                 </div>
             </div>
 
-            <h4>一、Python基础小练习</h4>
-            <p>从简单的练习开始，逐步提升你的编程能力。</p>
+            <h4>一、函数进阶</h4>
+            <p>函数是Python中组织代码的基本单位，让我们深入学习函数的高级特性。</p>
 
-            <h5>1.1 数字猜谜游戏</h5>
-            <pre><code># 数字猜谜游戏
+            <h5>1.1 函数参数类型</h5>
+            <pre><code># 函数参数类型示例
+# 1. 位置参数
+def greet(name, age):
+    """问候函数"""
+    return f"你好，{name}！你今年{age}岁。"
+
+# 2. 默认参数
+def greet_with_default(name, age=18):
+    """带默认参数的问候函数"""
+    return f"你好，{name}！你今年{age}岁。"
+
+# 3. 可变参数
+
+def sum_numbers(*args):
+    """计算任意数量数字的和"""
+    return sum(args)
+
+# 4. 关键字参数
+def print_info(**kwargs):
+    """打印任意关键字参数"""
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+# 5. 混合参数
+def complex_function(a, b, *args, c=10, **kwargs):
+    """混合参数示例"""
+    print(f"a: {a}, b: {b}, c: {c}")
+    print(f"可变参数: {args}")
+    print(f"关键字参数: {kwargs}")
+
+# 调用示例
+print(greet("李艺", 18))
+print(greet_with_default("李艺"))
+print(sum_numbers(1, 2, 3, 4, 5))
+print_info(name="李艺", age=18, major="商务数据分析")
+complex_function(1, 2, 3, 4, 5, c=20, d=30, e=40)</code></pre>
+
+            <h5>1.2 函数返回值</h5>
+            <pre><code># 函数返回值示例
+# 1. 返回单个值
+def add(a, b):
+    """返回两数之和"""
+    return a + b
+
+# 2. 返回多个值
+def get_coordinates():
+    """返回坐标"""
+    return 10, 20, 30
+
+# 3. 返回函数
+
+def create_multiplier(n):
+    """创建一个乘法器函数"""
+    def multiplier(x):
+        return x * n
+    return multiplier
+
+# 4. 返回None
+
+def print_message(message):
+    """打印消息，无返回值"""
+    print(message)
+
+# 调用示例
+result = add(3, 5)
+print(f"两数之和: {result}")
+
+x, y, z = get_coordinates()
+print(f"坐标: x={x}, y={y}, z={z}")
+
+double = create_multiplier(2)
+triple = create_multiplier(3)
+print(f"2 * 5 = {double(5)}")
+print(f"3 * 5 = {triple(5)}")
+
+print_message("Hello, Python!")
+result = print_message("Hello, Python!")
+print(f"print_message返回值: {result}")</code></pre>
+
+            <h5>1.3 函数装饰器</h5>
+            <pre><code># 函数装饰器示例
+# 1. 简单装饰器
+def log_function(func):
+    """记录函数执行的装饰器"""
+    def wrapper(*args, **kwargs):
+        print(f"开始执行函数: {func.__name__}")
+        result = func(*args, **kwargs)
+        print(f"函数执行完成: {func.__name__}")
+        return result
+    return wrapper
+
+# 使用装饰器
+@log_function
+def add(a, b):
+    return a + b
+
+@log_function
+def multiply(a, b):
+    return a * b
+
+# 2. 带参数的装饰器
+def repeat(n):
+    """重复执行函数n次的装饰器"""
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            results = []
+            for i in range(n):
+                results.append(func(*args, **kwargs))
+            return results
+        return wrapper
+    return decorator
+
+@repeat(3)
+def say_hello(name):
+    return f"Hello, {name}!"
+
+# 调用示例
+print(add(3, 5))
+print(multiply(3, 5))
+print(say_hello("李艺"))</code></pre>
+
+            <h4>二、模块与包</h4>
+            <p>模块是Python中代码组织的更高层次，让我们学习如何创建和使用模块。</p>
+
+            <h5>2.1 模块的创建与导入</h5>
+            <pre><code># 模块示例
+# 创建一个名为 mymodule.py 的文件
+"""
+# mymodule.py
+
+def greet(name):
+    """问候函数"""
+    return f"你好，{name}！"
+
+def calculate_area(radius):
+    """计算圆的面积"""
+    import math
+    return math.pi * radius ** 2
+
+PI = 3.14159265359
+"""
+
+# 导入模块的方式
+# 1. 导入整个模块
+import mymodule
+print(mymodule.greet("李艺"))
+print(mymodule.calculate_area(5))
+print(mymodule.PI)
+
+# 2. 导入模块中的特定函数
+from mymodule import greet, calculate_area
+print(greet("李艺"))
+print(calculate_area(5))
+
+# 3. 导入模块中的所有内容
+from mymodule import *
+print(greet("李艺"))
+print(calculate_area(5))
+print(PI)
+
+# 4. 导入时使用别名
+import mymodule as mm
+print(mm.greet("李艺"))
+from mymodule import greet as greeting
+print(greeting("李艺"))</code></pre>
+
+            <h5>2.2 包的创建与使用</h5>
+            <pre><code># 包的示例
+# 创建一个名为 mypackage 的文件夹，包含 __init__.py 文件
+"""
+# mypackage/__init__.py
+__version__ = "1.0.0"
+from . import math
+from . import string
+"""
+
+# 创建子模块
+"""
+# mypackage/math.py
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+"""
+
+"""
+# mypackage/string.py
+def capitalize(text):
+    return text.capitalize()
+
+def reverse(text):
+    return text[::-1]
+"""
+
+# 导入包
+import mypackage
+print(mypackage.__version__)
+
+# 导入包中的子模块
+import mypackage.math
+print(mypackage.math.add(3, 5))
+
+from mypackage import string
+print(string.capitalize("hello"))
+
+# 直接导入子模块中的函数
+from mypackage.math import subtract
+print(subtract(10, 3))</code></pre>
+
+            <h5>2.3 标准库的使用</h5>
+            <pre><code># 标准库使用示例
+# 1. 数学模块
+import math
+print(f"π = {math.pi}")
+print(f"√2 = {math.sqrt(2)}")
+print(f"sin(π/2) = {math.sin(math.pi/2)}")
+
+# 2. 随机模块
 import random
+print(f"随机整数: {random.randint(1, 100)}")
+print(f"随机浮点数: {random.random()}")
+print(f"随机选择: {random.choice(['苹果', '香蕉', '橙子'])}")
 
-def number_guessing_game():
-    """数字猜谜游戏"""
-    print("🎮 数字猜谜游戏")
-    print("我想了一个1-100之间的数字，你有5次机会猜对它！")
-    
-    secret_number = random.randint(1, 100)
-    attempts = 5
-    
-    for attempt in range(1, attempts + 1):
-        guess = int(input(f"第{attempt}次猜测：请输入一个1-100之间的数字："))
-        
-        if guess < secret_number:
-            print("📈 太小了，再大一点！")
-        elif guess > secret_number:
-            print("📉 太大了，再小一点！")
-        else:
-            print(f"🎉 恭喜你！在第{attempt}次猜对了，数字就是{secret_number}！")
-            return
-    
-    print(f"😢 很遗憾，你没有猜对。正确答案是{secret_number}。")
+# 3. 时间模块
+import time
+print(f"当前时间戳: {time.time()}")
+print(f"本地时间: {time.localtime()}")
+print(f"格式化时间: {time.strftime('%Y-%m-%d %H:%M:%S')}")
 
-# 运行游戏
-if __name__ == "__main__":
-    number_guessing_game()</code></pre>
+# 4. 日期模块
+from datetime import datetime, timedelta
+print(f"当前日期时间: {datetime.now()}")
+print(f"明天: {datetime.now() + timedelta(days=1)}")
 
-            <h5>1.2 简易计算器</h5>
-            <pre><code># 简易计算器
-def calculator():
-    """简易计算器"""
-    print("🧮 简易计算器")
-    print("请输入两个数字和一个运算符")
-    
-    try:
-        num1 = float(input("第一个数字："))
-        num2 = float(input("第二个数字："))
-        operator = input("运算符 (+, -, *, /)：")
-        
-        if operator == "+":
-            result = num1 + num2
-        elif operator == "-":
-            result = num1 - num2
-        elif operator == "*":
-            result = num1 * num2
-        elif operator == "/":
-            if num2 == 0:
-                print("错误：除数不能为零！")
-                return
-            result = num1 / num2
-        else:
-            print("错误：无效的运算符！")
-            return
-        
-        print(f"结果：{num1} {operator} {num2} = {result}")
-    except ValueError:
-        print("错误：请输入有效的数字！")
+# 5. 操作系统模块
+import os
+print(f"当前目录: {os.getcwd()}")
+print(f"目录内容: {os.listdir('.')}")
 
-# 运行计算器
-if __name__ == "__main__":
-    calculator()</code></pre>
+# 6. 文件路径模块
+import os.path
+print(f"文件是否存在: {os.path.exists('example.txt')}")
+print(f"是否是文件: {os.path.isfile('example.txt')}")
+print(f"是否是目录: {os.path.isdir('example.txt')}")</code></pre>
 
-            <h4>二、实用小工具</h4>
-            <p>学习如何创建一些实用的小工具，提升你的编程技能。</p>
+            <h4>三、模块化编程实践</h4>
+            <p>让我们通过一个实际项目来实践模块化编程。</p>
 
-            <h5>2.1 个人信息管理系统</h5>
-            <pre><code># 个人信息管理系统
-class ContactManager:
-    """个人信息管理系统"""
-    
-    def __init__(self):
-        self.contacts = []
-    
-    def add_contact(self):
-        """添加联系人"""
-        name = input("姓名：")
-        phone = input("电话：")
-        email = input("邮箱：")
-        
-        contact = {
-            "name": name,
-            "phone": phone,
-            "email": email
-        }
-        
-        self.contacts.append(contact)
-        print(f"✅ 成功添加联系人：{name}")
-    
-    def list_contacts(self):
-        """列出所有联系人"""
-        if not self.contacts:
-            print("📭 还没有联系人")
-            return
-        
-        print("📋 联系人列表：")
-        for i, contact in enumerate(self.contacts, 1):
-            print(f"{i}. 姓名：{contact['name']}")
-            print(f"   电话：{contact['phone']}")
-            print(f"   邮箱：{contact['email']}")
-            print("---")
-    
-    def search_contact(self):
-        """搜索联系人"""
-        keyword = input("请输入要搜索的姓名：")
-        
-        results = []
-        for contact in self.contacts:
-            if keyword in contact['name']:
-                results.append(contact)
-        
-        if not results:
-            print(f"❌ 没有找到包含 '{keyword}' 的联系人")
-            return
-        
-        print(f"🔍 找到 {len(results)} 个联系人：")
-        for contact in results:
-            print(f"姓名：{contact['name']}")
-            print(f"电话：{contact['phone']}")
-            print(f"邮箱：{contact['email']}")
-            print("---")
-    
-    def run(self):
-        """运行系统"""
-        while True:
-            print("\n📱 个人信息管理系统")
-            print("1. 添加联系人")
-            print("2. 查看所有联系人")
-            print("3. 搜索联系人")
-            print("4. 退出")
-            
-            choice = input("请选择操作：")
-            
-            if choice == "1":
-                self.add_contact()
-            elif choice == "2":
-                self.list_contacts()
-            elif choice == "3":
-                self.search_contact()
-            elif choice == "4":
-                print("👋 再见！")
-                break
-            else:
-                print("❌ 无效的选择，请重新输入")
-
-# 运行系统
-if __name__ == "__main__":
-    manager = ContactManager()
-    manager.run()</code></pre>
-
-            <h5>2.2 简单的待办事项列表</h5>
-            <pre><code># 待办事项列表
-class TodoList:
-    """待办事项列表"""
-    
-    def __init__(self):
-        self.todos = []
-    
-    def add_todo(self):
-        """添加待办事项"""
-        task = input("请输入待办事项：")
-        self.todos.append({"task": task, "completed": False})
-        print(f"✅ 已添加待办事项：{task}")
-    
-    def list_todos(self):
-        """列出所有待办事项"""
-        if not self.todos:
-            print("📭 还没有待办事项")
-            return
-        
-        print("📋 待办事项列表：")
-        for i, todo in enumerate(self.todos, 1):
-            status = "✅" if todo["completed"] else "❌"
-            print(f"{i}. {status} {todo['task']}")
-    
-    def mark_completed(self):
-        """标记待办事项为已完成"""
-        if not self.todos:
-            print("📭 还没有待办事项")
-            return
-        
-        self.list_todos()
-        try:
-            index = int(input("请输入要标记为已完成的事项编号：")) - 1
-            if 0 <= index < len(self.todos):
-                self.todos[index]["completed"] = True
-                print(f"✅ 已标记为完成：{self.todos[index]['task']}")
-            else:
-                print("❌ 无效的编号")
-        except ValueError:
-            print("❌ 请输入有效的数字")
-    
-    def remove_todo(self):
-        """删除待办事项"""
-        if not self.todos:
-            print("📭 还没有待办事项")
-            return
-        
-        self.list_todos()
-        try:
-            index = int(input("请输入要删除的事项编号：")) - 1
-            if 0 <= index < len(self.todos):
-                removed_task = self.todos.pop(index)
-                print(f"🗑️ 已删除待办事项：{removed_task['task']}")
-            else:
-                print("❌ 无效的编号")
-        except ValueError:
-            print("❌ 请输入有效的数字")
-    
-    def run(self):
-        """运行系统"""
-        while True:
-            print("\n📝 待办事项列表")
-            print("1. 添加待办事项")
-            print("2. 查看所有待办事项")
-            print("3. 标记待办事项为已完成")
-            print("4. 删除待办事项")
-            print("5. 退出")
-            
-            choice = input("请选择操作：")
-            
-            if choice == "1":
-                self.add_todo()
-            elif choice == "2":
-                self.list_todos()
-            elif choice == "3":
-                self.mark_completed()
-            elif choice == "4":
-                self.remove_todo()
-            elif choice == "5":
-                print("👋 再见！")
-                break
-            else:
-                print("❌ 无效的选择，请重新输入")
-
-# 运行系统
-if __name__ == "__main__":
-    todo_list = TodoList()
-    todo_list.run()</code></pre>
-
-            <h4>三、数据分析小项目</h4>
-            <p>结合前面学习的数据分析知识，完成一些简单的数据分析小项目。</p>
-
-            <h5>3.1 学生成绩分析</h5>
-            <pre><code># 学生成绩分析
-import pandas as pd
-import matplotlib.pyplot as plt
-
-def student_grade_analysis():
-    """学生成绩分析"""
-    # 创建模拟数据
-    data = {
-        "姓名": ["李艺", "张三", "李四", "王五", "赵六", "钱七", "孙八"],
-        "语文": [85, 90, 78, 92, 88, 75, 82],
-        "数学": [92, 85, 88, 90, 76, 80, 85],
-        "英语": [88, 92, 80, 85, 90, 78, 82],
-        "物理": [90, 82, 75, 88, 85, 70, 78],
-        "化学": [85, 88, 82, 90, 78, 75, 80]
-    }
-    
-    df = pd.DataFrame(data)
-    
-    # 计算总分和平均分
-    df["总分"] = df[['语文', '数学', '英语', '物理', '化学']].sum(axis=1)
-    df["平均分"] = df["总分"] / 5
-    
-    # 排序
-    df_sorted = df.sort_values("总分", ascending=False)
-    
-    print("📊 学生成绩分析")
-    print("\n1. 成绩排名：")
-    print(df_sorted[['姓名', '总分', '平均分']])
-    
-    print("\n2. 各科目平均分：")
-    print(df[['语文', '数学', '英语', '物理', '化学']].mean())
-    
-    print("\n3. 各科目最高分：")
-    print(df[['语文', '数学', '英语', '物理', '化学']].max())
-    
-    # 可视化
-    plt.figure(figsize=(12, 6))
-    
-    # 学生总分柱状图
-    plt.subplot(1, 2, 1)
-    plt.bar(df_sorted["姓名"], df_sorted["总分"], color="skyblue")
-    plt.title("学生总分排名")
-    plt.xlabel("姓名")
-    plt.ylabel("总分")
-    plt.xticks(rotation=45)
-    
-    # 科目平均分柱状图
-    plt.subplot(1, 2, 2)
-    subjects = ['语文', '数学', '英语', '物理', '化学']
-    avg_scores = df[subjects].mean()
-    plt.bar(subjects, avg_scores, color="lightgreen")
-    plt.title("各科目平均分")
-    plt.xlabel("科目")
-    plt.ylabel("平均分")
-    
-    plt.tight_layout()
-    plt.show()
-
-# 运行分析
-if __name__ == "__main__":
-    student_grade_analysis()</code></pre>
-
-            <h5>3.2 简易股票数据分析</h5>
-            <pre><code># 简易股票数据分析
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-
-def stock_analysis():
-    """简易股票数据分析"""
-    # 创建模拟股票数据
-    dates = pd.date_range("2024-01-01", periods=30)
-    prices = np.random.randn(30) * 2 + 100
-    prices[0] = 100  # 初始价格
-    
-    # 计算累计收益
-    returns = np.diff(prices) / prices[:-1]
-    cumulative_returns = (1 + returns).cumprod()
-    
-    # 创建DataFrame
-    df = pd.DataFrame({
-        "日期": dates[1:],
-        "价格": prices[1:],
-        "日收益率": returns * 100,
-        "累计收益率": (cumulative_returns - 1) * 100
-    })
-    
-    print("📈 股票数据分析")
-    print("\n1. 数据预览：")
-    print(df.head())
-    
-    print("\n2. 统计信息：")
-    print(f"平均价格：{df['价格'].mean():.2f}")
-    print(f"最高价格：{df['价格'].max():.2f}")
-    print(f"最低价格：{df['价格'].min():.2f}")
-    print(f"平均日收益率：{df['日收益率'].mean():.2f}%")
-    print(f"最终累计收益率：{df['累计收益率'].iloc[-1]:.2f}%")
-    
-    # 可视化
-    plt.figure(figsize=(12, 8))
-    
-    # 价格走势
-    plt.subplot(2, 1, 1)
-    plt.plot(df["日期"], df["价格"], label="股票价格", color="blue")
-    plt.title("股票价格走势")
-    plt.xlabel("日期")
-    plt.ylabel("价格")
-    plt.grid(True)
-    plt.legend()
-    
-    # 累计收益率
-    plt.subplot(2, 1, 2)
-    plt.plot(df["日期"], df["累计收益率"], label="累计收益率", color="green")
-    plt.title("累计收益率")
-    plt.xlabel("日期")
-    plt.ylabel("收益率 (%)")
-    plt.grid(True)
-    plt.legend()
-    
-    plt.tight_layout()
-    plt.show()
-
-# 运行分析
-if __name__ == "__main__":
-    stock_analysis()</code></pre>
-
-            <h4>四、Python常见问题与解决方法</h4>
-            <p>学习如何解决Python编程中常见的问题。</p>
-
-            <h5>4.1 常见错误及解决方法</h5>
+            <h5>3.1 项目结构设计</h5>
             <div class="info-box">
-                <h5>❌ 常见错误</h5>
-                <ol>
-                    <li><strong>SyntaxError: invalid syntax</strong> - 语法错误，检查代码拼写和缩进</li>
-                    <li><strong>NameError: name 'x' is not defined</strong> - 变量未定义，检查变量名是否正确</li>
-                    <li><strong>TypeError: unsupported operand type(s)</strong> - 类型错误，检查数据类型是否匹配</li>
-                    <li><strong>ZeroDivisionError: division by zero</strong> - 除零错误，添加条件检查</li>
-                    <li><strong>IndexError: list index out of range</strong> - 索引错误，检查列表长度</li>
-                </ol>
+                <h5>📁 项目结构示例</h5>
+                <pre><code>my_project/
+├── main.py              # 主脚本
+├── utils/              # 工具模块
+│   ├── __init__.py
+│   ├── math_utils.py   # 数学工具
+│   └── string_utils.py # 字符串工具
+├── data/               # 数据模块
+│   ├── __init__.py
+│   └── data_processor.py
+└── config.py           # 配置文件</code></pre>
             </div>
 
-            <h5>4.2 调试技巧</h5>
-            <pre><code># 调试技巧示例
-# 1. 使用print语句
-x = 10
-y = "20"
-print("x =", x, "type:", type(x))
-print("y =", y, "type:", type(y))
+            <h5>3.2 模块化项目示例</h5>
+            <pre><code># 模块化项目示例
+# config.py
+DEBUG = True
+MAX_ITERATIONS = 100
 
-# 2. 使用try-except捕获错误
-try:
-    result = x + y
-    print("结果:", result)
-except Exception as e:
-    print("错误:", e)
+# utils/math_utils.py
+def calculate_average(numbers):
+    """计算平均值"""
+    if not numbers:
+        return 0
+    return sum(numbers) / len(numbers)
 
-# 3. 使用assert语句
-assert isinstance(x, int), "x必须是整数"
-assert isinstance(y, int), "y必须是整数"
+def calculate_median(numbers):
+    """计算中位数"""
+    if not numbers:
+        return 0
+    sorted_numbers = sorted(numbers)
+    n = len(sorted_numbers)
+    if n % 2 == 0:
+        return (sorted_numbers[n//2 - 1] + sorted_numbers[n//2]) / 2
+    else:
+        return sorted_numbers[n//2]
 
-# 4. 分步执行代码
-def calculate(a, b):
-    # 先计算第一步
-    step1 = a + b
-    print("第一步结果:", step1)
+# utils/string_utils.py
+def format_name(first_name, last_name):
+    """格式化姓名"""
+    return f"{last_name} {first_name}"
+
+def is_palindrome(text):
+    """判断是否是回文"""
+    text = text.lower().replace(" ", "")
+    return text == text[::-1]
+
+# data/data_processor.py
+import pandas as pd
+
+def load_data(file_path):
+    """加载数据"""
+    try:
+        return pd.read_csv(file_path)
+    except Exception as e:
+        print(f"加载数据失败: {e}")
+        return None
+
+def process_data(df):
+    """处理数据"""
+    if df is None:
+        return None
+    # 处理逻辑
+    df = df.dropna()
+    df['total'] = df['price'] * df['quantity']
+    return df
+
+# main.py
+import config
+from utils import math_utils, string_utils
+from data import data_processor
+
+# 测试数学工具
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print(f"平均值: {math_utils.calculate_average(numbers)}")
+print(f"中位数: {math_utils.calculate_median(numbers)}")
+
+# 测试字符串工具
+print(f"格式化姓名: {string_utils.format_name('艺', '李')}")
+print(f"'level'是回文: {string_utils.is_palindrome('level')}")
+print(f"'hello'是回文: {string_utils.is_palindrome('hello')}")
+
+# 测试数据处理
+# df = data_processor.load_data('sales.csv')
+# if df is not None:
+#     processed_df = data_processor.process_data(df)
+#     print(processed_df.head())
+
+print(f"调试模式: {config.DEBUG}")
+print(f"最大迭代次数: {config.MAX_ITERATIONS}")</code></pre>
+
+            <h4>四、函数式编程</h4>
+            <p>函数式编程是一种编程范式，让我们学习Python中的函数式编程特性。</p>
+
+            <h5>4.1 高阶函数</h5>
+            <pre><code># 高阶函数示例
+# 1. map函数
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x ** 2, numbers))
+print(f"平方: {squared}")
+
+# 2. filter函数
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+print(f"偶数: {even_numbers}")
+
+# 3. reduce函数
+from functools import reduce
+sum_result = reduce(lambda x, y: x + y, numbers)
+print(f"总和: {sum_result}")
+
+# 4. 自定义高阶函数
+def apply_operation(func, x, y):
+    """应用操作"""
+    return func(x, y)
+
+def add(a, b):
+    return a + b
+
+def multiply(a, b):
+    return a * b
+
+print(f"加法: {apply_operation(add, 3, 5)}")
+print(f"乘法: {apply_operation(multiply, 3, 5)}")
+print(f"匿名函数加法: {apply_operation(lambda a, b: a + b, 3, 5)}")</code></pre>
+
+            <h5>4.2 闭包与作用域</h5>
+            <pre><code># 闭包与作用域示例
+# 1. 闭包
+def outer_function(x):
+    """外部函数"""
+    def inner_function(y):
+        """内部函数"""
+        return x + y
+    return inner_function
+
+add_five = outer_function(5)
+print(f"5 + 3 = {add_five(3)}")
+print(f"5 + 10 = {add_five(10)}")
+
+# 2. 作用域
+x = 10  # 全局变量
+
+def test_scope():
+    x = 20  # 局部变量
+    print(f"局部变量x: {x}")
     
-    # 再计算第二步
-    step2 = step1 * 2
-    print("第二步结果:", step2)
+    def inner_scope():
+        nonlocal x  # 非局部变量
+        x = 30
+        print(f"内部函数x: {x}")
     
-    return step2
+    inner_scope()
+    print(f"局部变量x after inner: {x}")
 
-result = calculate(5, 3)
-print("最终结果:", result)</code></pre>
+test_scope()
+print(f"全局变量x: {x}")</code></pre>
 
-            <h4>五、新手学习资源推荐</h4>
-            <p>为新手小白推荐一些优质的学习资源。</p>
+            <h5>4.3 装饰器的实际应用</h5>
+            <pre><code># 装饰器实际应用示例
+# 1. 计时装饰器
+import time
+def timer(func):
+    """计算函数执行时间的装饰器"""
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{func.__name__} 执行时间: {end_time - start_time:.4f}秒")
+        return result
+    return wrapper
 
-            <h5>5.1 推荐书籍</h5>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h5>《Python编程：从入门到实践》</h5>
-                    <p>适合完全的编程新手，包含基础语法和实战项目</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h5>《Python基础教程》</h5>
-                    <p>内容全面，讲解清晰，适合初学者</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h5>《笨办法学Python》</h5>
-                    <p>通过大量练习帮助你掌握Python基础</p>
-                </div>
-            </div>
+@timer
+def slow_function():
+    """慢函数"""
+    time.sleep(1)
+    return "完成"
 
-            <h5>5.2 在线学习平台</h5>
-            <table class="operator-table">
-                <tr>
-                    <th>平台名称</th>
-                    <th>特点</th>
-                    <th>适合新手的课程</th>
-                </tr>
-                <tr>
-                    <td>菜鸟教程</td>
-                    <td>中文教程，内容基础易懂</td>
-                    <td>Python 3 教程</td>
-                </tr>
-                <tr>
-                    <td>W3Schools</td>
-                    <td>交互式学习，有在线编辑器</td>
-                    <td>Python 教程</td>
-                </tr>
-                <tr>
-                    <td>慕课网</td>
-                    <td>中文视频课程，实战导向</td>
-                    <td>Python入门与进阶</td>
-                </tr>
-                <tr>
-                    <td>Codecademy</td>
-                    <td>交互式学习，游戏化编程</td>
-                    <td>Learn Python 3</td>
-                </tr>
-            </table>
+# 2. 缓存装饰器
+from functools import lru_cache
+
+@lru_cache(maxsize=100)
+def fibonacci(n):
+    """斐波那契数列"""
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# 调用示例
+print(slow_function())
+print(f"fibonacci(30) = {fibonacci(30)}")
+print(f"fibonacci(35) = {fibonacci(35)}")</code></pre>
 
             <div class="next-step">
                 <h5>🚀 下一步</h5>
-                <p>恭喜你完成了Python基础实践的学习！通过这些小项目的练习，你已经掌握了Python的核心概念和基本编程能力。接下来，你可以尝试更复杂的项目，或者深入学习某个特定领域的知识。</p>
+                <p>恭喜你掌握了函数与模块的核心知识！这些概念是Python编程的基础，也是构建大型应用的关键。接下来，我们将对整个Python课程进行总结，帮助你回顾所学内容并规划未来的学习方向。</p>
             </div>
 
             <h4>单元练习</h4>
             <div class="quiz-section">
                 <h5>一、选择题</h5>
                 <ol>
-                    <li>以下哪个是Python中正确的注释方式？
+                    <li>以下哪个是Python中定义函数的关键字？
                         <ul>
-                            <li>A. // 这是注释</li>
-                            <li>B. /* 这是注释 */</li>
-                            <li>C. # 这是注释</li>
-                            <li>D. -- 这是注释</li>
+                            <li>A. function</li>
+                            <li>B. def</li>
+                            <li>C. func</li>
+                            <li>D. define</li>
                         </ul>
                     </li>
-                    <li>Python中用于获取用户输入的函数是？
+                    <li>Python中用于导入模块的关键字是？
                         <ul>
-                            <li>A. input()</li>
-                            <li>B. get()</li>
-                            <li>C. read()</li>
-                            <li>D. scanf()</li>
+                            <li>A. include</li>
+                            <li>B. import</li>
+                            <li>C. from</li>
+                            <li>D. require</li>
                         </ul>
                     </li>
-                    <li>以下哪个数据类型是Python中没有的？
+                    <li>以下哪个不是Python的标准库？
                         <ul>
-                            <li>A. list</li>
-                            <li>B. tuple</li>
-                            <li>C. array</li>
-                            <li>D. dictionary</li>
+                            <li>A. math</li>
+                            <li>B. random</li>
+                            <li>C. pandas</li>
+                            <li>D. os</li>
                         </ul>
                     </li>
                 </ol>
 
                 <h5>二、判断题</h5>
                 <ol>
-                    <li>Python中的缩进是可选的，不影响代码执行。（ ）</li>
-                    <li>在Python中，字符串可以使用单引号或双引号定义。（ ）</li>
+                    <li>Python函数可以返回多个值。（ ）</li>
+                    <li>装饰器可以修改函数的行为而不改变函数本身的代码。（ ）</li>
                 </ol>
 
                 <h5>三、编程题</h5>
                 <ol>
-                    <li>编写一个程序，计算1到100的和。</li>
-                    <li>创建一个简单的猜数字游戏，让用户猜1-100之间的数字。</li>
-                    <li>实现一个简易的计算器，能够进行加减乘除运算。</li>
+                    <li>编写一个函数，接受任意数量的参数，返回它们的平均值。</li>
+                    <li>创建一个装饰器，用于记录函数的调用次数。</li>
+                    <li>创建一个简单的模块，包含几个常用的数学函数，然后在另一个脚本中导入并使用它。</li>
+                </ol>
+            </div>
+        `
+    },
+    {
+        title: "第6单元：Python课程总结",
+        content: `
+            <div class="lesson-intro">
+                <h3>Python课程总结</h3>
+                <p>本单元将对整个Python课程进行全面总结，帮助你回顾所学内容，梳理知识体系，并为未来的学习和职业发展提供指导。</p>
+                <div class="python-logo">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=python%20course%20summary%20knowledge%20map%2C%20colorful%20modern%20design%2C%20simple%20background&image_size=square" alt="Course Summary" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                </div>
+            </div>
+
+            <h4>一、课程内容回顾</h4>
+            <p>让我们回顾一下整个课程的内容，梳理知识体系。</p>
+
+            <h5>1.1 知识框架</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h5>第1单元：Python核心基础</h5>
+                    <ul>
+                        <li>基础语法与数据类型</li>
+                        <li>条件语句与循环</li>
+                        <li>数据结构（列表、元组、字典、集合）</li>
+                        <li>面向对象编程基础</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h5>第2单元：数据处理与分析</h5>
+                    <ul>
+                        <li>NumPy基础</li>
+                        <li>Pandas数据处理</li>
+                        <li>数据可视化（Matplotlib、Seaborn）</li>
+                        <li>电商数据分析案例</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h5>第3单元：AI基础与应用</h5>
+                    <ul>
+                        <li>AI基础概念</li>
+                        <li>机器学习基础</li>
+                        <li>Scikit-learn实践</li>
+                        <li>电商场景AI应用</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h5>第4单元：实用工具与工程能力</h5>
+                    <ul>
+                        <li>文件操作与异常处理</li>
+                        <li>Web开发基础（Flask）</li>
+                        <li>自动化工具</li>
+                        <li>Git版本控制</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h5>第5单元：函数与模块</h5>
+                    <ul>
+                        <li>函数进阶（参数类型、返回值）</li>
+                        <li>装饰器</li>
+                        <li>模块与包的创建和使用</li>
+                        <li>函数式编程</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h5>1.2 核心技能图谱</h5>
+            <div class="info-box">
+                <h5>🧠 Python技能图谱</h5>
+                <pre><code># Python技能层级
+┌─────────────────────────────────────────────────────────────┐
+│                      高级技能                              │
+│  - 深度学习与神经网络                                      │
+│  - 大数据处理与分析                                        │
+│  - 分布式系统开发                                          │
+│  - 专业领域应用（金融、医疗、电商等）                      │
+├─────────────────────────────────────────────────────────────┤
+│                      中级技能                              │
+│  - 机器学习算法与应用                                      │
+│  - 数据可视化与仪表盘开发                                  │
+│  - Web应用开发                                             │
+│  - 自动化脚本与工具开发                                    │
+│  - 模块化与面向对象编程                                    │
+├─────────────────────────────────────────────────────────────┤
+│                      基础技能                              │
+│  - Python语法与数据类型                                    │
+│  - 控制流与函数                                            │
+│  - 数据结构与算法基础                                      │
+│  - 文件操作与异常处理                                      │
+│  - 模块与包的使用                                          │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+            </div>
+
+            <h4>二、学习方法与技巧</h4>
+            <p>有效的学习方法是成功掌握Python的关键，让我们分享一些实用的学习技巧。</p>
+
+            <h5>2.1 高效学习方法</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h5>实践为主</h5>
+                    <p>理论学习与实践相结合，多动手编写代码，通过项目巩固知识</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h5>记笔记</h5>
+                    <p>记录重要概念和代码示例，建立自己的知识库</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h5>查阅文档</h5>
+                    <p>学会使用官方文档和搜索引擎解决问题</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h5>社区交流</h5>
+                    <p>参与Python社区，向他人学习，分享自己的知识</p>
+                </div>
+            </div>
+
+            <h5>2.2 常见学习误区</h5>
+            <div class="info-box">
+                <h5>⚠️ 学习误区</h5>
+                <ol>
+                    <li><strong>只看视频不实践</strong> - 编程是技能，需要通过实践掌握</li>
+                    <li><strong>追求完美代码</strong> - 先完成再优化，不要过度纠结代码风格</li>
+                    <li><strong>忽视基础</strong> - 扎实的基础是进阶的前提</li>
+                    <li><strong>害怕错误</strong> - 错误是学习的机会，学会调试和解决问题</li>
+                    <li><strong>学习路径混乱</strong> - 制定合理的学习计划，循序渐进</li>
+                </ol>
+            </div>
+
+            <h4>三、职业发展方向</h4>
+            <p>Python的应用领域广泛，为你提供了多种职业发展选择。</p>
+
+            <h5>3.1 主要职业方向</h5>
+            <table class="operator-table">
+                <tr>
+                    <th>职业方向</th>
+                    <th>核心技能</th>
+                    <th>工作内容</th>
+                </tr>
+                <tr>
+                    <td>数据分析师</td>
+                    <td>Python、Pandas、数据可视化、SQL</td>
+                    <td>数据清洗、分析、可视化，提供业务洞察</td>
+                </tr>
+                <tr>
+                    <td>数据科学家</td>
+                    <td>机器学习、深度学习、统计学、大数据</td>
+                    <td>构建预测模型、推荐系统、数据挖掘</td>
+                </tr>
+                <tr>
+                    <td>Python开发工程师</td>
+                    <td>Web开发、API开发、自动化、测试</td>
+                    <td>开发Web应用、后端服务、自动化工具</td>
+                </tr>
+                <tr>
+                    <td>AI工程师</td>
+                    <td>深度学习、神经网络、TensorFlow/PyTorch</td>
+                    <td>开发AI模型、训练和部署</td>
+                </tr>
+                <tr>
+                    <td>DevOps工程师</td>
+                    <td>自动化、容器化、CI/CD、云计算</td>
+                    <td>构建和维护基础设施，自动化部署</td>
+                </tr>
+            </table>
+
+            <h5>3.2 电商领域的Python应用</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h5>销售数据分析</h5>
+                    <p>分析销售趋势、用户行为、商品表现</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h5>推荐系统</h5>
+                    <p>基于用户行为推荐商品，提高转化率</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h5>客服机器人</h5>
+                    <p>自动化客户服务，提高效率</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h5>库存管理</h5>
+                    <p>预测需求，优化库存水平</p>
+                </div>
+            </div>
+
+            <h4>四、项目实战建议</h4>
+            <p>通过项目实战可以巩固所学知识，建立作品集，为求职加分。</p>
+
+            <h5>4.1 推荐项目</h5>
+            <div class="info-box">
+                <h5>💡 实战项目建议</h5>
+                <ol>
+                    <li><strong>个人博客系统</strong> - 使用Flask/Django开发，包含文章管理、评论功能</li>
+                    <li><strong>数据分析仪表盘</strong> - 使用Pandas和Dash/Streamlit开发交互式仪表盘</li>
+                    <li><strong>电商数据分析工具</strong> - 分析销售数据，生成报告和可视化</li>
+                    <li><strong>简单的推荐系统</strong> - 基于协同过滤或内容过滤实现</li>
+                    <li><strong>自动化工具</strong> - 如文件整理、数据备份、邮件发送等</li>
+                    <li><strong>小游戏</strong> - 如贪吃蛇、猜数字等，练习基础编程</li>
+                </ol>
+            </div>
+
+            <h5>4.2 项目开发流程</h5>
+            <pre><code># 项目开发流程
+1. 需求分析 - 明确项目目标和功能
+2. 设计架构 - 确定技术栈和项目结构
+3. 开发实现 - 编写代码，实现功能
+4. 测试调试 - 确保功能正常，修复bug
+5. 部署上线 - 发布项目，收集反馈
+6. 维护更新 - 根据反馈持续改进</code></pre>
+
+            <h4>五、学习资源推荐</h4>
+            <p>持续学习是保持竞争力的关键，以下是一些优质的学习资源。</p>
+
+            <h5>5.1 书籍推荐</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h5>入门书籍</h5>
+                    <ul>
+                        <li>《Python编程：从入门到实践》</li>
+                        <li>《Python基础教程》</li>
+                        <li>《笨办法学Python》</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h5>进阶书籍</h5>
+                    <ul>
+                        <li>《流畅的Python》</li>
+                        <li>《Python Cookbook》</li>
+                        <li>《Effective Python》</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h5>数据分析</h5>
+                    <ul>
+                        <li>《利用Python进行数据分析》</li>
+                        <li>《Python数据科学手册》</li>
+                        <li>《统计学习方法》</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h5>Web开发</h5>
+                    <ul>
+                        <li>《Flask Web开发》</li>
+                        <li>《Django实战》</li>
+                        <li>《RESTful Web APIs》</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h5>5.2 在线资源</h5>
+            <table class="operator-table">
+                <tr>
+                    <th>平台</th>
+                    <th>特点</th>
+                    <th>推荐内容</th>
+                </tr>
+                <tr>
+                    <td>Python官方文档</td>
+                    <td>最权威的参考资料</td>
+                    <td>语言参考、标准库文档</td>
+                </tr>
+                <tr>
+                    <td>Stack Overflow</td>
+                    <td>解决编程问题的社区</td>
+                    <td>搜索和提问编程问题</td>
+                </tr>
+                <tr>
+                    <td>GitHub</td>
+                    <td>代码托管和开源项目</td>
+                    <td>学习优秀开源项目</td>
+                </tr>
+                <tr>
+                    <td>Kaggle</td>
+                    <td>数据科学竞赛平台</td>
+                    <td>参与竞赛，学习数据分析</td>
+                </tr>
+                <tr>
+                    <td>LeetCode</td>
+                    <td>算法练习平台</td>
+                    <td>提升编程能力</td>
+                </tr>
+                <tr>
+                    <td>慕课网</td>
+                    <td>中文视频课程</td>
+                    <td>Python相关课程</td>
+                </tr>
+                <tr>
+                    <td>Coursera/edX</td>
+                    <td>国际名校课程</td>
+                    <td>数据科学、AI相关课程</td>
+                </tr>
+            </table>
+
+            <h4>六、未来学习规划</h4>
+            <p>制定合理的学习规划，持续提升自己的Python技能。</p>
+
+            <h5>6.1 短期规划（1-3个月）</h5>
+            <div class="info-box">
+                <h5>🎯 短期目标</h5>
+                <ul>
+                    <li>巩固Python基础，掌握核心概念</li>
+                    <li>完成1-2个小型项目，实践所学知识</li>
+                    <li>学习版本控制（Git）和代码管理</li>
+                    <li>熟悉常用的Python库和工具</li>
+                </ul>
+            </div>
+
+            <h5>6.2 中期规划（3-6个月）</h5>
+            <div class="info-box">
+                <h5>🎯 中期目标</h5>
+                <ul>
+                    <li>深入学习数据分析或Web开发方向</li>
+                    <li>完成一个中等规模的项目</li>
+                    <li>学习更高级的Python特性（如装饰器、生成器）</li>
+                    <li>建立个人作品集，准备求职</li>
+                </ul>
+            </div>
+
+            <h5>6.3 长期规划（6-12个月）</h5>
+            <div class="info-box">
+                <h5>🎯 长期目标</h5>
+                <ul>
+                    <li>专精于某个领域（如数据科学、Web开发、AI）</li>
+                    <li>参与开源项目或社区贡献</li>
+                    <li>获得相关认证或证书</li>
+                    <li>在专业领域内建立个人品牌</li>
+                </ul>
+            </div>
+
+            <div class="next-step">
+                <h5>🎉 课程结语</h5>
+                <p>恭喜你完成了整个Python课程的学习！这是你编程之旅的开始，而不是结束。Python是一种功能强大、应用广泛的编程语言，掌握它将为你的职业发展打开更多可能性。</p>
+                <p>记住：编程是一项需要持续学习和实践的技能。保持好奇心，不断挑战自己，你一定会在Python的世界中找到属于自己的位置。</p>
+                <p>祝你学习顺利，前程似锦！</p>
+            </div>
+
+            <h4>单元练习</h4>
+            <div class="quiz-section">
+                <h5>一、选择题</h5>
+                <ol>
+                    <li>以下哪个不是Python的应用领域？
+                        <ul>
+                            <li>A. 数据分析</li>
+                            <li>B. Web开发</li>
+                            <li>C. 移动应用开发</li>
+                            <li>D. 机器学习</li>
+                        </ul>
+                    </li>
+                    <li>Python中用于创建虚拟环境的工具是？
+                        <ul>
+                            <li>A. venv</li>
+                            <li>B. virtualenv</li>
+                            <li>C. conda</li>
+                            <li>D. 以上都是</li>
+                        </ul>
+                    </li>
+                    <li>以下哪个不是Python的优势？
+                        <ul>
+                            <li>A. 语法简洁易读</li>
+                            <li>B. 执行速度快</li>
+                            <li>C. 丰富的库生态</li>
+                            <li>D. 跨平台兼容性</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h5>二、简答题</h5>
+                <ol>
+                    <li>请简述Python的主要特点和优势。</li>
+                    <li>请列出你在本课程中学到的最重要的三个知识点，并说明为什么它们很重要。</li>
+                </ol>
+
+                <h5>三、实践题</h5>
+                <ol>
+                    <li>根据本课程所学内容，设计一个小型项目，并说明你的实现思路。</li>
+                    <li>制定一个为期3个月的Python学习计划，包括学习内容、实践项目和目标。</li>
                 </ol>
             </div>
         `
     }
 ];
-                    <li>尝试在GitHub上创建一个仓库，整理你之前的学习项目。</li>
-                    <li>为自己设计一个个人作品集的初步方案。</li>
-                </ol>
-            </div>
-        `
-    }
-];
+
 
 let currentLessonIndex = -1;
 
