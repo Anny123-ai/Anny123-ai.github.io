@@ -1177,357 +1177,541 @@ print(platform.get_product_analysis())</code></pre>
         `
     },
     {
-        title: "第5单元：学习路径建议",
+        title: "第5单元：Python基础实践与小项目",
         content: `
             <div class="lesson-intro">
-                <h3>学习路径建议</h3>
-                <p>恭喜你完成了前面的学习！本单元将为你提供系统的学习路径建议，帮助你规划未来的学习方向，成为优秀的数据分析师或相关领域的专业人才。</p>
+                <h3>Python基础实践与小项目</h3>
+                <p>本单元将通过一些简单有趣的小项目，帮助你巩固前面学习的Python基础，培养编程思维和解决问题的能力，非常适合新手小白练习。</p>
                 <div class="python-logo">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=learning%20path%20roadmap%20career%20development%2C%20colorful%2C%20modern%20design%2C%20simple%20background&image_size=square" alt="Learning Path" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=python%20beginner%20projects%2C%20colorful%20coding%20examples%2C%20friendly%20design%2C%20simple%20background&image_size=square" alt="Python Projects" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
                 </div>
             </div>
 
-            <h4>一、职业发展方向</h4>
-            <p>基于你所学的知识，以下是几个主要的职业发展方向供你参考。</p>
+            <h4>一、Python基础小练习</h4>
+            <p>从简单的练习开始，逐步提升你的编程能力。</p>
 
-            <h5>1.1 数据分析师</h5>
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h5>数据分析师</h5>
-                <p>负责收集、清洗、分析数据，为业务决策提供支持</p>
-                <ul>
-                    <li>核心技能：数据清洗、数据分析、数据可视化</li>
-                    <li>核心工具：Python、SQL、Excel、Tableau/Power BI</li>
-                    <li>工作场景：电商、金融、互联网等各行业</li>
-                </ul>
-            </div>
+            <h5>1.1 数字猜谜游戏</h5>
+            <pre><code># 数字猜谜游戏
+import random
 
-            <h5>1.2 数据科学家</h5>
-            <div class="feature-card">
-                <div class="feature-icon">🔬</div>
-                <h5>数据科学家</h5>
-                <p>运用机器学习、统计学等高级方法解决复杂的数据问题</p>
-                <ul>
-                    <li>核心技能：机器学习、深度学习、统计学</li>
-                    <li>核心工具：Python、TensorFlow/PyTorch、大数据技术</li>
-                    <li>工作场景：互联网大厂、金融机构、科技公司</li>
-                </ul>
-            </div>
+def number_guessing_game():
+    """数字猜谜游戏"""
+    print("🎮 数字猜谜游戏")
+    print("我想了一个1-100之间的数字，你有5次机会猜对它！")
+    
+    secret_number = random.randint(1, 100)
+    attempts = 5
+    
+    for attempt in range(1, attempts + 1):
+        guess = int(input(f"第{attempt}次猜测：请输入一个1-100之间的数字："))
+        
+        if guess < secret_number:
+            print("📈 太小了，再大一点！")
+        elif guess > secret_number:
+            print("📉 太大了，再小一点！")
+        else:
+            print(f"🎉 恭喜你！在第{attempt}次猜对了，数字就是{secret_number}！")
+            return
+    
+    print(f"😢 很遗憾，你没有猜对。正确答案是{secret_number}。")
 
-            <h5>1.3 商业智能工程师</h5>
-            <div class="feature-card">
-                <div class="feature-icon">💼</div>
-                <h5>商业智能工程师</h5>
-                <p>构建数据仓库、设计数据可视化仪表盘，支持业务决策</p>
-                <ul>
-                    <li>核心技能：数据建模、ETL、数据可视化</li>
-                    <li>核心工具：SQL、Tableau、Power BI、大数据工具</li>
-                    <li>工作场景：企业IT部门、咨询公司</li>
-                </ul>
-            </div>
+# 运行游戏
+if __name__ == "__main__":
+    number_guessing_game()</code></pre>
 
-            <h4>二、分阶段学习路径</h4>
-            <p>以下是一个系统的学习路径建议，帮助你逐步提升自己的技能。</p>
+            <h5>1.2 简易计算器</h5>
+            <pre><code># 简易计算器
+def calculator():
+    """简易计算器"""
+    print("🧮 简易计算器")
+    print("请输入两个数字和一个运算符")
+    
+    try:
+        num1 = float(input("第一个数字："))
+        num2 = float(input("第二个数字："))
+        operator = input("运算符 (+, -, *, /)：")
+        
+        if operator == "+":
+            result = num1 + num2
+        elif operator == "-":
+            result = num1 - num2
+        elif operator == "*":
+            result = num1 * num2
+        elif operator == "/":
+            if num2 == 0:
+                print("错误：除数不能为零！")
+                return
+            result = num1 / num2
+        else:
+            print("错误：无效的运算符！")
+            return
+        
+        print(f"结果：{num1} {operator} {num2} = {result}")
+    except ValueError:
+        print("错误：请输入有效的数字！")
 
-            <h5>2.1 初级阶段（第1-3个月）</h5>
+# 运行计算器
+if __name__ == "__main__":
+    calculator()</code></pre>
+
+            <h4>二、实用小工具</h4>
+            <p>学习如何创建一些实用的小工具，提升你的编程技能。</p>
+
+            <h5>2.1 个人信息管理系统</h5>
+            <pre><code># 个人信息管理系统
+class ContactManager:
+    """个人信息管理系统"""
+    
+    def __init__(self):
+        self.contacts = []
+    
+    def add_contact(self):
+        """添加联系人"""
+        name = input("姓名：")
+        phone = input("电话：")
+        email = input("邮箱：")
+        
+        contact = {
+            "name": name,
+            "phone": phone,
+            "email": email
+        }
+        
+        self.contacts.append(contact)
+        print(f"✅ 成功添加联系人：{name}")
+    
+    def list_contacts(self):
+        """列出所有联系人"""
+        if not self.contacts:
+            print("📭 还没有联系人")
+            return
+        
+        print("📋 联系人列表：")
+        for i, contact in enumerate(self.contacts, 1):
+            print(f"{i}. 姓名：{contact['name']}")
+            print(f"   电话：{contact['phone']}")
+            print(f"   邮箱：{contact['email']}")
+            print("---")
+    
+    def search_contact(self):
+        """搜索联系人"""
+        keyword = input("请输入要搜索的姓名：")
+        
+        results = []
+        for contact in self.contacts:
+            if keyword in contact['name']:
+                results.append(contact)
+        
+        if not results:
+            print(f"❌ 没有找到包含 '{keyword}' 的联系人")
+            return
+        
+        print(f"🔍 找到 {len(results)} 个联系人：")
+        for contact in results:
+            print(f"姓名：{contact['name']}")
+            print(f"电话：{contact['phone']}")
+            print(f"邮箱：{contact['email']}")
+            print("---")
+    
+    def run(self):
+        """运行系统"""
+        while True:
+            print("\n📱 个人信息管理系统")
+            print("1. 添加联系人")
+            print("2. 查看所有联系人")
+            print("3. 搜索联系人")
+            print("4. 退出")
+            
+            choice = input("请选择操作：")
+            
+            if choice == "1":
+                self.add_contact()
+            elif choice == "2":
+                self.list_contacts()
+            elif choice == "3":
+                self.search_contact()
+            elif choice == "4":
+                print("👋 再见！")
+                break
+            else:
+                print("❌ 无效的选择，请重新输入")
+
+# 运行系统
+if __name__ == "__main__":
+    manager = ContactManager()
+    manager.run()</code></pre>
+
+            <h5>2.2 简单的待办事项列表</h5>
+            <pre><code># 待办事项列表
+class TodoList:
+    """待办事项列表"""
+    
+    def __init__(self):
+        self.todos = []
+    
+    def add_todo(self):
+        """添加待办事项"""
+        task = input("请输入待办事项：")
+        self.todos.append({"task": task, "completed": False})
+        print(f"✅ 已添加待办事项：{task}")
+    
+    def list_todos(self):
+        """列出所有待办事项"""
+        if not self.todos:
+            print("📭 还没有待办事项")
+            return
+        
+        print("📋 待办事项列表：")
+        for i, todo in enumerate(self.todos, 1):
+            status = "✅" if todo["completed"] else "❌"
+            print(f"{i}. {status} {todo['task']}")
+    
+    def mark_completed(self):
+        """标记待办事项为已完成"""
+        if not self.todos:
+            print("📭 还没有待办事项")
+            return
+        
+        self.list_todos()
+        try:
+            index = int(input("请输入要标记为已完成的事项编号：")) - 1
+            if 0 <= index < len(self.todos):
+                self.todos[index]["completed"] = True
+                print(f"✅ 已标记为完成：{self.todos[index]['task']}")
+            else:
+                print("❌ 无效的编号")
+        except ValueError:
+            print("❌ 请输入有效的数字")
+    
+    def remove_todo(self):
+        """删除待办事项"""
+        if not self.todos:
+            print("📭 还没有待办事项")
+            return
+        
+        self.list_todos()
+        try:
+            index = int(input("请输入要删除的事项编号：")) - 1
+            if 0 <= index < len(self.todos):
+                removed_task = self.todos.pop(index)
+                print(f"🗑️ 已删除待办事项：{removed_task['task']}")
+            else:
+                print("❌ 无效的编号")
+        except ValueError:
+            print("❌ 请输入有效的数字")
+    
+    def run(self):
+        """运行系统"""
+        while True:
+            print("\n📝 待办事项列表")
+            print("1. 添加待办事项")
+            print("2. 查看所有待办事项")
+            print("3. 标记待办事项为已完成")
+            print("4. 删除待办事项")
+            print("5. 退出")
+            
+            choice = input("请选择操作：")
+            
+            if choice == "1":
+                self.add_todo()
+            elif choice == "2":
+                self.list_todos()
+            elif choice == "3":
+                self.mark_completed()
+            elif choice == "4":
+                self.remove_todo()
+            elif choice == "5":
+                print("👋 再见！")
+                break
+            else:
+                print("❌ 无效的选择，请重新输入")
+
+# 运行系统
+if __name__ == "__main__":
+    todo_list = TodoList()
+    todo_list.run()</code></pre>
+
+            <h4>三、数据分析小项目</h4>
+            <p>结合前面学习的数据分析知识，完成一些简单的数据分析小项目。</p>
+
+            <h5>3.1 学生成绩分析</h5>
+            <pre><code># 学生成绩分析
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def student_grade_analysis():
+    """学生成绩分析"""
+    # 创建模拟数据
+    data = {
+        "姓名": ["李艺", "张三", "李四", "王五", "赵六", "钱七", "孙八"],
+        "语文": [85, 90, 78, 92, 88, 75, 82],
+        "数学": [92, 85, 88, 90, 76, 80, 85],
+        "英语": [88, 92, 80, 85, 90, 78, 82],
+        "物理": [90, 82, 75, 88, 85, 70, 78],
+        "化学": [85, 88, 82, 90, 78, 75, 80]
+    }
+    
+    df = pd.DataFrame(data)
+    
+    # 计算总分和平均分
+    df["总分"] = df[['语文', '数学', '英语', '物理', '化学']].sum(axis=1)
+    df["平均分"] = df["总分"] / 5
+    
+    # 排序
+    df_sorted = df.sort_values("总分", ascending=False)
+    
+    print("📊 学生成绩分析")
+    print("\n1. 成绩排名：")
+    print(df_sorted[['姓名', '总分', '平均分']])
+    
+    print("\n2. 各科目平均分：")
+    print(df[['语文', '数学', '英语', '物理', '化学']].mean())
+    
+    print("\n3. 各科目最高分：")
+    print(df[['语文', '数学', '英语', '物理', '化学']].max())
+    
+    # 可视化
+    plt.figure(figsize=(12, 6))
+    
+    # 学生总分柱状图
+    plt.subplot(1, 2, 1)
+    plt.bar(df_sorted["姓名"], df_sorted["总分"], color="skyblue")
+    plt.title("学生总分排名")
+    plt.xlabel("姓名")
+    plt.ylabel("总分")
+    plt.xticks(rotation=45)
+    
+    # 科目平均分柱状图
+    plt.subplot(1, 2, 2)
+    subjects = ['语文', '数学', '英语', '物理', '化学']
+    avg_scores = df[subjects].mean()
+    plt.bar(subjects, avg_scores, color="lightgreen")
+    plt.title("各科目平均分")
+    plt.xlabel("科目")
+    plt.ylabel("平均分")
+    
+    plt.tight_layout()
+    plt.show()
+
+# 运行分析
+if __name__ == "__main__":
+    student_grade_analysis()</code></pre>
+
+            <h5>3.2 简易股票数据分析</h5>
+            <pre><code># 简易股票数据分析
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+def stock_analysis():
+    """简易股票数据分析"""
+    # 创建模拟股票数据
+    dates = pd.date_range("2024-01-01", periods=30)
+    prices = np.random.randn(30) * 2 + 100
+    prices[0] = 100  # 初始价格
+    
+    # 计算累计收益
+    returns = np.diff(prices) / prices[:-1]
+    cumulative_returns = (1 + returns).cumprod()
+    
+    # 创建DataFrame
+    df = pd.DataFrame({
+        "日期": dates[1:],
+        "价格": prices[1:],
+        "日收益率": returns * 100,
+        "累计收益率": (cumulative_returns - 1) * 100
+    })
+    
+    print("📈 股票数据分析")
+    print("\n1. 数据预览：")
+    print(df.head())
+    
+    print("\n2. 统计信息：")
+    print(f"平均价格：{df['价格'].mean():.2f}")
+    print(f"最高价格：{df['价格'].max():.2f}")
+    print(f"最低价格：{df['价格'].min():.2f}")
+    print(f"平均日收益率：{df['日收益率'].mean():.2f}%")
+    print(f"最终累计收益率：{df['累计收益率'].iloc[-1]:.2f}%")
+    
+    # 可视化
+    plt.figure(figsize=(12, 8))
+    
+    # 价格走势
+    plt.subplot(2, 1, 1)
+    plt.plot(df["日期"], df["价格"], label="股票价格", color="blue")
+    plt.title("股票价格走势")
+    plt.xlabel("日期")
+    plt.ylabel("价格")
+    plt.grid(True)
+    plt.legend()
+    
+    # 累计收益率
+    plt.subplot(2, 1, 2)
+    plt.plot(df["日期"], df["累计收益率"], label="累计收益率", color="green")
+    plt.title("累计收益率")
+    plt.xlabel("日期")
+    plt.ylabel("收益率 (%)")
+    plt.grid(True)
+    plt.legend()
+    
+    plt.tight_layout()
+    plt.show()
+
+# 运行分析
+if __name__ == "__main__":
+    stock_analysis()</code></pre>
+
+            <h4>四、Python常见问题与解决方法</h4>
+            <p>学习如何解决Python编程中常见的问题。</p>
+
+            <h5>4.1 常见错误及解决方法</h5>
             <div class="info-box">
-                <h5>🎯 初级阶段目标</h5>
-                <ul>
-                    <li>✅ 掌握Python核心语法和数据结构</li>
-                    <li>✅ 熟悉NumPy和Pandas基础操作</li>
-                    <li>✅ 能够进行简单的数据处理和分析</li>
-                    <li>✅ 掌握基础的数据可视化技能</li>
-                    <li>✅ 学习SQL基础</li>
-                </ul>
-                <h5>📚 学习资源推荐</h5>
-                <ul>
-                    <li>《Python编程：从入门到实践》</li>
-                    <li>《利用Python进行数据分析》</li>
-                    <li>LeetCode简单题目练习</li>
-                </ul>
-            </div>
-
-            <h5>2.2 中级阶段（第4-6个月）</h5>
-            <div class="info-box">
-                <h5>🎯 中级阶段目标</h5>
-                <ul>
-                    <li>✅ 深入学习数据处理和分析技巧</li>
-                    <li>✅ 掌握机器学习基础算法和应用</li>
-                    <li>✅ 学习统计学基础知识</li>
-                    <li>✅ 能够完成完整的数据分析项目</li>
-                    <li>✅ 学习基础的数据仓库和ETL知识</li>
-                </ul>
-                <h5>📚 学习资源推荐</h5>
-                <ul>
-                    <li>《统计学习方法》</li>
-                    <li>《机器学习实战》</li>
-                    <li>Kaggle入门竞赛</li>
-                    <li>各大高校公开课程</li>
-                </ul>
-            </div>
-
-            <h5>2.3 高级阶段（第7-12个月）</h5>
-            <div class="info-box">
-                <h5>🎯 高级阶段目标</h5>
-                <ul>
-                    <li>✅ 深入学习机器学习和深度学习</li>
-                    <li>✅ 了解大数据技术基础</li>
-                    <li>✅ 积累实战项目经验</li>
-                    <li>✅ 培养业务理解和问题解决能力</li>
-                    <li>✅ 构建个人作品集</li>
-                </ul>
-                <h5>📚 学习资源推荐</h5>
-                <ul>
-                    <li>《深度学习》</li>
-                    <li>《设计数据密集型应用》</li>
-                    <li>Kaggle竞赛实战</li>
-                    <li>GitHub开源项目</li>
-                </ul>
-            </div>
-
-            <h4>三、电商数据分析专项学习</h4>
-            <p>基于你的专业背景，以下是电商数据分析领域的专项学习建议。</p>
-
-            <h5>3.1 电商数据分析核心指标</h5>
-            <table class="operator-table">
-                <tr>
-                    <th>指标类别</th>
-                    <th>核心指标</th>
-                    <th>说明</th>
-                </tr>
-                <tr>
-                    <td>用户指标</td>
-                    <td>DAU、MAU、新增用户、用户留存率</td>
-                    <td>衡量用户规模和活跃程度</td>
-                </tr>
-                <tr>
-                    <td>转化指标</td>
-                    <td>浏览转化率、加购率、支付转化率</td>
-                    <td>衡量转化漏斗效率</td>
-                </tr>
-                <tr>
-                    <td>销售指标</td>
-                    <td>GMV、客单价、复购率</td>
-                    <td>衡量销售表现</td>
-                </tr>
-                <tr>
-                    <td>商品指标</td>
-                    <td>动销率、库存周转、滞销品分析</td>
-                    <td>衡量商品表现</td>
-                </tr>
-            </table>
-
-            <h5>3.2 电商数据分析实战项目建议</h5>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h5>项目1：用户行为分析</h5>
-                    <p>分析用户浏览、点击、购买等行为，构建用户画像</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛒</div>
-                    <h5>项目2：商品销售分析</h5>
-                    <p>分析商品销售表现，识别热销品和滞销品</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💡</div>
-                    <h5>项目3：推荐系统实现</h5>
-                    <p>基于用户行为数据构建简单的推荐系统</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📉</div>
-                    <h5>项目4：A/B测试分析</h5>
-                    <p>设计和分析A/B测试结果，评估产品改进效果</p>
-                </div>
-            </div>
-
-            <h4>四、实用学习方法与资源</h4>
-            <p>学习方法和资源选择同样重要，以下是一些实用的建议。</p>
-
-            <h5>4.1 高效学习方法</h5>
-            <div class="info-box">
-                <h5>💡 学习技巧</h5>
+                <h5>❌ 常见错误</h5>
                 <ol>
-                    <li><strong>理论与实践并重</strong>：学习理论的同时多动手实践</li>
-                    <li><strong>项目驱动学习</strong>：通过完成项目来巩固知识</li>
-                    <li><strong>刻意练习</strong>：针对薄弱环节进行有目的的练习</li>
-                    <li><strong>持续学习</strong>：技术更新很快，保持学习的习惯</li>
-                    <li><strong>输出倒逼输入</strong>：通过写博客、分享等方式巩固知识</li>
+                    <li><strong>SyntaxError: invalid syntax</strong> - 语法错误，检查代码拼写和缩进</li>
+                    <li><strong>NameError: name 'x' is not defined</strong> - 变量未定义，检查变量名是否正确</li>
+                    <li><strong>TypeError: unsupported operand type(s)</strong> - 类型错误，检查数据类型是否匹配</li>
+                    <li><strong>ZeroDivisionError: division by zero</strong> - 除零错误，添加条件检查</li>
+                    <li><strong>IndexError: list index out of range</strong> - 索引错误，检查列表长度</li>
                 </ol>
             </div>
 
-            <h5>4.2 在线学习平台推荐</h5>
+            <h5>4.2 调试技巧</h5>
+            <pre><code># 调试技巧示例
+# 1. 使用print语句
+x = 10
+y = "20"
+print("x =", x, "type:", type(x))
+print("y =", y, "type:", type(y))
+
+# 2. 使用try-except捕获错误
+try:
+    result = x + y
+    print("结果:", result)
+except Exception as e:
+    print("错误:", e)
+
+# 3. 使用assert语句
+assert isinstance(x, int), "x必须是整数"
+assert isinstance(y, int), "y必须是整数"
+
+# 4. 分步执行代码
+def calculate(a, b):
+    # 先计算第一步
+    step1 = a + b
+    print("第一步结果:", step1)
+    
+    # 再计算第二步
+    step2 = step1 * 2
+    print("第二步结果:", step2)
+    
+    return step2
+
+result = calculate(5, 3)
+print("最终结果:", result)</code></pre>
+
+            <h4>五、新手学习资源推荐</h4>
+            <p>为新手小白推荐一些优质的学习资源。</p>
+
+            <h5>5.1 推荐书籍</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h5>《Python编程：从入门到实践》</h5>
+                    <p>适合完全的编程新手，包含基础语法和实战项目</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h5>《Python基础教程》</h5>
+                    <p>内容全面，讲解清晰，适合初学者</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h5>《笨办法学Python》</h5>
+                    <p>通过大量练习帮助你掌握Python基础</p>
+                </div>
+            </div>
+
+            <h5>5.2 在线学习平台</h5>
             <table class="operator-table">
                 <tr>
                     <th>平台名称</th>
                     <th>特点</th>
-                    <th>推荐课程</th>
+                    <th>适合新手的课程</th>
+                </tr>
+                <tr>
+                    <td>菜鸟教程</td>
+                    <td>中文教程，内容基础易懂</td>
+                    <td>Python 3 教程</td>
+                </tr>
+                <tr>
+                    <td>W3Schools</td>
+                    <td>交互式学习，有在线编辑器</td>
+                    <td>Python 教程</td>
                 </tr>
                 <tr>
                     <td>慕课网</td>
-                    <td>中文课程丰富，实战导向</td>
-                    <td>Python数据分析、机器学习</td>
+                    <td>中文视频课程，实战导向</td>
+                    <td>Python入门与进阶</td>
                 </tr>
                 <tr>
-                    <td> Coursera/edX</td>
-                    <td>国际名校课程，质量高</td>
-                    <td>Andrew Ng机器学习、数据科学专项课</td>
-                </tr>
-                <tr>
-                    <td>Kaggle</td>
-                    <td>实战平台，有真实数据</td>
-                    <td>参与竞赛，学习他人方案</td>
-                </tr>
-                <tr>
-                    <td>LeetCode</td>
-                    <td>编程练习平台</td>
-                    <li>刷题提升编程能力</li>
+                    <td>Codecademy</td>
+                    <td>交互式学习，游戏化编程</td>
+                    <td>Learn Python 3</td>
                 </tr>
             </table>
 
-            <h5>4.3 重要工具与技术栈</h5>
-            <pre><code># 数据分析师技术栈总结
-"""
-# 编程语言
-- Python（核心）
-- SQL（必备）
-- R（可选加分项）
-
-# 数据处理与分析
-- NumPy, Pandas
-- Excel高级功能
-
-# 数据可视化
-- Matplotlib, Seaborn
-- Tableau, Power BI
-
-# 机器学习
-- Scikit-learn
-- TensorFlow/PyTorch（进阶）
-
-# 数据库
-- MySQL, PostgreSQL
-- MongoDB（可选）
-
-# 大数据技术（进阶）
-- Hadoop, Spark
-- Hive, Flink
-
-# 开发工具
-- Git, GitHub
-- Jupyter Notebook/Lab
-- PyCharm/VS Code
-"""
-print("技术栈总结已展示")</code></pre>
-
-            <h4>五、职业准备与面试建议</h4>
-            <p>最后，让我们谈谈如何为未来的职业发展做好准备。</p>
-
-            <h5>5.1 构建个人作品集</h5>
-            <div class="info-box">
-                <h5>📁 作品集建议</h5>
-                <ul>
-                    <li><strong>GitHub仓库</strong>：整理你的学习项目和代码</li>
-                    <li><strong>数据分析报告</strong>：展示你的数据分析能力</li>
-                    <li><strong>项目README</strong>：清晰说明项目目的、方法和结果</li>
-                    <li><strong>个人博客</strong>：分享学习心得和技术文章</li>
-                    <li><strong>可视化作品</strong>：展示你的数据可视化能力</li>
-                </ul>
-            </div>
-
-            <h5>5.2 面试准备要点</h5>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">💻</div>
-                    <h5>技术面试</h5>
-                    <ul>
-                        <li>Python编程题</li>
-                        <li>SQL查询题</li>
-                        <li>统计和机器学习基础</li>
-                        <li>数据结构与算法</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h5>行为面试</h5>
-                    <ul>
-                        <li>项目经历</li>
-                        <li>解决问题的能力</li>
-                        <li>团队协作能力</li>
-                        <li>学习能力</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h5>案例分析</h5>
-                    <ul>
-                        <li>业务场景分析</li>
-                        <li>指标设计能力</li>
-                        <li>逻辑思维</li>
-                        <li>沟通表达</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h4>六、寄语与鼓励</h4>
-            <div class="success-box">
-                <h5>🌟 最后想说的话</h5>
-                <p>亲爱的李艺同学，恭喜你完成了这一系列课程的学习！学习编程和数据分析是一条漫长但充满乐趣的道路。</p>
-                <p>在这个过程中，你可能会遇到困难和挫折，但请记住：</p>
-                <ul>
-                    <li>💪 坚持就是胜利，每天进步一点点</li>
-                    <li>🚀 实践出真知，多做项目多动手</li>
-                    <li>🤝 学会利用资源，主动寻求帮助</li>
-                    <li>💡 保持好奇心，持续学习新技术</li>
-                </ul>
-                <p>相信在不久的将来，你一定会成为一名优秀的商务数据分析师，在电商领域大放异彩！</p>
-                <p>祝你学习顺利，前程似锦！</p>
-            </div>
-
             <div class="next-step">
-                <h5>🎉 课程总结</h5>
-                <p>恭喜你完成了全部课程！这不是结束，而是新的开始。希望你能把所学知识应用到实践中，不断成长和进步。</p>
-                <p>记住：代码改变世界，数据创造价值！</p>
+                <h5>🚀 下一步</h5>
+                <p>恭喜你完成了Python基础实践的学习！通过这些小项目的练习，你已经掌握了Python的核心概念和基本编程能力。接下来，你可以尝试更复杂的项目，或者深入学习某个特定领域的知识。</p>
             </div>
 
             <h4>单元练习</h4>
             <div class="quiz-section">
                 <h5>一、选择题</h5>
                 <ol>
-                    <li>以下哪个不是数据分析师的核心技能？
+                    <li>以下哪个是Python中正确的注释方式？
                         <ul>
-                            <li>A. 数据清洗</li>
-                            <li>B. 数据可视化</li>
-                            <li>C. 前端开发</li>
-                            <li>D. SQL</li>
+                            <li>A. // 这是注释</li>
+                            <li>B. /* 这是注释 */</li>
+                            <li>C. # 这是注释</li>
+                            <li>D. -- 这是注释</li>
                         </ul>
                     </li>
-                    <li>电商数据分析中，GMV指的是？
+                    <li>Python中用于获取用户输入的函数是？
                         <ul>
-                            <li>A. 日活跃用户数</li>
-                            <li>B. 商品交易总额</li>
-                            <li>C. 用户留存率</li>
-                            <li>D. 转化率</li>
+                            <li>A. input()</li>
+                            <li>B. get()</li>
+                            <li>C. read()</li>
+                            <li>D. scanf()</li>
                         </ul>
                     </li>
-                    <li>以下哪个平台以数据科学竞赛著称？
+                    <li>以下哪个数据类型是Python中没有的？
                         <ul>
-                            <li>A. GitHub</li>
-                            <li>B. LeetCode</li>
-                            <li>C. Kaggle</li>
-                            <li>D. Stack Overflow</li>
+                            <li>A. list</li>
+                            <li>B. tuple</li>
+                            <li>C. array</li>
+                            <li>D. dictionary</li>
                         </ul>
                     </li>
                 </ol>
 
-                <h5>二、简答题</h5>
+                <h5>二、判断题</h5>
                 <ol>
-                    <li>请列出你认为数据分析师最重要的三个能力，并说明理由。</li>
-                    <li>根据你自己的情况，制定一个为期6个月的学习计划。</li>
+                    <li>Python中的缩进是可选的，不影响代码执行。（ ）</li>
+                    <li>在Python中，字符串可以使用单引号或双引号定义。（ ）</li>
                 </ol>
 
-                <h5>三、实践题</h5>
+                <h5>三、编程题</h5>
                 <ol>
+                    <li>编写一个程序，计算1到100的和。</li>
+                    <li>创建一个简单的猜数字游戏，让用户猜1-100之间的数字。</li>
+                    <li>实现一个简易的计算器，能够进行加减乘除运算。</li>
+                </ol>
+            </div>
+        `
+    }
+];
                     <li>尝试在GitHub上创建一个仓库，整理你之前的学习项目。</li>
                     <li>为自己设计一个个人作品集的初步方案。</li>
                 </ol>
