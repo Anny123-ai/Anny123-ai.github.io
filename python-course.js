@@ -142,6 +142,49 @@ print("欢迎来到 Python 编程世界！")</code></pre>
                 <h5>🚀 下一步</h5>
                 <p>现在你已经准备好开始学习 Python 的基础语法了。下一课我们将学习变量、数据类型和基本运算符。</p>
             </div>
+
+            <h4>单元测试</h4>
+            <div class="quiz-section">
+                <h5>一、选择题</h5>
+                <ol>
+                    <li>Python 的设计哲学强调什么？
+                        <ul>
+                            <li>A. 代码的可读性</li>
+                            <li>B. 执行速度</li>
+                            <li>C. 内存占用</li>
+                            <li>D. 语法复杂性</li>
+                        </ul>
+                    </li>
+                    <li>Python 的名字来源于什么？
+                        <ul>
+                            <li>A. 蛇</li>
+                            <li>B. 英国喜剧团体 Monty Python</li>
+                            <li>C. 数学家 Python</li>
+                            <li>D. 希腊神话</li>
+                        </ul>
+                    </li>
+                    <li>以下哪个不是 Python 的特点？
+                        <ul>
+                            <li>A. 简单易学</li>
+                            <li>B. 免费开源</li>
+                            <li>C. 编译型语言</li>
+                            <li>D. 跨平台</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h5>二、判断题</h5>
+                <ol>
+                    <li>Python 2.x 仍然被推荐使用。（ ）</li>
+                    <li>安装 Python 时，勾选 "Add Python to PATH" 选项可以方便在命令行中直接使用 Python。（ ）</li>
+                </ol>
+
+                <h5>三、简答题</h5>
+                <ol>
+                    <li>Python 能做什么？请列举至少三个应用领域。</li>
+                    <li>如何验证 Python 是否安装成功？</li>
+                </ol>
+            </div>
         `
     },
     {
@@ -465,6 +508,49 @@ while guess != secret_number:
             <div class="next-step">
                 <h5>🚀 下一步</h5>
                 <p>现在你已经掌握了 Python 的基础语法，下一课我们将学习 Python 的数据结构，包括列表、元组、字典和集合。</p>
+            </div>
+
+            <h4>单元测试</h4>
+            <div class="quiz-section">
+                <h5>一、选择题</h5>
+                <ol>
+                    <li>以下哪个是 Python 的正确变量名？
+                        <ul>
+                            <li>A. 123abc</li>
+                            <li>B. abc_123</li>
+                            <li>C. for</li>
+                            <li>D. my-variable</li>
+                        </ul>
+                    </li>
+                    <li>Python 中，以下哪个不是基本数据类型？
+                        <ul>
+                            <li>A. int</li>
+                            <li>B. float</li>
+                            <li>C. string</li>
+                            <li>D. array</li>
+                        </ul>
+                    </li>
+                    <li>以下哪个运算符用于取余数？
+                        <ul>
+                            <li>A. /</li>
+                            <li>B. //</li>
+                            <li>C. %</li>
+                            <li>D. **</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h5>二、判断题</h5>
+                <ol>
+                    <li>Python 是一种强类型语言，变量在声明时必须指定类型。（ ）</li>
+                    <li>在 Python 中，缩进是语法的一部分，用于表示代码块的范围。（ ）</li>
+                </ol>
+
+                <h5>三、简答题</h5>
+                <ol>
+                    <li>请简述 Python 中的字符串格式化方法。</li>
+                    <li>请写出一个使用 if-elif-else 语句的例子。</li>
+                </ol>
             </div>
         `
     },
@@ -827,6 +913,49 @@ while True:
                 <h5>🚀 下一步</h5>
                 <p>现在你已经掌握了 Python 的基本数据结构，下一课我们将学习函数与模块，这将帮助你组织和重用代码。</p>
             </div>
+
+            <h4>单元测试</h4>
+            <div class="quiz-section">
+                <h5>一、选择题</h5>
+                <ol>
+                    <li>以下哪个数据结构是不可变的？
+                        <ul>
+                            <li>A. 列表</li>
+                            <li>B. 元组</li>
+                            <li>C. 字典</li>
+                            <li>D. 集合</li>
+                        </ul>
+                    </li>
+                    <li>以下哪个方法用于在列表末尾添加元素？
+                        <ul>
+                            <li>A. insert()</li>
+                            <li>B. append()</li>
+                            <li>C. extend()</li>
+                            <li>D. add()</li>
+                        </ul>
+                    </li>
+                    <li>字典中的键必须是：
+                        <ul>
+                            <li>A. 可变的</li>
+                            <li>B. 不可变的</li>
+                            <li>C. 整数</li>
+                            <li>D. 字符串</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h5>二、判断题</h5>
+                <ol>
+                    <li>集合中的元素是唯一的，不允许重复。（ ）</li>
+                    <li>列表和元组都可以使用索引访问元素。（ ）</li>
+                </ol>
+
+                <h5>三、简答题</h5>
+                <ol>
+                    <li>请简述列表、元组、字典和集合的区别。</li>
+                    <li>如何从列表中删除一个元素？请写出至少两种方法。</li>
+                </ol>
+            </div>
         `
     },
     {
@@ -1154,6 +1283,49 @@ if __name__ == "__main__":
             <div class="next-step">
                 <h5>🚀 下一步</h5>
                 <p>现在你已经掌握了 Python 的函数与模块，下一课我们将学习面向对象编程，这是一种更高级的编程范式。</p>
+            </div>
+
+            <h4>单元测试</h4>
+            <div class="quiz-section">
+                <h5>一、选择题</h5>
+                <ol>
+                    <li>以下哪个关键字用于定义函数？
+                        <ul>
+                            <li>A. function</li>
+                            <li>B. def</li>
+                            <li>C. define</li>
+                            <li>D. func</li>
+                        </ul>
+                    </li>
+                    <li>以下哪种参数类型可以接收任意数量的位置参数？
+                        <ul>
+                            <li>A. 默认参数</li>
+                            <li>B. 关键字参数</li>
+                            <li>C. 可变参数 (*args)</li>
+                            <li>D. 关键字可变参数 (**kwargs)</li>
+                        </ul>
+                    </li>
+                    <li>如何导入模块中的特定函数？
+                        <ul>
+                            <li>A. import module</li>
+                            <li>B. from module import function</li>
+                            <li>C. include module</li>
+                            <li>D. require module</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h5>二、判断题</h5>
+                <ol>
+                    <li>函数可以返回多个值。（ ）</li>
+                    <li>Python 中的模块是一个包含 Python 定义和语句的文件。（ ）</li>
+                </ol>
+
+                <h5>三、简答题</h5>
+                <ol>
+                    <li>请简述 Python 函数参数的类型。</li>
+                    <li>如何创建和使用自己的模块？</li>
+                </ol>
             </div>
         `
     },
@@ -1580,6 +1752,49 @@ library.list_books()
                 <h5>🚀 下一步</h5>
                 <p>现在你已经掌握了 Python 的面向对象编程，下一课我们将学习文件操作与异常处理，这是处理实际应用中常见问题的重要技能。</p>
             </div>
+
+            <h4>单元测试</h4>
+            <div class="quiz-section">
+                <h5>一、选择题</h5>
+                <ol>
+                    <li>以下哪个关键字用于定义类？
+                        <ul>
+                            <li>A. class</li>
+                            <li>B. def</li>
+                            <li>C. object</li>
+                            <li>D. type</li>
+                        </ul>
+                    </li>
+                    <li>在 Python 中，类的初始化方法是：
+                        <ul>
+                            <li>A. __init__</li>
+                            <li>B. __new__</li>
+                            <li>C. __construct__</li>
+                            <li>D. initialize</li>
+                        </ul>
+                    </li>
+                    <li>以下哪个是面向对象编程的特性？
+                        <ul>
+                            <li>A. 继承</li>
+                            <li>B. 多态</li>
+                            <li>C. 封装</li>
+                            <li>D. 以上都是</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h5>二、判断题</h5>
+                <ol>
+                    <li>在 Python 中，双下划线开头的属性是私有属性，外部无法访问。（ ）</li>
+                    <li>子类可以继承父类的所有属性和方法。（ ）</li>
+                </ol>
+
+                <h5>三、简答题</h5>
+                <ol>
+                    <li>请简述面向对象编程的三大特性。</li>
+                    <li>如何在 Python 中实现继承？</li>
+                </ol>
+            </div>
         `
     },
     {
@@ -1874,6 +2089,49 @@ file_manager()</code></pre>
                     <li>解决实际问题，巩固所学知识</li>
                 </ul>
                 <p>祝你在 Python 编程的道路上越走越远！</p>
+            </div>
+
+            <h4>单元测试</h4>
+            <div class="quiz-section">
+                <h5>一、选择题</h5>
+                <ol>
+                    <li>以下哪个模式用于追加内容到文件？
+                        <ul>
+                            <li>A. r</li>
+                            <li>B. w</li>
+                            <li>C. a</li>
+                            <li>D. x</li>
+                        </ul>
+                    </li>
+                    <li>以下哪个语句用于捕获异常？
+                        <ul>
+                            <li>A. try</li>
+                            <li>B. except</li>
+                            <li>C. finally</li>
+                            <li>D. raise</li>
+                        </ul>
+                    </li>
+                    <li>使用 with 语句打开文件的优点是：
+                        <ul>
+                            <li>A. 代码更简洁</li>
+                            <li>B. 自动关闭文件</li>
+                            <li>C. 提高执行速度</li>
+                            <li>D. 节省内存</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h5>二、判断题</h5>
+                <ol>
+                    <li>使用 w 模式打开文件会覆盖原有内容。（ ）</li>
+                    <li>异常处理可以使程序更加健壮，避免因为错误而崩溃。（ ）</li>
+                </ol>
+
+                <h5>三、简答题</h5>
+                <ol>
+                    <li>请简述 Python 中文件打开的不同模式及其用途。</li>
+                    <li>如何创建和使用自定义异常？</li>
+                </ol>
             </div>
         `
     }
