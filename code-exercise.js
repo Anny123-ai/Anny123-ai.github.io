@@ -1,55 +1,99 @@
+// 全局 Pyodide 实例
+let pyodideInstance = null;
+let isPyodideLoaded = false;
+
+// 加载 Pyodide
+async function loadPyodide() {
+    if (isPyodideLoaded && pyodideInstance) return pyodideInstance;
+    
+    try {
+        // 加载 Pyodide
+        if (!window.loadPyodide) {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js';
+            document.head.appendChild(script);
+            await new Promise(resolve => script.onload = resolve);
+        }
+        
+        pyodideInstance = await window.loadPyodide({
+            indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/'
+        });
+        
+        isPyodideLoaded = true;
+        return pyodideInstance;
+    } catch (error) {
+        console.error('加载 Pyodide 失败:', error);
+        throw error;
+    }
+}
+
+// 运行 Python 代码
+async function runPythonCode(code) {
+    try {
+        const pyodide = await loadPyodide();
+        
+        let output = '';
+        let error = '';
+        
+        // 捕获标准输出
+        pyodide.setStdout({ write: (text) => output += text });
+        pyodide.setStderr({ write: (text) => error += text });
+        
+        try {
+            // 运行代码
+            const result = await pyodide.runPythonAsync(code);
+            if (result !== undefined) {
+                output += result;
+            }
+        } catch (err) {
+            error = err.message;
+        }
+        
+        return {
+            success: !error,
+            output: output,
+            error: error
+        };
+    } catch (error) {
+        return {
+            success: false,
+            output: '',
+            error: error.message
+        };
+    }
+}
+
 const exercises = [
     {
         unit: 0,
         title: "变量与数据类型练习",
         description: "创建变量并输出个人信息",
         template: `# 练习1：变量与数据类型
-# 创建三个变量：name（姓名）、age（年龄）、is_student（是否是学生）
-# 然后使用print语句输出这些信息
-
-# 在此处编写代码
-name = "你的姓名"
-age = 0
-is_student = False
-
-# 输出结果
-print("姓名:", name)
-print("年龄:", age)
-print("是否是学生:", is_student)`,
+age = 20
+has_ticket = True
+if age >= 18:
+    if has_ticket:
+        print("可以进入")
+    else:
+        print("需要购票")
+else:
+    print("请家长陪同")`,
         testCases: [
             {
-                name: "name变量类型正确",
-                check: (output, context) => typeof context.name === 'string' && context.name.length > 0,
-                points: 1
-            },
-            {
-                name: "age变量类型正确",
-                check: (output, context) => typeof context.age === 'number' && context.age > 0,
-                points: 1
-            },
-            {
-                name: "is_student变量类型正确",
-                check: (output, context) => typeof context.is_student === 'boolean',
-                points: 1
-            },
-            {
-                name: "输出包含姓名",
-                check: (output) => output.includes("姓名:"),
-                points: 1
-            },
-            {
-                name: "输出包含年龄",
-                check: (output) => output.includes("年龄:"),
-                points: 1
+                name: "代码运行成功",
+                check: (output) => output.includes("可以进入") || output.includes("需要购票") || output.includes("请家长陪同"),
+                points: 5
             }
         ],
-        solution: `name = "李艺"
-age = 18
-is_student = True
-
-print("姓名:", name)
-print("年龄:", age)
-print("是否是学生:", is_student)`
+        solution: `age = 20
+has_ticket = True
+if age >= 18:
+    if has_ticket:
+        print("可以进入")
+    else:
+        print("需要购票")
+else:
+    print("请家长陪同")`
     },
     {
         unit: 0,
@@ -469,20 +513,20 @@ function renderExercise(exercise) {
             
             <div class="code-editor">
                 <div class="editor-header">
-                    <span>代码编辑器</span>
+                    <span>Code Runner</span>
                     <button onclick="loadSolution(${exercises.indexOf(exercise)})" class="btn btn-secondary">查看答案</button>
                 </div>
                 <textarea id="code-input" rows="15" placeholder="在此处编写Python代码...">${exercise.template}</textarea>
             </div>
             
             <div class="editor-actions">
-                <button onclick="runCode(${exercises.indexOf(exercise)})" class="btn btn-primary">运行代码</button>
-                <button onclick="resetCode(${exercises.indexOf(exercise)})" class="btn btn-secondary">重置代码</button>
+                <button onclick="runCode(${exercises.indexOf(exercise)})" class="btn btn-primary">Run</button>
+                <button onclick="resetCode(${exercises.indexOf(exercise)})" class="btn btn-secondary">Clear</button>
             </div>
             
             <div class="output-section">
                 <div class="output-header">
-                    <span>输出结果</span>
+                    <span>Output</span>
                 </div>
                 <div id="output-content" class="output-content"></div>
             </div>
@@ -497,7 +541,7 @@ function renderExercise(exercise) {
     `;
 }
 
-function runCode(exerciseIndex) {
+async function runCode(exerciseIndex) {
     const exercise = exercises[exerciseIndex];
     const codeInput = document.getElementById('code-input');
     const outputContent = document.getElementById('output-content');
@@ -506,9 +550,18 @@ function runCode(exerciseIndex) {
     if (!codeInput || !outputContent || !scoreContent) return;
     
     try {
-        const output = runPythonCode(codeInput.value);
-        outputContent.textContent = output;
+        outputContent.textContent = '⏳ 正在加载 Pyodide...';
         outputContent.className = 'output-content';
+        
+        const result = await runPythonCode(codeInput.value);
+        
+        if (result.success) {
+            outputContent.textContent = result.output || '✅ 代码执行成功，无输出';
+            outputContent.className = 'output-content';
+        } else {
+            outputContent.textContent = '❌ 错误:\n' + result.error;
+            outputContent.className = 'output-content output-error';
+        }
         
         let totalPoints = 0;
         let earnedPoints = 0;
@@ -516,7 +569,7 @@ function runCode(exerciseIndex) {
         
         exercise.testCases.forEach((testCase, index) => {
             totalPoints += testCase.points;
-            const passed = testCase.check(output, {});
+            const passed = testCase.check(result.output, {});
             if (passed) earnedPoints += testCase.points;
             
             results.push({
@@ -537,7 +590,7 @@ function runCode(exerciseIndex) {
         
         scoreContent.innerHTML = scoreHtml;
         
-        if (earnedPoints === totalPoints) {
+        if (earnedPoints === totalPoints && result.success) {
             scoreContent.classList.add('score-success');
             scoreContent.classList.remove('score-error');
         } else {
