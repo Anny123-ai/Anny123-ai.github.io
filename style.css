@@ -1142,3 +1142,257 @@ pre code {
 .lesson-nav .btn {
     padding: 10px 25px;
 }
+
+/* 代码练习平台样式 */
+.exercise-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.exercise-section h4 {
+    font-size: 1.4rem;
+    color: #2d3748;
+    margin-bottom: 10px;
+}
+
+.exercise-section p {
+    color: #4a5568;
+    margin-bottom: 25px;
+}
+
+.exercise-selector {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.exercise-selector h5 {
+    margin-bottom: 15px;
+    color: #2d3748;
+}
+
+.exercise-selector .btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.code-editor {
+    background: #2d3748;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #1a202c;
+    border-bottom: 1px solid #4a5568;
+}
+
+.editor-header span {
+    color: #a0aec0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.editor-header .btn {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+}
+
+.code-editor textarea {
+    width: 100%;
+    min-height: 250px;
+    padding: 16px;
+    background: #2d3748;
+    color: #e2e8f0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: none;
+    resize: vertical;
+    outline: none;
+}
+
+.code-editor textarea::placeholder {
+    color: #4a5568;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.editor-actions .btn {
+    padding: 12px 25px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e0;
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+.output-section {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.output-header {
+    padding: 12px 16px;
+    background: #f1f3f4;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.output-header span {
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.output-content {
+    padding: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    min-height: 100px;
+    background: #f8f9fa;
+    color: #374151;
+    white-space: pre-wrap;
+}
+
+.output-content.output-error {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.score-section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.score-header {
+    padding: 12px 16px;
+    background: #f1f3f4;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.score-header span {
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.score-content {
+    padding: 16px;
+    min-height: 100px;
+}
+
+.score-summary {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #2d3748;
+}
+
+.score-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.score-content li {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: #f7fafc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.score-content li:last-child {
+    margin-bottom: 0;
+}
+
+.score-success {
+    border-left: 4px solid #10b981;
+}
+
+.score-success .score-summary {
+    color: #10b981;
+}
+
+.score-error {
+    border-left: 4px solid #ef4444;
+}
+
+.score-error .score-summary {
+    color: #ef4444;
+}
+
+.no-exercise {
+    text-align: center;
+    padding: 40px;
+    color: #718096;
+}
+
+@media (max-width: 768px) {
+    .exercise-section {
+        padding: 20px;
+    }
+    
+    .editor-actions {
+        flex-direction: column;
+    }
+    
+    .editor-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .exercise-selector {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .exercise-selector h5 {
+        width: 100%;
+    }
+}

@@ -2110,6 +2110,11 @@ function showLesson(index) {
     
     updateNavButtons();
     window.scrollTo(0, 0);
+    
+    // 更新练习内容
+    if (typeof showExercises === 'function') {
+        setTimeout(() => showExercises(index), 100);
+    }
 }
 
 function showLessonsList() {

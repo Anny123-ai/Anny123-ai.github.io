@@ -155,6 +155,13 @@ class CodeRunner {
     }
 }
 
+// 更新课程时刷新练习
+function updateExerciseOnLessonChange(lessonIndex) {
+    if (typeof showExercises === 'function') {
+        showExercises(lessonIndex);
+    }
+}
+
 // 页面加载完成后初始化
 window.addEventListener('DOMContentLoaded', () => {
     // 加载 Pyodide
@@ -164,4 +171,11 @@ window.addEventListener('DOMContentLoaded', () => {
         new CodeRunner();
     };
     document.head.appendChild(script);
+    
+    // 监听课程切换
+    const urlParams = new URLSearchParams(window.location.search);
+    const lessonIndex = parseInt(urlParams.get('lesson')) || 0;
+    if (typeof showExercises === 'function') {
+        setTimeout(() => showExercises(lessonIndex), 100);
+    }
 });
