@@ -133,13 +133,13 @@
 
         .music-grid {
             display: grid;
-            gap: 25px;
+            gap: 20px;
         }
 
         .music-card {
             background: white;
             border-radius: 20px;
-            padding: 20px;
+            padding: 20px 25px;
             display: flex;
             align-items: center;
             gap: 20px;
@@ -150,8 +150,8 @@
         }
 
         .music-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
         }
 
         .music-card:nth-child(1) { animation-delay: 0.1s; }
@@ -227,31 +227,13 @@
             75% { transform: rotate(15deg); }
         }
 
-        .cover-wrapper {
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .cover-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 15px;
-            object-fit: cover;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease;
-        }
-
-        .music-card:hover .cover-img {
-            transform: scale(1.1);
-        }
-
         .music-info {
             flex: 1;
             min-width: 0;
         }
 
         .music-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: #333;
             margin-bottom: 5px;
@@ -261,7 +243,7 @@
         }
 
         .music-artist {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #666;
             white-space: nowrap;
             overflow: hidden;
@@ -312,11 +294,6 @@
 
             .music-info {
                 width: 100%;
-            }
-
-            .cover-img {
-                width: 120px;
-                height: 120px;
             }
 
             .music-plugin {
@@ -371,9 +348,6 @@
                         <span class="bar"></span>
                     </span>
                 </div>
-                <div class="cover-wrapper">
-                    <img src="https://neeko-copilot.bytedance.net/api/text2image?prompt=abstract%20red%20purple%20gradient%20music%20album%20cover%2C%20modern%20art%2C%20vinyl%20record%20design&image_size=square" alt="零距离的思念" class="cover-img">
-                </div>
                 <div class="music-info">
                     <div class="music-title">零距离的思念</div>
                     <div class="music-artist">vine</div>
@@ -394,9 +368,6 @@
                         <span class="bar"></span>
                         <span class="bar"></span>
                     </span>
-                </div>
-                <div class="cover-wrapper">
-                    <img src="https://neeko-copilot.bytedance.net/api/text2image?prompt=green%20orange%20minimalist%20music%20album%20cover%2C%20birds%20illustration%2C%20soft%20colors&image_size=square" alt="Gotta Have You" class="cover-img">
                 </div>
                 <div class="music-info">
                     <div class="music-title">Gotta Have You</div>
@@ -419,9 +390,6 @@
                         <span class="bar"></span>
                     </span>
                 </div>
-                <div class="cover-wrapper">
-                    <img src="https://neeko-copilot.bytedance.net/api/text2image?prompt=abstract%20blue%20white%20wave%20pattern%20music%20album%20cover%2C%20minimalist%20design&image_size=square" alt="一半一半" class="cover-img">
-                </div>
                 <div class="music-info">
                     <div class="music-title">一半一半</div>
                     <div class="music-artist">Top Barry / INDEcompany</div>
@@ -443,9 +411,6 @@
                         <span class="bar"></span>
                     </span>
                 </div>
-                <div class="cover-wrapper">
-                    <img src="https://neeko-copilot.bytedance.net/api/text2image?prompt=dark%20red%20cyberpunk%20music%20album%20cover%2C%20neon%20lights%2C%20futuristic%20design&image_size=square" alt="幻痛药" class="cover-img">
-                </div>
                 <div class="music-info">
                     <div class="music-title">幻痛药 Hurt And Hurt</div>
                     <div class="music-artist">Tlatre特雷西 / LSGCsikoriot</div>
@@ -466,9 +431,6 @@
                         <span class="bar"></span>
                         <span class="bar"></span>
                     </span>
-                </div>
-                <div class="cover-wrapper">
-                    <img src="https://neeko-copilot.bytedance.net/api/text2image?prompt=dark%20blue%20ocean%20waves%20music%20album%20cover%2C%20serene%20peaceful%20design&image_size=square" alt="春" class="cover-img">
                 </div>
                 <div class="music-info">
                     <div class="music-title">春</div>
