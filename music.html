@@ -154,6 +154,11 @@
             box-shadow: 0 12px 35px rgba(0,0,0,0.12);
         }
 
+        .music-card.playing {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+            border: 2px solid #e74c3c;
+        }
+
         .music-card:nth-child(1) { animation-delay: 0.1s; }
         .music-card:nth-child(2) { animation-delay: 0.2s; }
         .music-card:nth-child(3) { animation-delay: 0.3s; }
@@ -176,6 +181,7 @@
             border-radius: 15px;
             min-width: 70px;
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
         }
 
         .plugin-icon {
@@ -227,16 +233,78 @@
             75% { transform: rotate(15deg); }
         }
 
-        .music-info {
+        /* 暂停按钮 */
+        .pause-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            z-index: 10;
+        }
+
+        .pause-btn .pause-icon {
+            display: flex;
+            gap: 5px;
+        }
+
+        .pause-btn .pause-icon span {
+            width: 6px;
+            height: 18px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .music-card:hover .pause-btn,
+        .music-card.playing .pause-btn {
+            opacity: 1;
+        }
+
+        .pause-btn:hover {
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.5);
+        }
+
+        /* 播放中状态 */
+        .music-card.playing .plugin-icon {
+            animation: spin-icon-playing 1s linear infinite;
+        }
+
+        @keyframes spin-icon-playing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .music-card.playing .plugin-bars .bar {
+            animation-duration: 0.3s;
+        }
+
+        /* 进度条样式 */
+        .progress-section {
             flex: 1;
             min-width: 0;
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .music-title {
             font-size: 1.4rem;
             font-weight: 700;
             color: #333;
-            margin-bottom: 5px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -250,20 +318,48 @@
             text-overflow: ellipsis;
         }
 
+        .progress-container {
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .progress-bar:hover .progress-fill {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 4px;
+        }
+
         .music-tag {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            margin-top: 8px;
             font-size: 0.85rem;
             color: #e74c3c;
             background: rgba(231, 76, 60, 0.1);
             padding: 4px 12px;
             border-radius: 15px;
-        }
-
-        .music-card:hover .music-tag {
-            background: rgba(231, 76, 60, 0.2);
+            margin-top: 5px;
         }
 
         .footer-decoration {
@@ -290,6 +386,7 @@
             .music-card {
                 flex-direction: column;
                 text-align: center;
+                padding-right: 25px;
             }
 
             .music-info {
@@ -300,6 +397,16 @@
                 flex-direction: row;
                 width: auto;
                 padding: 8px 15px;
+            }
+
+            .pause-btn {
+                position: static;
+                transform: none;
+                margin-top: 10px;
+            }
+
+            .pause-btn:hover {
+                transform: scale(1.15);
             }
         }
     </style>
@@ -333,11 +440,11 @@
 
         <div class="header">
             <h1>🎵 我的音乐歌单 🎵</h1>
-            <p>这些是我喜欢的歌曲~</p>
+            <p>点击播放按钮开始听歌~</p>
         </div>
 
         <div class="music-grid">
-            <div class="music-card">
+            <div class="music-card" data-index="0">
                 <div class="music-plugin">
                     <span class="plugin-icon">🎵</span>
                     <span class="plugin-bars">
@@ -348,17 +455,34 @@
                         <span class="bar"></span>
                     </span>
                 </div>
-                <div class="music-info">
-                    <div class="music-title">零距离的思念</div>
-                    <div class="music-artist">vine</div>
-                    <div class="music-tag">
-                        <span>💖</span>
-                        <span>我的最爱</span>
+                <div class="progress-section">
+                    <div class="music-info">
+                        <div class="music-title">零距离的思念</div>
+                        <div class="music-artist">vine</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" onclick="seekMusic(event, 0)">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="time-display">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="music-tag">
+                            <span>💖</span>
+                            <span>我的最爱</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pause-btn" onclick="togglePlay(0)">
+                    <div class="pause-icon">
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>
 
-            <div class="music-card">
+            <div class="music-card" data-index="1">
                 <div class="music-plugin">
                     <span class="plugin-icon">🎶</span>
                     <span class="plugin-bars">
@@ -369,17 +493,34 @@
                         <span class="bar"></span>
                     </span>
                 </div>
-                <div class="music-info">
-                    <div class="music-title">Gotta Have You</div>
-                    <div class="music-artist">The Weepies</div>
-                    <div class="music-tag">
-                        <span>🎸</span>
-                        <span>民谣风格</span>
+                <div class="progress-section">
+                    <div class="music-info">
+                        <div class="music-title">Gotta Have You</div>
+                        <div class="music-artist">The Weepies</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" onclick="seekMusic(event, 1)">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="time-display">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="music-tag">
+                            <span>🎸</span>
+                            <span>民谣风格</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pause-btn" onclick="togglePlay(1)">
+                    <div class="pause-icon">
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>
 
-            <div class="music-card">
+            <div class="music-card" data-index="2">
                 <div class="music-plugin">
                     <span class="plugin-icon">🎵</span>
                     <span class="plugin-bars">
@@ -390,17 +531,34 @@
                         <span class="bar"></span>
                     </span>
                 </div>
-                <div class="music-info">
-                    <div class="music-title">一半一半</div>
-                    <div class="music-artist">Top Barry / INDEcompany</div>
-                    <div class="music-tag">
-                        <span>🎵</span>
-                        <span>轻快节奏</span>
+                <div class="progress-section">
+                    <div class="music-info">
+                        <div class="music-title">一半一半</div>
+                        <div class="music-artist">Top Barry / INDEcompany</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" onclick="seekMusic(event, 2)">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="time-display">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="music-tag">
+                            <span>🎵</span>
+                            <span>轻快节奏</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pause-btn" onclick="togglePlay(2)">
+                    <div class="pause-icon">
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>
 
-            <div class="music-card">
+            <div class="music-card" data-index="3">
                 <div class="music-plugin">
                     <span class="plugin-icon">🎧</span>
                     <span class="plugin-bars">
@@ -411,17 +569,34 @@
                         <span class="bar"></span>
                     </span>
                 </div>
-                <div class="music-info">
-                    <div class="music-title">幻痛药 Hurt And Hurt</div>
-                    <div class="music-artist">Tlatre特雷西 / LSGCsikoriot</div>
-                    <div class="music-tag">
-                        <span>🎧</span>
-                        <span>电音风格</span>
+                <div class="progress-section">
+                    <div class="music-info">
+                        <div class="music-title">幻痛药 Hurt And Hurt</div>
+                        <div class="music-artist">Tlatre特雷西 / LSGCsikoriot</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" onclick="seekMusic(event, 3)">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="time-display">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="music-tag">
+                            <span>🎧</span>
+                            <span>电音风格</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pause-btn" onclick="togglePlay(3)">
+                    <div class="pause-icon">
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>
 
-            <div class="music-card">
+            <div class="music-card" data-index="4">
                 <div class="music-plugin">
                     <span class="plugin-icon">🎶</span>
                     <span class="plugin-bars">
@@ -432,12 +607,29 @@
                         <span class="bar"></span>
                     </span>
                 </div>
-                <div class="music-info">
-                    <div class="music-title">春</div>
-                    <div class="music-artist">陈文非</div>
-                    <div class="music-tag">
-                        <span>🌸</span>
-                        <span>治愈系</span>
+                <div class="progress-section">
+                    <div class="music-info">
+                        <div class="music-title">春</div>
+                        <div class="music-artist">陈文非</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" onclick="seekMusic(event, 4)">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="time-display">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="music-tag">
+                            <span>🌸</span>
+                            <span>治愈系</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pause-btn" onclick="togglePlay(4)">
+                    <div class="pause-icon">
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>
@@ -448,7 +640,141 @@
         </div>
     </div>
 
+    <!-- 音频元素 -->
+    <audio id="audio-player" preload="metadata"></audio>
+
     <script>
+        // 音乐数据
+        const musicList = [
+            {
+                title: "零距离的思念",
+                artist: "vine",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+            },
+            {
+                title: "Gotta Have You",
+                artist: "The Weepies",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+            },
+            {
+                title: "一半一半",
+                artist: "Top Barry",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+            },
+            {
+                title: "幻痛药 Hurt And Hurt",
+                artist: "Tlatre特雷西",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+            },
+            {
+                title: "春",
+                artist: "陈文非",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+            }
+        ];
+
+        const audio = document.getElementById('audio-player');
+        let currentIndex = -1;
+        let isPlaying = false;
+
+        // 切换播放/暂停
+        function togglePlay(index) {
+            const cards = document.querySelectorAll('.music-card');
+            
+            if (currentIndex === index) {
+                if (isPlaying) {
+                    audio.pause();
+                    cards[index].classList.remove('playing');
+                    isPlaying = false;
+                } else {
+                    audio.play();
+                    cards[index].classList.add('playing');
+                    isPlaying = true;
+                }
+            } else {
+                if (currentIndex !== -1) {
+                    cards[currentIndex].classList.remove('playing');
+                }
+                
+                currentIndex = index;
+                const music = musicList[index];
+                
+                audio.src = music.url;
+                audio.play();
+                
+                cards[index].classList.add('playing');
+                isPlaying = true;
+            }
+        }
+
+        // 更新进度条
+        audio.addEventListener('timeupdate', function() {
+            const cards = document.querySelectorAll('.music-card');
+            if (currentIndex >= 0 && currentIndex < cards.length) {
+                const card = cards[currentIndex];
+                const progressFill = card.querySelector('.progress-fill');
+                const currentTimeEl = card.querySelector('.current-time');
+                const durationEl = card.querySelector('.duration');
+                
+                if (progressFill && audio.duration) {
+                    const progress = (audio.currentTime / audio.duration) * 100;
+                    progressFill.style.width = progress + '%';
+                    currentTimeEl.textContent = formatTime(audio.currentTime);
+                    durationEl.textContent = formatTime(audio.duration);
+                }
+            }
+        });
+
+        // 格式化时间
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // 歌曲结束
+        audio.addEventListener('ended', function() {
+            const cards = document.querySelectorAll('.music-card');
+            if (currentIndex >= 0 && currentIndex < cards.length) {
+                cards[currentIndex].classList.remove('playing');
+                const progressFill = cards[currentIndex].querySelector('.progress-fill');
+                const currentTimeEl = cards[currentIndex].querySelector('.current-time');
+                if (progressFill) progressFill.style.width = '0%';
+                if (currentTimeEl) currentTimeEl.textContent = '0:00';
+            }
+            isPlaying = false;
+        });
+
+        // 跳转播放
+        function seekMusic(event, index) {
+            event.stopPropagation();
+            const cards = document.querySelectorAll('.music-card');
+            const card = cards[index];
+            const progressBar = card.querySelector('.progress-bar');
+            const rect = progressBar.getBoundingClientRect();
+            const percent = (event.clientX - rect.left) / rect.width;
+            
+            if (currentIndex === index && audio.duration) {
+                audio.currentTime = percent * audio.duration;
+            } else {
+                currentIndex = index;
+                const music = musicList[index];
+                
+                audio.src = music.url;
+                audio.currentTime = percent * audio.duration;
+                
+                cards.forEach(c => c.classList.remove('playing'));
+                card.classList.add('playing');
+                
+                audio.play().then(() => {
+                    isPlaying = true;
+                }).catch(err => {
+                    console.error('播放失败:', err);
+                });
+            }
+        }
+
         // 随机音符飘动
         setInterval(() => {
             const notes = document.querySelectorAll('.music-note');
