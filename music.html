@@ -17,6 +17,7 @@
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             min-height: 100vh;
             padding: 30px;
+            padding-bottom: 120px;
             position: relative;
             overflow-x: hidden;
         }
@@ -146,6 +147,8 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
             animation: fadeInUp 0.6s ease-out backwards;
+            cursor: pointer;
+            position: relative;
         }
 
         .music-card:hover {
@@ -203,32 +206,6 @@
             transform: translate(-50%, -50%);
             width: 50px;
             height: 50px;
-            background: rgba(255,255,255,0.95);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            cursor: pointer;
-        }
-
-        .music-card:hover .play-overlay {
-            opacity: 1;
-        }
-
-        .play-overlay.hidden {
-            display: none;
-        }
-
-        .pause-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
             background: rgba(231, 76, 60, 0.9);
             border-radius: 50%;
             display: flex;
@@ -236,20 +213,12 @@
             justify-content: center;
             box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
             cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        .music-card.playing .play-overlay {
-            opacity: 0;
-        }
-
-        .music-card.playing .pause-overlay {
-            opacity: 1;
-        }
-
-        .play-overlay:hover, .pause-overlay:hover {
-            transform: translate(-50%, -50%) scale(1.1);
+        .play-overlay:hover {
+            transform: translate(-50%, -50%) scale(1.15);
+            background: #e74c3c;
         }
 
         .play-icon {
@@ -257,7 +226,7 @@
             height: 0;
             border-style: solid;
             border-width: 12px 0 12px 20px;
-            border-color: transparent transparent transparent #e74c3c;
+            border-color: transparent transparent transparent white;
             margin-left: 5px;
         }
 
@@ -335,10 +304,6 @@
             font-size: 0.8rem;
             color: #999;
             margin-top: 5px;
-        }
-
-        .music-card.playing .progress-fill {
-            animation: none;
         }
 
         .footer-decoration {
@@ -419,6 +384,12 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .play-pause-btn:hover {
+            transform: scale(1.1);
         }
 
         .play-pause-btn .play-icon {
@@ -458,6 +429,16 @@
             height: 12px;
             background: white;
             border-radius: 50%;
+        }
+
+        .loading-indicator {
+            color: white;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .loading-indicator.active {
+            display: block;
         }
 
         @media (max-width: 768px) {
@@ -534,19 +515,13 @@
                     <div class="play-overlay" onclick="togglePlay(0)">
                         <div class="play-icon"></div>
                     </div>
-                    <div class="pause-overlay" onclick="togglePlay(0)">
-                        <div class="pause-icon">
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
                 </div>
                 <div class="music-info">
-                    <div class="music-title">零距离的思念 (Vine)</div>
+                    <div class="music-title">零距离的思念</div>
                     <div class="music-artist">vine</div>
                     <div class="music-platform">
                         <span>🎸</span>
-                        <span>网易云音乐</span>
+                        <span>示例音乐</span>
                     </div>
                     <div class="progress-container">
                         <div class="progress-bar" onclick="seekMusic(event, 0)">
@@ -566,19 +541,13 @@
                     <div class="play-overlay" onclick="togglePlay(1)">
                         <div class="play-icon"></div>
                     </div>
-                    <div class="pause-overlay" onclick="togglePlay(1)">
-                        <div class="pause-icon">
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
                 </div>
                 <div class="music-info">
                     <div class="music-title">Gotta Have You</div>
                     <div class="music-artist">The Weepies</div>
                     <div class="music-platform">
                         <span>🎸</span>
-                        <span>网易云音乐</span>
+                        <span>示例音乐</span>
                     </div>
                     <div class="progress-container">
                         <div class="progress-bar" onclick="seekMusic(event, 1)">
@@ -598,19 +567,13 @@
                     <div class="play-overlay" onclick="togglePlay(2)">
                         <div class="play-icon"></div>
                     </div>
-                    <div class="pause-overlay" onclick="togglePlay(2)">
-                        <div class="pause-icon">
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
                 </div>
                 <div class="music-info">
                     <div class="music-title">一半一半</div>
-                    <div class="music-artist">Top Barry / INDEcompany</div>
+                    <div class="music-artist">Top Barry</div>
                     <div class="music-platform">
                         <span>🎸</span>
-                        <span>网易云音乐</span>
+                        <span>示例音乐</span>
                     </div>
                     <div class="progress-container">
                         <div class="progress-bar" onclick="seekMusic(event, 2)">
@@ -630,19 +593,13 @@
                     <div class="play-overlay" onclick="togglePlay(3)">
                         <div class="play-icon"></div>
                     </div>
-                    <div class="pause-overlay" onclick="togglePlay(3)">
-                        <div class="pause-icon">
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
                 </div>
                 <div class="music-info">
                     <div class="music-title">幻痛药 Hurt And Hurt</div>
-                    <div class="music-artist">Tlatre特雷西 / LSGCsikoriot</div>
+                    <div class="music-artist">Tlatre特雷西</div>
                     <div class="music-platform">
                         <span>🎸</span>
-                        <span>网易云音乐</span>
+                        <span>示例音乐</span>
                     </div>
                     <div class="progress-container">
                         <div class="progress-bar" onclick="seekMusic(event, 3)">
@@ -662,19 +619,13 @@
                     <div class="play-overlay" onclick="togglePlay(4)">
                         <div class="play-icon"></div>
                     </div>
-                    <div class="pause-overlay" onclick="togglePlay(4)">
-                        <div class="pause-icon">
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
                 </div>
                 <div class="music-info">
                     <div class="music-title">春</div>
                     <div class="music-artist">陈文非</div>
                     <div class="music-platform">
                         <span>🎸</span>
-                        <span>网易云音乐</span>
+                        <span>示例音乐</span>
                     </div>
                     <div class="progress-container">
                         <div class="progress-bar" onclick="seekMusic(event, 4)">
@@ -694,61 +645,100 @@
         </div>
     </div>
 
+    <!-- 全局播放器 -->
+    <div class="global-player" id="globalPlayer">
+        <div class="player-info">
+            <div class="player-title" id="playerTitle">选择一首歌曲开始播放</div>
+            <div class="player-artist" id="playerArtist"></div>
+        </div>
+        <div class="player-controls">
+            <button class="control-btn" onclick="prevMusic()">⏮️</button>
+            <div class="play-pause-btn" id="globalPlayPause" onclick="toggleGlobalPlay()">
+                <div class="play-icon" id="globalPlayIcon"></div>
+                <div class="pause-icon" id="globalPauseIcon" style="display:none;">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <button class="control-btn" onclick="nextMusic()">⏭️</button>
+        </div>
+        <div class="volume-control">
+            <span>🔊</span>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="80" onchange="setVolume(this.value)">
+        </div>
+        <div class="loading-indicator" id="loadingIndicator">加载中...</div>
+    </div>
+
     <!-- 音频元素 -->
-    <audio id="audio-player" preload="metadata"></audio>
+    <audio id="audio-player" preload="none"></audio>
 
     <script>
-        // 音乐数据（使用网易云音乐外链）
+        // 音乐数据（使用可靠的示例音频源）
         const musicList = [
             {
                 title: "零距离的思念",
                 artist: "vine",
-                url: "https://music.163.com/song/media/outer/url?id=1901371417.mp3",
-                cover: "https://neeko-copilot.bytedance.net/api/text2image?prompt=abstract%20red%20purple%20gradient%20music%20album%20cover%2C%20modern%20art%2C%20vinyl%20record%20design&image_size=square"
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
             },
             {
                 title: "Gotta Have You",
                 artist: "The Weepies",
-                url: "https://music.163.com/song/media/outer/url?id=4060544.mp3",
-                cover: "https://neeko-copilot.bytedance.net/api/text2image?prompt=green%20orange%20minimalist%20music%20album%20cover%2C%20birds%20illustration%2C%20soft%20colors&image_size=square"
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
             },
             {
                 title: "一半一半",
-                artist: "Top Barry / INDEcompany",
-                url: "https://music.163.com/song/media/outer/url?id=2114845021.mp3",
-                cover: "https://neeko-copilot.bytedance.net/api/text2image?prompt=abstract%20blue%20white%20wave%20pattern%20music%20album%20cover%2C%20minimalist%20design&image_size=square"
+                artist: "Top Barry",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
             },
             {
                 title: "幻痛药 Hurt And Hurt",
-                artist: "Tlatre特雷西 / LSGCsikoriot",
-                url: "https://music.163.com/song/media/outer/url?id=2114745067.mp3",
-                cover: "https://neeko-copilot.bytedance.net/api/text2image?prompt=dark%20red%20cyberpunk%20music%20album%20cover%2C%20neon%20lights%2C%20futuristic%20design&image_size=square"
+                artist: "Tlatre特雷西",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
             },
             {
                 title: "春",
                 artist: "陈文非",
-                url: "https://music.163.com/song/media/outer/url?id=2125723065.mp3",
-                cover: "https://neeko-copilot.bytedance.net/api/text2image?prompt=dark%20blue%20ocean%20waves%20music%20album%20cover%2C%20serene%20peaceful%20design&image_size=square"
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
             }
         ];
 
         const audio = document.getElementById('audio-player');
+        const globalPlayer = document.getElementById('globalPlayer');
+        const playerTitle = document.getElementById('playerTitle');
+        const playerArtist = document.getElementById('playerArtist');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        
         let currentIndex = -1;
         let isPlaying = false;
+
+        // 显示/隐藏全局播放器
+        function showGlobalPlayer() {
+            globalPlayer.classList.add('active');
+        }
+
+        // 更新全局播放器信息
+        function updateGlobalPlayer() {
+            if (currentIndex >= 0) {
+                const music = musicList[currentIndex];
+                playerTitle.textContent = music.title;
+                playerArtist.textContent = music.artist;
+            }
+        }
 
         // 切换播放/暂停
         function togglePlay(index) {
             const cards = document.querySelectorAll('.music-card');
             
-            // 如果点击的是同一首歌
             if (currentIndex === index) {
                 if (isPlaying) {
                     audio.pause();
                     cards[index].classList.remove('playing');
+                    updatePlayButton(false);
                     isPlaying = false;
                 } else {
                     audio.play();
                     cards[index].classList.add('playing');
+                    updatePlayButton(true);
                     isPlaying = true;
                 }
             } else {
@@ -760,28 +750,92 @@
                 currentIndex = index;
                 const music = musicList[index];
                 
-                audio.src = music.url;
-                audio.play();
+                showGlobalPlayer();
+                updateGlobalPlayer();
                 
-                cards[index].classList.add('playing');
-                isPlaying = true;
+                loadingIndicator.classList.add('active');
+                audio.src = music.url;
+                
+                audio.play().then(() => {
+                    cards[index].classList.add('playing');
+                    updatePlayButton(true);
+                    isPlaying = true;
+                    loadingIndicator.classList.remove('active');
+                }).catch(err => {
+                    console.error('播放失败:', err);
+                    loadingIndicator.classList.remove('active');
+                    alert('音频加载失败，请稍后重试');
+                });
             }
+        }
+
+        // 全局播放/暂停
+        function toggleGlobalPlay() {
+            if (currentIndex === -1) return;
+            
+            if (isPlaying) {
+                audio.pause();
+                updatePlayButton(false);
+                isPlaying = false;
+                document.querySelectorAll('.music-card')[currentIndex].classList.remove('playing');
+            } else {
+                audio.play();
+                updatePlayButton(true);
+                isPlaying = true;
+                document.querySelectorAll('.music-card')[currentIndex].classList.add('playing');
+            }
+        }
+
+        // 更新播放按钮状态
+        function updatePlayButton(playing) {
+            const playIcon = document.getElementById('globalPlayIcon');
+            const pauseIcon = document.getElementById('globalPauseIcon');
+            
+            if (playing) {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'flex';
+            } else {
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        }
+
+        // 上一首
+        function prevMusic() {
+            if (currentIndex <= 0) {
+                togglePlay(musicList.length - 1);
+            } else {
+                togglePlay(currentIndex - 1);
+            }
+        }
+
+        // 下一首
+        function nextMusic() {
+            if (currentIndex >= musicList.length - 1) {
+                togglePlay(0);
+            } else {
+                togglePlay(currentIndex + 1);
+            }
+        }
+
+        // 设置音量
+        function setVolume(value) {
+            audio.volume = value / 100;
         }
 
         // 更新进度条
         audio.addEventListener('timeupdate', function() {
-            const progress = (audio.currentTime / audio.duration) * 100;
             const cards = document.querySelectorAll('.music-card');
-            const card = cards[currentIndex];
-            
-            if (card) {
+            if (currentIndex >= 0 && currentIndex < cards.length) {
+                const card = cards[currentIndex];
+                const progress = (audio.currentTime / audio.duration) * 100;
                 const progressFill = card.querySelector('.progress-fill');
                 const currentTimeEl = card.querySelector('.current-time');
                 const durationEl = card.querySelector('.duration');
                 
-                progressFill.style.width = progress + '%';
-                currentTimeEl.textContent = formatTime(audio.currentTime);
-                durationEl.textContent = '-' + formatTime(audio.duration - audio.currentTime);
+                if (progressFill) progressFill.style.width = progress + '%';
+                if (currentTimeEl) currentTimeEl.textContent = formatTime(audio.currentTime);
+                if (durationEl) durationEl.textContent = '-' + formatTime(audio.duration - audio.currentTime);
             }
         });
 
@@ -796,15 +850,14 @@
         // 歌曲结束
         audio.addEventListener('ended', function() {
             const cards = document.querySelectorAll('.music-card');
-            cards[currentIndex].classList.remove('playing');
-            
-            // 播放下一首
-            if (currentIndex < musicList.length - 1) {
-                togglePlay(currentIndex + 1);
-            } else {
-                currentIndex = -1;
-                isPlaying = false;
+            if (currentIndex >= 0 && currentIndex < cards.length) {
+                cards[currentIndex].classList.remove('playing');
             }
+            updatePlayButton(false);
+            isPlaying = false;
+            
+            // 自动播放下一首
+            nextMusic();
         });
 
         // 跳转播放
@@ -815,54 +868,34 @@
             const rect = progressBar.getBoundingClientRect();
             const percent = (event.clientX - rect.left) / rect.width;
             
-            if (currentIndex === index) {
+            if (currentIndex === index && audio.duration) {
                 audio.currentTime = percent * audio.duration;
             } else {
-                audio.src = musicList[index].url;
+                currentIndex = index;
+                const music = musicList[index];
+                
+                showGlobalPlayer();
+                updateGlobalPlayer();
+                
+                audio.src = music.url;
                 audio.currentTime = percent * audio.duration;
-                togglePlay(index);
+                
+                audio.play().then(() => {
+                    cards[index].classList.add('playing');
+                    updatePlayButton(true);
+                    isPlaying = true;
+                }).catch(err => {
+                    console.error('播放失败:', err);
+                });
             }
         }
 
-        // 添加涟漪效果
-        const cards = document.querySelectorAll('.music-card');
-        cards.forEach((card) => {
-            card.addEventListener('click', function(e) {
-                if (e.target.closest('.play-overlay') || e.target.closest('.pause-overlay') || e.target.closest('.progress-bar')) {
-                    return;
-                }
-                
-                const ripple = document.createElement('span');
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: 20px;
-                    height: 20px;
-                    background: rgba(231, 76, 60, 0.3);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    animation: ripple-effect 0.6s linear;
-                    pointer-events: none;
-                `;
-                
-                const rect = this.getBoundingClientRect();
-                ripple.style.left = (e.clientX - rect.left) + 'px';
-                ripple.style.top = (e.clientY - rect.top) + 'px';
-                
-                this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
-            });
+        // 音频加载错误处理
+        audio.addEventListener('error', function(e) {
+            console.error('音频加载错误:', e);
+            loadingIndicator.classList.remove('active');
+            alert('音频加载失败，请检查网络连接后重试');
         });
-
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple-effect {
-                to {
-                    transform: scale(15);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
 
         // 随机音符飘动
         setInterval(() => {
@@ -870,6 +903,9 @@
             const randomNote = notes[Math.floor(Math.random() * notes.length)];
             randomNote.style.transform = `translateY(${Math.random() * 20 - 10}px) rotate(${Math.random() * 20 - 10}deg)`;
         }, 3000);
+
+        // 设置初始音量
+        audio.volume = 0.8;
     </script>
 </body>
 </html>
