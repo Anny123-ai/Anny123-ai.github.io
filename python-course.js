@@ -1,5 +1,169 @@
 const lessons = [
     {
+        title: "第0单元：环境准备与快速入门",
+        content: `
+            <div class="lesson-intro">
+                <h3>Python环境准备（小白必看）</h3>
+                <p>本单元将帮助你搭建Python开发环境，并写出你的第一行代码。这是所有学习的第一步，简单到只需10分钟！</p>
+                <div class="python-logo">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20programming%20language%20logo%20with%20snake%20symbol%2C%20colorful%2C%20friendly%20design%2C%20simple%20background&image_size=square" alt="Python Logo" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                </div>
+            </div>
+
+            <h4>一、什么是Python？（通俗理解）</h4>
+            <div class="info-box">
+                <h5>💡 一句话解释</h5>
+                <p><strong>Python就像一个"翻译官"</strong>，你用简单的英语（Python语言）告诉它要做什么，它就能帮你完成电脑上的各种任务。</p>
+            </div>
+            
+            <h5>为什么要学Python？</h5>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h5>AI时代的必备技能</h5>
+                    <p>Python是AI领域最常用的语言，学会它就能和AI"对话"</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h5>数据分析利器</h5>
+                    <p>处理数据、做图表、自动化办公，Python都能帮你搞定</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h5>简单易学</h5>
+                    <p>Python的语法非常接近英语，小白也能快速上手</p>
+                </div>
+            </div>
+
+            <h4>二、安装Python（图文教程）</h4>
+            
+            <h5>2.1 下载Python</h5>
+            <div class="info-box">
+                <h5>📥 安装步骤</h5>
+                <ol>
+                    <li>打开浏览器，搜索"Python下载"或直接访问 <code>python.org</code></li>
+                    <li>点击"Downloads"按钮</li>
+                    <li>页面会自动推荐最新版本，点击"Download Python"下载</li>
+                    <li>等待下载完成（约25MB）</li>
+                </ol>
+            </div>
+
+            <h5>2.2 安装Python</h5>
+            <div class="info-box">
+                <h5>⚠️ 重要提示</h5>
+                <p>安装时一定要<strong>勾选"Add Python to PATH"</strong>选项！</p>
+                <p>PATH就像电脑的"地址簿"，让电脑知道Python安装在哪里。勾选后，你在任何地方都能使用Python。</p>
+            </div>
+
+            <h5>2.3 验证安装</h5>
+            <pre><code># 打开命令行（Windows按Win+R，输入cmd；Mac按Command+空格，输入terminal）
+# 输入以下命令验证：
+
+python --version
+
+# 如果显示类似 "Python 3.11.5" 这样的版本号，说明安装成功！
+
+# 也可以用这个命令：
+python -V</code></pre>
+
+            <h4>三、第一个程序：Hello World</h4>
+            
+            <h5>3.1 创建第一个Python文件</h5>
+            <div class="info-box">
+                <h5>📝 创建步骤</h5>
+                <ol>
+                    <li>在电脑桌面或任意文件夹中，右键 → 新建 → 文本文档</li>
+                    <li>把文件名改成 <code>hello.py</code>（注意：不是.txt，是.py）</li>
+                    <li>用记事本打开这个文件</li>
+                    <li>输入下面的代码</li>
+                </ol>
+            </div>
+
+            <h5>3.2 编写代码</h5>
+            <pre><code>print("Hello, World!")
+print("你好，世界！")
+print("欢迎学习Python！")</code></pre>
+
+            <h5>3.3 运行代码</h5>
+            <pre><code># 方法1：双击运行
+# 直接双击 hello.py 文件，会弹出一个黑色窗口显示结果
+
+# 方法2：命令行运行（推荐）
+# 打开命令行，进入文件所在目录
+cd 桌面
+python hello.py
+
+# 运行结果：
+# Hello, World!
+# 你好，世界！
+# 欢迎学习Python！</code></pre>
+
+            <h4>四、代码解释（每行代码的意思）</h4>
+            
+            <h5>4.1 print 是什么？</h5>
+            <div class="info-box">
+                <h5>💡 通俗理解</h5>
+                <p><code>print</code> 的中文意思是"打印"，但在编程中，"打印"不是用打印机，而是<strong>显示在屏幕上</strong>。</p>
+                <p><code>print("内容")</code> 的意思就是：<strong>在屏幕上显示"内容"</strong></p>
+            </div>
+
+            <h5>4.2 引号的作用</h5>
+            <pre><code># 有引号 - 显示原样文字
+print("Hello, World!")  # 显示：Hello, World!
+
+# 无引号 - 会被当作代码执行
+print(1 + 1)           # 显示：2
+
+# 三引号 - 显示多行文字
+print("""
+第一行
+第二行
+第三行
+""")</code></pre>
+
+            <h4>五、常见问题解答</h4>
+            
+            <div class="faq">
+                <h5>Q1：为什么我的命令提示符显示"python不是内部命令"？</h5>
+                <p>这是因为安装时没有勾选"Add Python to PATH"。解决方法：重新安装Python，务必勾选这个选项。</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q2：运行后窗口一闪而过怎么办？</h5>
+                <p>在代码最后加一行 <code>input("按回车键退出...")</code>，这样窗口就会等你按键后才关闭。</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q3：报错"SyntaxError"是什么意思？</h5>
+                <p>这说明代码有语法错误。常见原因：中文引号、缺少括号、拼写错误等。检查一下代码是否完全正确。</p>
+            </div>
+
+            <h4>六、给你的小任务</h4>
+            <div class="quiz-section">
+                <h5>🎯 实践任务</h5>
+                <ol>
+                    <li>安装Python环境</li>
+                    <li>创建 <code>hello.py</code> 文件</li>
+                    <li>写一段代码，显示：<br>
+                        - 你的名字<br>
+                        - 你的年龄<br>
+                        - 一句你喜欢的座右铭</li>
+                    <li>运行代码，确认显示正确</li>
+                </ol>
+            </div>
+
+            <div class="success-box">
+                <h5>✅ 完成标志</h5>
+                <p>当你能够成功运行代码并看到输出结果时，你就已经迈出了编程的第一步！继续加油！</p>
+            </div>
+
+            <div class="next-step">
+                <h5>🚀 下一步</h5>
+                <p>环境准备好了！现在让我们进入正式学习，先从Python最基础的概念开始。</p>
+            </div>
+        `
+    },
+    {
         title: "第1单元：Python核心基础",
         content: `
             <div class="lesson-intro">
@@ -2077,8 +2241,626 @@ print(f"fibonacci(35) = {fibonacci(35)}")</code></pre>
                 </ol>
             </div>
         `
+    },
+    {
+        title: "第7单元：AI时代的Python技能",
+        content: `
+            <div class="lesson-intro">
+                <h3>AI时代的Python核心技能</h3>
+                <p>本单元专门为AI时代设计，包含API调用、Prompt工程、Pandas数据处理、JSON操作等实用技能。这些是AI时代Python编程的核心，学会它们就能让AI帮你工作！</p>
+                <div class="python-logo">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=AI%20artificial%20intelligence%20Python%20programming%20integration%2C%20modern%20technology%2C%20colorful%20design%2C%20simple%20background&image_size=square" alt="AI Python" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
+                </div>
+            </div>
+
+            <h4>一、API调用基础（和AI对话的第一步）</h4>
+            
+            <h5>1.1 什么是API？（通俗理解）</h5>
+            <div class="info-box">
+                <h5>💡 生活类比</h5>
+                <p>想象你去餐厅吃饭：</p>
+                <ul>
+                    <li><strong>你</strong>（程序）：不需要去厨房做饭</li>
+                    <li><strong>服务员</strong>（API）：帮你传达需求</li>
+                    <li><strong>厨房</strong>（AI服务）：准备食物</li>
+                    <li><strong>食物</strong>（响应）：端到你面前</li>
+                </ul>
+                <p>API就像一个"中间人"，帮你和AI服务沟通。</p>
+            </div>
+
+            <h5>1.2 API的工作流程</h5>
+            <pre><code>┌─────────┐         ┌─────────┐         ┌─────────┐
+│   你    │  ──请求──▶  │  API   │  ──请求──▶  │  AI服务 │
+│ (程序)  │         │ (中间人) │         │(Claude) │
+│         │  ◀─响应──  │         │  ◀─响应──  │         │
+└─────────┘         └─────────┘         └─────────┘</code></pre>
+
+            <h5>1.3 安装请求库</h5>
+            <pre><code># 在命令行中运行：
+pip install requests
+
+# 如果提示权限错误，用这个：
+pip install --user requests</code></pre>
+
+            <h5>1.4 第一个API调用程序</h5>
+            <pre><code># 引入"快递员"工具
+import requests
+
+# 告诉电脑AI服务的地址
+url = "https://api.anthropic.com/v1/messages"
+
+# 准备身份验证信息（就像进入大楼的门禁卡）
+headers = {
+    "Content-Type": "application/json",
+    "x-api-key": "sk-ant-xxxxx",  # 你的API密钥
+    "anthropic-version": "2023-06-01"
+}
+
+# 把问题包装成AI能理解的格式
+data = {
+    "model": "claude-3-5-haiku-20240307",
+    "max_tokens": 100,
+    "messages": [
+        {"role": "user", "content": "你好，帮我算一下1+1等于几？"}
+    ]
+}
+
+# 发送问题给AI
+response = requests.post(url, headers=headers, json=data)
+
+# 把AI的回答显示出来
+print(response.json())</code></pre>
+
+            <h5>1.5 代码逐行解释</h5>
+            <table class="operator-table">
+                <tr>
+                    <th>代码部分</th>
+                    <th>通俗解释</th>
+                    <th>类比</th>
+                </tr>
+                <tr>
+                    <td><code>import requests</code></td>
+                    <td>引入一个"快递员"工具</td>
+                    <td>叫一个服务员来帮忙</td>
+                </tr>
+                <tr>
+                    <td><code>url</code></td>
+                    <td>AI服务的"门牌号"地址</td>
+                    <td>餐厅的地址</td>
+                </tr>
+                <tr>
+                    <td><code>headers</code></td>
+                    <td>身份验证信息</td>
+                    <td>门禁卡、身份证</td>
+                </tr>
+                <tr>
+                    <td><code>data</code></td>
+                    <td>要问AI的问题</td>
+                    <td>菜单上的点单</td>
+                </tr>
+                <tr>
+                    <td><code>requests.post()</code></td>
+                    <td>按下"发送"按钮</td>
+                    <td>对服务员说"点这些"</td>
+                </tr>
+                <tr>
+                    <td><code>response.json()</code></td>
+                    <td>打开AI的回信</td>
+                    <td>服务员端来食物</td>
+                </tr>
+            </table>
+
+            <h4>二、Prompt工程（和AI对话的艺术）</h4>
+            
+            <h5>2.1 什么是好的Prompt？</h5>
+            <div class="info-box">
+                <h5>💡 Prompt是什么？</h5>
+                <p>Prompt就是你和AI对话时，你<strong>说的话</strong>。好的Prompt能让AI给你更好的答案。</p>
+            </div>
+
+            <h5>2.2 对比：模糊 vs 清晰</h5>
+            <pre><code># ❌ 模糊的问题（AI可能答不好）
+"帮我写代码"
+
+# ✅ 清晰的问题（AI能给出好答案）
+"""
+帮我写一个Python函数，功能是：
+1. 接收用户的名字和年龄
+2. 判断是否年满18岁
+3. 如果满了，输出"欢迎入内"
+4. 如果没满，输出"禁止入内"
+请加上中文注释解释每一步
+"""</code></pre>
+
+            <h5>2.3 好Prompt的公式</h5>
+            <div class="success-box">
+                <h5>✅ 好Prompt公式</h5>
+                <p><strong>好Prompt = 明确任务 + 具体要求 + 输出格式 + 限制条件</strong></p>
+            </div>
+
+            <h5>2.4 Prompt模板</h5>
+            <pre><code># 模板1：代码生成
+"""
+请帮我写一个[编程语言]程序，实现[功能描述]
+
+具体要求：
+1. [要求1]
+2. [要求2]
+3. [要求3]
+
+注意事项：
+- [限制条件]
+- [其他说明]
+
+请加上详细的中文注释，帮助我理解代码。
+"""
+
+# 模板2：数据分析
+"""
+我有一个[文件类型]，包含[数据描述]
+
+请帮我：
+1. [分析目标1]
+2. [分析目标2]
+
+请用清晰的方式展示结果，最好有图表说明。
+"""
+
+# 模板3：学习解释
+"""
+我正在学习[主题]，有以下疑问：
+[具体问题]
+
+请用简单的语言解释，适合零基础学习者。
+如果有代码示例，请加上注释说明。
+"""</code></pre>
+
+            <h4>三、Pandas数据处理（AI时代必备）</h4>
+            
+            <h5>3.1 为什么数据分析师都在用Pandas？</h5>
+            <div class="info-box">
+                <h5>💡 对比学习</h5>
+                <p>想象你要统计全班同学的平均成绩：</p>
+                <ul>
+                    <li><strong>没有Pandas</strong>：像用算盘一个个算，100个人要算很久</li>
+                    <li><strong>有Pandas</strong>：像用Excel一键统计，1万个人也是秒算</li>
+                </ul>
+            </div>
+
+            <h5>3.2 安装Pandas</h5>
+            <pre><code>pip install pandas numpy</code></pre>
+
+            <h5>3.3 第一个Pandas程序</h5>
+            <pre><code># 第1步：引入工具
+import pandas as pd
+
+# 第2步：创建数据表（就像Excel表格）
+data = {
+    "姓名": ["张三", "李四", "王五", "赵六"],
+    "语文": [85, 92, 78, 90],
+    "数学": [90, 88, 95, 82],
+    "英语": [88, 85, 80, 92]
+}
+
+# 第3步：把数据变成表格
+df = pd.DataFrame(data)
+
+# 第4步：查看表格
+print("===== 我的成绩单 =====")
+print(df)
+
+# 第5步：简单计算
+print("\n===== 统计分析 =====")
+print(f"语文平均分：{df['语文'].mean():.2f}")
+print(f"数学最高分：{df['数学'].max()}")
+print(f"总分最高的人：{df.loc[df['总分'].idxmax(), '姓名']}")
+
+# 添加总分列
+df['总分'] = df['语文'] + df['数学'] + df['英语']
+print("\n===== 加了总分 =====")
+print(df)</code></pre>
+
+            <h5>3.4 Pandas常用操作</h5>
+            <pre><code># 1. 读取数据
+df = pd.read_csv("成绩单.csv")  # 读取CSV文件
+df = pd.read_excel("成绩单.xlsx")  # 读取Excel文件
+
+# 2. 查看数据
+print(df.head())  # 看前5行
+print(df.tail())  # 看后5行
+print(df.info())  # 看表结构
+print(df.describe())  # 看统计信息
+
+# 3. 筛选数据
+# 语文成绩大于90的学生
+good_chinese = df[df["语文"] > 90]
+print(good_chinese)
+
+# 4. 排序
+# 按总分降序排列
+df_sorted = df.sort_values("总分", ascending=False)
+print(df_sorted)
+
+# 5. 分组统计
+# 按班级统计平均分
+class_avg = df.groupby("班级")["总分"].mean()
+print(class_avg)
+
+# 6. 保存数据
+df.to_csv("新的成绩单.csv", index=False)
+df.to_excel("新的成绩单.xlsx", index=False)</code></pre>
+
+            <h4>四、JSON文件操作（数据存储和交换）</h4>
+            
+            <h5>4.1 什么是JSON？</h5>
+            <div class="info-box">
+                <h5>💡 一句话解释</h5>
+                <p>JSON就像一个<strong>"标准快递盒"</strong>，不管你用什么编程语言（Python、JavaScript等），都可以打开这个盒子，取出里面的东西。</p>
+            </div>
+
+            <h5>4.2 JSON的例子</h5>
+            <pre><code># JSON格式长这样：
+{
+    "姓名": "李明",
+    "年龄": 18,
+    "爱好": ["读书", "编程", "打球"],
+    "成绩": {
+        "语文": 90,
+        "数学": 95,
+        "英语": 88
+    }
+}
+
+# 解释：
+# - "姓名": "李明"   →  名字叫李明（字符串）
+# - "年龄": 18       →  18岁（数字）
+# - "爱好": [...]    →  有3个爱好（数组）
+# - "成绩": {...}    →  各科成绩（对象）</code></pre>
+
+            <h5>4.3 保存数据到JSON文件</h5>
+            <pre><code>import json
+
+# 第1步：准备要保存的数据
+my_data = {
+    "姓名": "李艺",
+    "年龄": 18,
+    "课程": ["Python", "数据分析", "AI应用"],
+    "成绩": {
+        "Python": 95,
+        "数据分析": 88,
+        "AI应用": 92
+    }
+}
+
+# 第2步：保存到文件（就像把东西存进保险箱）
+with open("my_data.json", "w", encoding="utf-8") as f:
+    json.dump(my_data, f, ensure_ascii=False, indent=4)
+
+print("✅ 数据已保存！")
+
+# 参数解释：
+# - "w"           →  以写入模式打开
+# - encoding="utf-8"  →  支持中文
+# - ensure_ascii=False →  保存中文原文（不转义）
+# - indent=4      →  格式化缩进，方便阅读</code></pre>
+
+            <h5>4.4 从JSON文件读取数据</h5>
+            <pre><code>import json
+
+# 从文件读取数据（就像打开保险箱取东西）
+with open("my_data.json", "r", encoding="utf-8") as f:
+    loaded_data = json.load(f)
+
+# 使用读取的数据
+print(f"姓名：{loaded_data['姓名']}")
+print(f"年龄：{loaded_data['年龄']}")
+print(f"课程：{', '.join(loaded_data['课程'])}")
+print(f"Python成绩：{loaded_data['成绩']['Python']}")</code></pre>
+
+            <h5>4.5 可视化理解JSON</h5>
+            <pre><code>    保存数据 (dump)
+┌─────────────┐         ┌─────────────┐
+│   Python    │  ────→  │  data.json  │
+│   数据       │         │   文件      │
+│ {"name":"李艺"} │         │ {"name":"李艺"}│
+└─────────────┘         └─────────────┘
+
+    读取数据 (load)
+┌─────────────┐         ┌─────────────┐
+│   Python    │  ←───   │  data.json  │
+│   数据       │         │   文件      │
+│ {"name":"李艺"} │         │ {"name":"李艺"}│
+└─────────────┘         └─────────────┘</code></pre>
+
+            <h4>五、HTTP网络请求（数据获取）</h4>
+            
+            <h5>5.1 GET和POST是什么？</h5>
+            <div class="info-box">
+                <h5>💡 生活类比</h5>
+                <p>想象你去图书馆：</p>
+                <ul>
+                    <li><strong>GET请求</strong>：你只是去"查看"书架上的书（获取信息）</li>
+                    <li><strong>POST请求</strong>：你"提交"借书申请，还要填写表单（发送数据）</li>
+                </ul>
+            </div>
+
+            <h5>5.2 GET请求示例</h5>
+            <pre><code>import requests
+
+# GET请求：获取网页/接口信息
+url = "https://api.github.com/users/python/repos"
+
+response = requests.get(url)
+
+# 查看响应
+print(f"状态码：{response.status_code}")  # 200=成功，404=找不到
+
+if response.status_code == 200:
+    repos = response.json()
+    print("\n===== Python的热门仓库 =====")
+    for i, repo in enumerate(repos[:5]):
+        print(f"{i+1}. {repo['name']} - ⭐ {repo['stargazers_count']}")
+else:
+    print("获取失败！")</code></pre>
+
+            <h5>5.3 POST请求示例</h5>
+            <pre><code>import requests
+
+# POST请求：提交数据
+url = "https://httpbin.org/post"
+
+# 要提交的数据
+data = {
+    "用户名": "小明",
+    "密码": "123456",
+    "邮箱": "xiaoming@example.com"
+}
+
+# 发送POST请求
+response = requests.post(url, data=data)
+
+print(f"状态码：{response.status_code}")
+print(f"响应内容：{response.json()}")</code></pre>
+
+            <h4>六、虚拟环境（工程能力必备）</h4>
+            
+            <h5>6.1 为什么要用虚拟环境？</h5>
+            <div class="info-box">
+                <h5>💡 问题场景</h5>
+                <p>想象你同时装修两套房子：</p>
+                <ul>
+                    <li>房子A需要安装空调</li>
+                    <li>房子B不需要空调</li>
+                    <li>如果把空调安装错了房子，就会出问题！</li>
+                </ul>
+                <p><strong>虚拟环境</strong>就是给每个项目分配独立的"房间"，项目A用什么版本的库，互不影响项目B。</p>
+            </div>
+
+            <h5>6.2 创建虚拟环境（Windows）</h5>
+            <pre><code># 第1步：打开命令行，进入项目文件夹
+cd 你的项目路径
+
+# 第2步：创建虚拟环境
+python -m venv myenv
+
+# 第3步：激活虚拟环境（进入这个"房间"）
+myenv\Scripts\activate
+
+# 激活后，命令前面会出现 (myenv)
+
+# 第4步：安装需要的库
+pip install requests pandas
+
+# 第5步：运行你的程序
+python my_program.py
+
+# 第6步：离开虚拟环境
+deactivate</code></pre>
+
+            <h5>6.3 创建虚拟环境（Mac/Linux）</h5>
+            <pre><code># 第1步：打开终端，进入项目文件夹
+cd 你的项目路径
+
+# 第2步：创建虚拟环境
+python3 -m venv myenv
+
+# 第3步：激活虚拟环境
+source myenv/bin/activate
+
+# 第4步：安装需要的库
+pip install requests pandas
+
+# 第5步：运行程序
+python my_program.py
+
+# 第6步：离开虚拟环境
+deactivate</code></pre>
+
+            <h5>6.4 requirements.txt（项目清单）</h5>
+            <pre><code># 导出（记录当前用了哪些库）
+pip freeze > requirements.txt
+
+# requirements.txt的内容类似：
+# pandas==2.0.0
+# requests==2.31.0
+# numpy==1.24.0
+
+# 在新电脑上安装所有库
+pip install -r requirements.txt</code></pre>
+
+            <h4>七、综合实战：AI数据分析助手</h4>
+            
+            <h5>7.1 项目需求</h5>
+            <div class="info-box">
+                <h5>📋 功能需求</h5>
+                <ol>
+                    <li>读取CSV文件中的销售数据</li>
+                    <li>使用Pandas进行数据分析</li>
+                    <li>调用AI API生成分析报告</li>
+                    <li>保存结果到JSON文件</li>
+                </ol>
+            </div>
+
+            <h5>7.2 完整代码示例</h5>
+            <pre><code>import pandas as pd
+import json
+import requests
+
+# 第1步：读取数据
+df = pd.read_csv("sales_data.csv")
+
+# 第2步：数据分析
+analysis = {
+    "总销售额": int(df["销售额"].sum()),
+    "平均订单金额": float(df["销售额"].mean()),
+    "订单总数": len(df),
+    "热销商品TOP5": df.groupby("商品")["销售额"].sum().sort_values(ascending=False).head(5).to_dict()
+}
+
+print("===== 数据分析结果 =====")
+print(analysis)
+
+# 第3步：保存分析结果
+with open("analysis_result.json", "w", encoding="utf-8") as f:
+    json.dump(analysis, f, ensure_ascii=False, indent=4)
+
+print("\n✅ 分析结果已保存！")
+
+# 第4步：调用AI生成报告（可选）
+# 准备好要问AI的问题
+question = f"""
+请帮我用简洁的语言总结以下销售数据分析结果：
+
+{json.dumps(analysis, ensure_ascii=False, indent=2)}
+
+请用200字左右总结，并给出2-3个业务建议。
+"""
+
+print(f"\n===== AI分析建议 =====")
+print("（这里可以接入AI API获取自动分析）")</code></pre>
+
+            <h4>八、学习路线总结（AI时代2周速成）</h4>
+            
+            <table class="operator-table">
+                <tr>
+                    <th>时间</th>
+                    <th>学习内容</th>
+                    <th>达成目标</th>
+                </tr>
+                <tr>
+                    <td>第1-2天</td>
+                    <td>Python基础 + 环境安装</td>
+                    <td>能写出Hello World</td>
+                </tr>
+                <tr>
+                    <td>第3-4天</td>
+                    <td>数据类型 + 循环判断</td>
+                    <td>理解程序逻辑</td>
+                </tr>
+                <tr>
+                    <td>第5-6天</td>
+                    <td>函数 + JSON文件读写</td>
+                    <td>能保存和读取数据</td>
+                </tr>
+                <tr>
+                    <td>第7-8天</td>
+                    <td>Pandas数据处理</td>
+                    <td>能处理Excel/CSV数据</td>
+                </tr>
+                <tr>
+                    <td>第9-10天</td>
+                    <td>API调用 + HTTP请求</td>
+                    <td>能和AI服务通信</td>
+                </tr>
+                <tr>
+                    <td>第11-12天</td>
+                    <td>虚拟环境 + 项目管理</td>
+                    <td>能管理多个项目</td>
+                </tr>
+                <tr>
+                    <td>第13-14天</td>
+                    <td>Prompt工程 + 综合实战</td>
+                    <td>完成一个小作品</td>
+                </tr>
+            </table>
+
+            <div class="next-step">
+                <h5>🚀 下一步</h5>
+                <p>恭喜你完成了AI时代Python核心技能的学习！现在你已经掌握了AI编程的核心能力。继续学习更多项目实战，成为真正的AI时代开发者！</p>
+            </div>
+
+            <h4>单元练习</h4>
+            <div class="quiz-section">
+                <h5>一、概念理解</h5>
+                <ol>
+                    <li>什么是API？请用自己的话解释。</li>
+                    <li>JSON文件和普通文本文件有什么区别？</li>
+                    <li>为什么要使用虚拟环境？</li>
+                    <li>一个好的Prompt应该包含哪些要素？</li>
+                </ol>
+
+                <h5>二、实践任务</h5>
+                <ol>
+                    <li>使用Pandas读取一个CSV文件，统计其中的数据并输出结果</li>
+                    <li>创建一个JSON文件，保存你的个人信息（姓名、年龄、爱好等）</li>
+                    <li>写一个Prompt，让AI帮你写一个计算器程序</li>
+                    <li>使用requests库访问一个公开API，获取数据并打印出来</li>
+                </ol>
+
+                <h5>三、思考题</h5>
+                <ol>
+                    <li>在AI时代，程序员的核心价值是什么？</li>
+                    <li>如何利用AI工具提高自己的学习和工作效率？</li>
+                    <li>除了本课程学到的内容，还有哪些AI+Python的结合方向值得探索？</li>
+                </ol>
+            </div>
+        `
     }
 ];
+
+// 动态生成课程列表
+function renderLessonList() {
+    const container = document.getElementById('lesson-list-container');
+    if (!container) return;
+    
+    let html = '';
+    lessons.forEach((lesson, index) => {
+        // 从标题中提取单元编号和名称
+        const titleMatch = lesson.title.match(/第(\d+)单元[：:](.+)/);
+        const unitNum = titleMatch ? titleMatch[1] : (index + 1);
+        const unitName = titleMatch ? titleMatch[2] : lesson.title;
+        
+        html += `
+            <div class="lesson-card" onclick="showLesson(${index})">
+                <div class="lesson-number">${unitNum}</div>
+                <h4>${unitName}</h4>
+                <p>${getLessonDescription(index)}</p>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+// 获取课程描述
+function getLessonDescription(index) {
+    const descriptions = [
+        "Python环境安装、第一个程序、常见问题解答",  // 第0单元
+        "掌握Python的基本语法、数据类型和核心概念",  // 第1单元
+        "学习使用Pandas和NumPy进行高效数据处理",    // 第2单元
+        "探索人工智能基础概念和实用应用场景",       // 第3单元
+        "学习开发工具、版本控制和项目管理技能",      // 第4单元
+        "深入学习Python函数和模块化编程",            // 第5单元
+        "回顾所学内容，规划未来学习方向",            // 第6单元
+        "API调用、Prompt工程、Pandas数据处理等AI时代核心技能" // 第7单元
+    ];
+    return descriptions[index] || "学习Python编程技能";
+}
+
+// 页面加载完成后渲染课程列表
+document.addEventListener('DOMContentLoaded', function() {
+    renderLessonList();
+});
 
 
 let currentLessonIndex = -1;

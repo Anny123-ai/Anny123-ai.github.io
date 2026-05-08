@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1920px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -1150,6 +1150,10 @@ pre code {
     padding: 30px;
     margin-top: 30px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    max-width: 2400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .exercise-section h4 {
@@ -1216,13 +1220,14 @@ pre code {
 
 .code-editor textarea {
     width: 100%;
-    min-height: 300px;
-    padding: 20px;
+    min-height: 500px;
+    height: 550px;
+    padding: 24px;
     background: #1e293b;
     color: #e2e8f0;
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.7;
     border: none;
     resize: vertical;
     outline: none;
