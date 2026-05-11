@@ -252,55 +252,164 @@
         .hobbies-section h4 {
             text-align: center;
             color: #667eea;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 1.2rem;
         }
 
-        .hobbies-tags {
+        .hobby-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .hobby-card {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 18px 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            background: linear-gradient(135deg, #fff 0%, #f0f0f5 100%);
+        }
+
+        .hobby-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .hobby-name {
+            font-weight: 700;
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .hobby-desc {
+            font-size: 0.8rem;
+            color: #777;
+            line-height: 1.4;
+        }
+
+        /* 技能特长区域 */
+        .skills-section {
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            max-width: 700px;
+            margin: 20px auto 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .skills-section > h4 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+
+        .skill-category {
+            margin-bottom: 25px;
+        }
+
+        .skill-category h5 {
+            color: #764ba2;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-item {
+            margin-bottom: 18px;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.15);
+        }
+
+        .skill-info {
+            display: flex;
+            align-items: center;
             gap: 10px;
+            margin-bottom: 8px;
         }
 
-        .hobby-tag {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 25px;
+        .skill-icon {
+            font-size: 1.3rem;
+        }
+
+        .skill-name {
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: transform 0.3s ease;
+            color: #333;
+            font-size: 1rem;
         }
 
-        .hobby-tag:hover {
-            transform: scale(1.1) rotate(3deg);
+        .skill-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+            padding-left: 35px;
         }
 
-        .hobby-tag.music-link {
-            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
-            text-decoration: none;
-            animation: music-pulse 2s ease-in-out infinite;
+        .progress-bar {
+            height: 12px;
+            background: rgba(102, 126, 234, 0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .hobby-tag.music-link:hover {
-            transform: scale(1.15) rotate(3deg);
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 6px;
+            transition: width 1s ease-in-out;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
         }
 
-        @keyframes music-pulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
-            }
+        .progress-text {
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            position: absolute;
+            right: 8px;
         }
 
         /* 课程区域 */
         .courses-section {
             padding: 60px 0;
             background: #f5f7fa;
+        }
+
+        .courses-section .main-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(102, 126, 234, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .lesson-grid {
@@ -626,12 +735,167 @@
 
                 <div class="hobbies-section">
                     <h4>💖 我的爱好 💖</h4>
-                    <div class="hobbies-tags">
-                        <span class="hobby-tag">🏸 打羽毛球</span>
-                        <a href="music.html" class="hobby-tag music-link">🎵 听音乐</a>
-                        <span class="hobby-tag">📺 刷剧</span>
-                        <span class="hobby-tag">📚 阅读</span>
-                        <span class="hobby-tag">💻 编程</span>
+                    <div class="hobby-cards">
+                        <div class="hobby-card">
+                            <span class="hobby-icon">🎵</span>
+                            <span class="hobby-name">听音乐</span>
+                            <span class="hobby-desc">用旋律装点生活</span>
+                        </div>
+                        <div class="hobby-card">
+                            <span class="hobby-icon">📺</span>
+                            <span class="hobby-name">刷剧</span>
+                            <span class="hobby-desc">在剧情里体验百味人生</span>
+                        </div>
+                        <div class="hobby-card">
+                            <span class="hobby-icon">🍜</span>
+                            <span class="hobby-name">探索美食</span>
+                            <span class="hobby-desc">舌尖上的环球旅行</span>
+                        </div>
+                        <div class="hobby-card">
+                            <span class="hobby-icon">🎬</span>
+                            <span class="hobby-name">短视频制作</span>
+                            <span class="hobby-desc">用镜头记录精彩瞬间</span>
+                        </div>
+                        <div class="hobby-card">
+                            <span class="hobby-icon">🎮</span>
+                            <span class="hobby-name">小游戏制作</span>
+                            <span class="hobby-desc">创造属于自己的小世界</span>
+                        </div>
+                        <div class="hobby-card">
+                            <span class="hobby-icon">💻</span>
+                            <span class="hobby-name">网页编写</span>
+                            <span class="hobby-desc">用代码编织数字梦想</span>
+                        </div>
+                        <div class="hobby-card">
+                            <span class="hobby-icon">📊</span>
+                            <span class="hobby-name">数据分析</span>
+                            <span class="hobby-desc">在数据中挖掘隐藏规律</span>
+                        </div>
+                        <div class="hobby-card">
+                            <span class="hobby-icon">🚀</span>
+                            <span class="hobby-name">学习新技能</span>
+                            <span class="hobby-desc">保持好奇心，不断成长</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-section">
+                    <h4>🚀 技能特长 🚀</h4>
+                    
+                    <div class="skill-category">
+                        <h5>📊 数据分析</h5>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-icon">📊</span>
+                                <span class="skill-name">数据分析</span>
+                            </div>
+                            <div class="skill-desc">使用Python和Excel进行数据处理与统计分析</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%">
+                                    <span class="progress-text">80%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-icon">🎨</span>
+                                <span class="skill-name">数据可视化</span>
+                            </div>
+                            <div class="skill-desc">使用Matplotlib、Seaborn制作精美图表</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%">
+                                    <span class="progress-text">75%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-icon">📈</span>
+                                <span class="skill-name">数据统计</span>
+                            </div>
+                            <div class="skill-desc">掌握描述性统计、相关性分析方法</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 70%">
+                                    <span class="progress-text">70%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-icon">🔧</span>
+                                <span class="skill-name">数据处理</span>
+                            </div>
+                            <div class="skill-desc">使用Pandas、NumPy进行数据清洗和转换</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%">
+                                    <span class="progress-text">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-icon">💎</span>
+                                <span class="skill-name">数据挖掘</span>
+                            </div>
+                            <div class="skill-desc">学习数据挖掘算法和机器学习基础</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%">
+                                    <span class="progress-text">60%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h5>💼 办公软件</h5>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-icon">📱</span>
+                                <span class="skill-name">Excel</span>
+                            </div>
+                            <div class="skill-desc">熟练使用数据透视表、函数公式</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%">
+                                    <span class="progress-text">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-icon">📝</span>
+                                <span class="skill-name">Word</span>
+                            </div>
+                            <div class="skill-desc">文档编辑排版和格式设置</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%">
+                                    <span class="progress-text">80%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-icon">📋</span>
+                                <span class="skill-name">PPT</span>
+                            </div>
+                            <div class="skill-desc">演示文稿设计与制作</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%">
+                                    <span class="progress-text">75%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-icon">🐍</span>
+                                <span class="skill-name">Python</span>
+                            </div>
+                            <div class="skill-desc">Python编程与数据处理分析</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%">
+                                    <span class="progress-text">80%</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -640,6 +904,7 @@
         <!-- 课程目录 -->
         <section id="courses" class="courses-section">
             <div class="container">
+                <h2 class="main-title">🐍 Python课程 🐍</h2>
                 <h2 class="section-title">📖 <span>📚</span> 课程目录 <span>📚</span> 📖</h2>
                 <div class="lesson-grid">
                     <div class="lesson-card" onclick="location.href='python-course.html?lesson=0'">
