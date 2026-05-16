@@ -639,9 +639,73 @@ footer {
     color: white;
 }
 
-.course-header p {
+.course-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: white;
+    font-weight: 700;
+}
+
+.course-intro {
     font-size: 1.1rem;
-    opacity: 0.9;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+.course-info-section {
+    padding: 60px 0;
+    background: white;
+}
+
+.course-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.course-info-grid .info-card {
+    background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-info-grid .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.course-info-grid .info-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #2d3748;
+}
+
+.course-info-grid .info-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.course-info-grid .info-card li {
+    margin-bottom: 12px;
+    color: #4a5568;
+    font-size: 1rem;
+    padding-left: 20px;
+    position: relative;
+}
+
+.course-info-grid .info-card li:before {
+    content: "✓";
+    color: #667eea;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
 }
 
 .back-link {
@@ -1160,6 +1224,18 @@ pre code {
     font-size: 1.4rem;
     color: #2d3748;
     margin-bottom: 10px;
+}
+
+.exercise-intro {
+    background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+    border-left: 4px solid #38b2ac;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    color: #2c7a7b;
+    font-weight: 500;
+    line-height: 1.6;
 }
 
 .exercise-section p {

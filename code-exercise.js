@@ -506,22 +506,40 @@ function renderExercise(exercise) {
     const container = document.getElementById('exercise-container');
     if (!container) return;
     
+    // 为每个练习添加简介介绍话
+    const introMessages = {
+        0: "💡 这个练习将帮助你熟悉变量和数据类型的基本概念，通过一个简单的场景来应用条件判断。",
+        1: "💡 在这个练习中，你将学会使用条件语句来根据不同的分数判断对应的等级，这是编程中非常基础且实用的技能。",
+        2: "💡 通过这个练习，你将掌握循环的基本用法，学会如何使用循环来累加计算，这是处理重复任务的基础。",
+        3: "💡 列表是Python中最常用的数据结构之一，这个练习将教会你如何创建列表、添加元素、删除元素以及获取列表长度。",
+        4: "💡 NumPy是Python数据分析的基础库，这个练习将带你熟悉NumPy数组的创建和基本操作，特别是如何处理矩阵。",
+        5: "💡 Pandas是Python数据分析的核心工具，这个练习将教会你如何创建DataFrame并进行基本的数据分析计算。",
+        6: "💡 这个练习将带你入门机器学习，使用线性回归模型来进行简单的预测，感受AI的魅力！",
+        7: "💡 函数是代码组织和复用的基础，这个练习将帮助你掌握函数的定义和调用，学会如何封装可复用的代码。",
+        8: "💡 装饰器是Python的高级特性，这个练习将教会你如何创建一个计时装饰器，用来测量函数的执行时间。",
+        9: "💡 这是一个综合练习，将前面学到的数据分析知识整合起来，完成一个完整的数据分析任务！"
+    };
+    
+    const exerciseIndex = exercises.indexOf(exercise);
+    const introMessage = introMessages[exerciseIndex] || "💡 开始练习吧，这是巩固所学知识的好机会！";
+    
     container.innerHTML = `
         <div class="exercise-section">
             <h4>📝 ${exercise.title}</h4>
+            <p class="exercise-intro">${introMessage}</p>
             <p>${exercise.description}</p>
             
             <div class="code-editor">
                 <div class="editor-header">
                     <span>Code Runner</span>
-                    <button onclick="loadSolution(${exercises.indexOf(exercise)})" class="btn btn-secondary">查看答案</button>
+                    <button onclick="loadSolution(${exerciseIndex})" class="btn btn-secondary">查看答案</button>
                 </div>
                 <textarea id="code-input" rows="15" placeholder="在此处编写Python代码...">${exercise.template}</textarea>
             </div>
             
             <div class="editor-actions">
-                <button onclick="runCode(${exercises.indexOf(exercise)})" class="btn btn-primary">Run</button>
-                <button onclick="resetCode(${exercises.indexOf(exercise)})" class="btn btn-secondary">Clear</button>
+                <button onclick="runCode(${exerciseIndex})" class="btn btn-primary">Run</button>
+                <button onclick="resetCode(${exerciseIndex})" class="btn btn-secondary">Clear</button>
             </div>
             
             <div class="output-section">

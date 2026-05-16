@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💻 计算机二级课程 - 李艺的学习空间</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar-brand h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: white;
+            font-weight: 800;
+        }
+
+        .navbar-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .navbar-menu a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* 页面头部 */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 主内容 */
+        main {
+            padding: 60px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* 课程选择区 */
+        .exam-types {
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .exam-types-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .exam-types-header h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .exam-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .exam-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .exam-card.active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f0f5ff 0%, #e0e7ff 100%);
+        }
+
+        .exam-card-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .exam-card-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .exam-card-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .exam-card-diff {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* 课程内容区 */
+        .course-section {
+            margin-bottom: 60px;
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            display: none;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .course-section.active {
+            display: block;
+        }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .course-header h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .course-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* 单元卡片 */
+        .lesson-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .lesson-title {
+            font-size: 1.6rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lesson-content h3 {
+            color: #333;
+            margin: 20px 0 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .lesson-content p {
+            color: #555;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .lesson-content ul,
+        .lesson-content ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .lesson-content li {
+            color: #555;
+            margin: 10px 0;
+            line-height: 1.7;
+        }
+
+        /* 知识框 */
+        .knowledge-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .knowledge-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .knowledge-item:last-child {
+            border-bottom: none;
+        }
+
+        .knowledge-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .knowledge-desc {
+            color: #666;
+            text-align: right;
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        /* 提示框 */
+        .tip-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 18px 22px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .tip-box strong {
+            color: #f59e0b;
+        }
+
+        /* 重点框 */
+        .key-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-left: 4px solid #10b981;
+            padding: 18px 22px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-box strong {
+            color: #10b981;
+        }
+
+        /* 操作步骤框 */
+        .steps-box {
+            background: #f3f4f6;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .step-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* 考试表格 */
+        .exam-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .exam-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .exam-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .exam-table tr:hover {
+            background: #f9fafb;
+        }
+
+        /* 测验区域 */
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f5ff 0%, #e0e7ff 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .quiz-question {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 12px 18px;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f0f5ff;
+        }
+
+        .quiz-option.selected {
+            border-color: #667eea;
+            background: #e0e7ff;
+        }
+
+        .quiz-option.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+
+        .quiz-option.wrong {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            margin-top: 15px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .result-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .result-correct {
+            color: #10b981;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .result-explanation {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* 代码框 */
+        .code-box {
+            background: #1e293b;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+
+        .code-box .code-comment {
+            color: #94a3b8;
+        }
+
+        .code-box .code-keyword {
+            color: #c084fc;
+        }
+
+        .code-box .code-string {
+            color: #4ade80;
+        }
+
+        .code-box .code-function {
+            color: #60a5fa;
+        }
+
+        /* 页脚 */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .navbar-menu ul {
+                gap: 10px;
+            }
+            
+            .navbar-menu a {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .course-section {
+                padding: 25px;
+            }
+            
+            .lesson-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <h1>💻 计算机二级课程</h1>
+                </div>
+                <div class="navbar-menu">
+                    <ul>
+                        <li><a href="main.html">🏠 返回主页</a></li>
+                        <li><a href="learning-courses.html">📚 全部课程</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>💻 计算机二级精品课程</h1>
+            <p>系统学习，助你一次通过！涵盖MS Office、Python、WPS等热门考试科目，从基础到精通！</p>
+        </div>
+    </section>
+
+    <main>
+        <!-- 考试类型选择 -->
+        <section class="exam-types">
+            <div class="exam-types-header">
+                <h2>🎯 选择考试科目</h2>
+                <p>点击选择你要学习的考试科目</p>
+            </div>
+
+            <div class="exam-cards">
+                <div class="exam-card active" onclick="showCourse('office')">
+                    <div class="exam-card-icon">📊</div>
+                    <div class="exam-card-title">MS Office高级应用</div>
+                    <div class="exam-card-desc">最热门科目，适合大多数人</div>
+                    <div class="exam-card-diff">难度：⭐⭐⭐ | 通过率：较高</div>
+                </div>
+
+                <div class="exam-card" onclick="showCourse('python')">
+                    <div class="exam-card-icon">🐍</div>
+                    <div class="exam-card-title">Python语言程序设计</div>
+                    <div class="exam-card-desc">编程入门首选科目</div>
+                    <div class="exam-card-diff">难度：⭐⭐⭐⭐ | 通过率：中等</div>
+                </div>
+
+                <div class="exam-card" onclick="showCourse('wps')">
+                    <div class="exam-card-icon">📝</div>
+                    <div class="exam-card-title">WPS Office高级应用</div>
+                    <div class="exam-card-desc">国产办公软件新选择</div>
+                    <div class="exam-card-diff">难度：⭐⭐⭐ | 通过率：较高</div>
+                </div>
+
+                <div class="exam-card" onclick="showCourse('mysql')">
+                    <div class="exam-card-icon">🗄️</div>
+                    <div class="exam-card-title">MySQL数据库程序设计</div>
+                    <div class="exam-card-desc">适合计算机专业学生</div>
+                    <div class="exam-card-diff">难度：⭐⭐⭐⭐⭐ | 通过率：较低</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MS Office课程 ==================== -->
+        <section id="office-course" class="course-section active">
+            <div class="course-header">
+                <h2>📊 MS Office高级应用</h2>
+                <p>全国计算机等级考试中最热门的科目，含金量高，应用广泛</p>
+            </div>
+
+            <!-- 第1单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📋 第1单元：考试介绍与备考策略</h2>
+                <div class="lesson-content">
+                    <h3>🎯 考试基本信息</h3>
+                    <table class="exam-table">
+                        <tr>
+                            <th>考试内容</th>
+                            <th>分值</th>
+                            <th>考试时间</th>
+                        </tr>
+                        <tr>
+                            <td>选择题</td>
+                            <td>20分</td>
+                            <td rowspan="3">90分钟</td>
+                        </tr>
+                        <tr>
+                            <td>Word操作题</td>
+                            <td>30分</td>
+                        </tr>
+                        <tr>
+                            <td>Excel操作题</td>
+                            <td>30分</td>
+                        </tr>
+                        <tr>
+                            <td>PowerPoint操作题</td>
+                            <td>20分</td>
+                            <td>机考</td>
+                        </tr>
+                    </table>
+
+                    <div class="key-box">
+                        <strong>📌 重要提醒：</strong>总分100分，60分为及格线！考试为无纸化上机考试，只能抽到一套题目中的部分题。
+                    </div>
+
+                    <h3>📚 考试内容分布</h3>
+                    <ul>
+                        <li><strong>选择题</strong>：计算机基础知识、公共基础知识、Office操作基础</li>
+                        <li><strong>Word部分</strong>：文档编辑、格式设置、表格操作、样式与模板</li>
+                        <li><strong>Excel部分</strong>：数据处理、函数应用、图表制作、数据透视表</li>
+                        <li><strong>PowerPoint部分</strong>：演示文稿创建、动画设置、母版应用</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>💡 备考建议：</strong>建议提前2-3个月开始备考，重点练习操作题，选择题可以考前1周集中复习。
+                    </div>
+                </div>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">1. 计算机二级MS Office考试总分是多少？</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">A. 100分</div>
+                        <div class="quiz-option" data-correct="false">B. 120分</div>
+                        <div class="quiz-option" data-correct="false">C. 80分</div>
+                        <div class="quiz-option" data-correct="false">D. 150分</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="checkQuiz(this)">提交答案</button>
+                    <div class="result-box">
+                        <div class="result-correct">✓ 正确！计算机二级MS Office考试总分是100分！</div>
+                        <div class="result-explanation">及格线为60分，达到60分即可获得证书。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第2单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📝 第2单元：Word高频考点精讲</h2>
+                <div class="lesson-content">
+                    <h3>🎯 Word高频考点</h3>
+                    <div class="knowledge-box">
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">样式设置</span>
+                            <span class="knowledge-desc">标题样式、正文样式、自定义样式</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">页眉页脚</span>
+                            <span class="knowledge-desc">奇偶页不同、章节页眉、自动图文集</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">目录生成</span>
+                            <span class="knowledge-desc">插入目录、更新目录、目录样式</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">表格操作</span>
+                            <span class="knowledge-desc">表格绘制、公式计算、表格排序</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">邮件合并</span>
+                            <span class="knowledge-desc">主文档、数据源、合并到新文档</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">索引标记</span>
+                            <span class="knowledge-desc">标记索引项、插入索引、分类索引</span>
+                        </div>
+                    </div>
+
+                    <h3>📝 高频操作步骤</h3>
+                    <div class="steps-box">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">设置页眉奇偶页不同</div>
+                                <div class="step-desc">插入→页眉→编辑页眉→勾选"奇偶页不同"</div>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">生成目录</div>
+                                <div class="step-desc">引用→目录→自动目录1/2→设置目录格式</div>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">邮件合并</div>
+                                <div class="step-desc">邮件→选择收件人→插入合并域→完成并合并</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 考试技巧：</strong>Word部分要特别注意样式和目录的设置，这是必考考点！邮件合并也是高频考点。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📊 第3单元：Excel高频考点精讲</h2>
+                <div class="lesson-content">
+                    <h3>🎯 Excel高频考点</h3>
+                    <div class="knowledge-box">
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">常用函数</span>
+                            <span class="knowledge-desc">SUM、AVERAGE、IF、VLOOKUP、COUNTIF</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">条件格式</span>
+                            <span class="knowledge-desc">突出显示单元格规则、数据条、色阶、图标集</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">数据透视表</span>
+                            <span class="knowledge-desc">创建、字段设置、切片器、计算字段</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">图表制作</span>
+                            <span class="knowledge-desc">柱形图、折线图、饼图、组合图</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">数据验证</span>
+                            <span class="knowledge-desc">下拉列表、输入信息、错误警告</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">分类汇总</span>
+                            <span class="knowledge-desc">分类字段、汇总方式、汇总位置</span>
+                        </div>
+                    </div>
+
+                    <h3>📊 必备函数公式</h3>
+                    <div class="code-box">
+                        <span class="code-comment">// SUM函数 - 求和</span><br>
+                        <span class="code-function">=SUM</span>(A1:A10) <span class="code-comment">// 求A1到A10的和</span><br><br>
+                        
+                        <span class="code-comment">// IF函数 - 条件判断</span><br>
+                        <span class="code-function">=IF</span>(A1>=60,"及格","不及格") <span class="code-comment">// 判断是否及格</span><br><br>
+                        
+                        <span class="code-comment">// VLOOKUP函数 - 查找引用</span><br>
+                        <span class="code-function">=VLOOKUP</span>(A1,B:C,2,FALSE) <span class="code-comment">// 在B:C列中查找A1对应的值</span><br><br>
+                        
+                        <span class="code-comment">// COUNTIF函数 - 条件计数</span><br>
+                        <span class="code-function">=COUNTIF</span>(A:A,">=60") <span class="code-comment">// 统计A列中大于等于60的个数</span>
+                    </div>
+
+                    <div class="key-box">
+                        <strong>🌟 重点提醒：</strong>Excel是整个考试中最难的部分！VLOOKUP函数、数据透视表、分类汇总必须熟练掌握！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第4单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">🎨 第4单元：PowerPoint高频考点精讲</h2>
+                <div class="lesson-content">
+                    <h3>🎯 PowerPoint高频考点</h3>
+                    <div class="knowledge-box">
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">幻灯片母版</span>
+                            <span class="knowledge-desc">版式设置、背景样式、页眉页脚</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">动画设置</span>
+                            <span class="knowledge-desc">进入动画、强调动画、退出动画、动作路径</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">切换效果</span>
+                            <span class="knowledge-desc">切换方案、效果选项、声音设置</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">幻灯片放映</span>
+                            <span class="knowledge-desc">排练计时、录制旁白、设置放映方式</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">SmartArt图形</span>
+                            <span class="knowledge-desc">创建SmartArt、转换图形、编辑文本</span>
+                        </div>
+                        <div class="knowledge-item">
+                            <span class="knowledge-title">超链接设置</span>
+                            <span class="knowledge-desc">链接到幻灯片、网站、文件</span>
+                        </div>
+                    </div>
+
+                    <h3>📝 动画设置步骤</h3>
+                    <div class="steps-box">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">添加动画</div>
+                                <div class="step-desc">选中对象→动画→选择动画效果→设置开始方式</div>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">设置效果选项</div>
+                                <div class="step-desc">效果选项→方向、速度、计时</div>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">添加动作路径</div>
+                                <div class="step-desc">动画→其他动作路径→绘制自定义路径</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 考试技巧：</strong>PowerPoint相对简单，但要注意母版设置和SmartArt图形的操作，这两部分必考！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第5单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📚 第5单元：选择题高频考点</h2>
+                <div class="lesson-content">
+                    <h3>🎯 计算机基础知识</h3>
+                    <ul>
+                        <li><strong>计算机发展史</strong>：ENIAC(1946)、冯·诺依曼体系结构</li>
+                        <li><strong>计算机分类</strong>：巨型机、大型机、小型机、微型机</li>
+                        <li><strong>计算机组成</strong>：运算器、控制器、存储器、输入/输出设备</li>
+                        <li><strong>进制的转换</strong>：二进制、八进制、十六进制互相转换</li>
+                        <li><strong>字符编码</strong>：ASCII码、Unicode、UTF-8</li>
+                    </ul>
+
+                    <h3>📚 公共基础知识</h3>
+                    <ul>
+                        <li><strong>数据结构</strong>：线性结构、树形结构、图形结构</li>
+                        <li><strong>算法</strong>：排序算法、查找算法、时间复杂度</li>
+                        <li><strong>程序设计基础</strong>：结构化程序设计、面向对象程序设计</li>
+                        <li><strong>软件工程基础</strong>：软件生命周期、软件测试</li>
+                        <li><strong>数据库设计</strong>：ER图、关系模型、SQL基础</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>📚 复习建议：</strong>选择题共20分，涵盖计算机基础和公共基础。建议使用题库软件反复练习，熟能生巧！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第6单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">🚀 第6单元：真题演练与答题技巧</h2>
+                <div class="lesson-content">
+                    <h3>📝 Word真题示例</h3>
+                    <p>真题要求：将文档排版，设置页眉页脚，生成目录</p>
+                    <div class="key-box">
+                        <strong>解题步骤：</strong>
+                        <ol>
+                            <li>设置文档样式（标题1、标题2等）</li>
+                            <li>插入→页眉→编辑页眉→设置奇偶页不同</li>
+                            <li>引用→目录→插入自动目录</li>
+                            <li>更新域（Ctrl+A全选，F9更新）</li>
+                        </ol>
+                    </div>
+
+                    <h3>📊 Excel真题示例</h3>
+                    <p>真题要求：计算总分、平均分，使用函数统计</p>
+                    <div class="code-box">
+                        <span class="code-comment">// 计算总分</span><br>
+                        <span class="code-function">=SUM</span>(B2:F2)<br><br>
+                        
+                        <span class="code-comment">// 计算平均分（保留2位小数）</span><br>
+                        <span class="code-function">=ROUND</span>(<span class="code-function">AVERAGE</span>(B2:F2),2)<br><br>
+                        
+                        <span class="code-comment">// 统计及格人数</span><br>
+                        <span class="code-function">=COUNTIF</span>(G2:G50,">=60")
+                    </div>
+
+                    <h3>📋 备考冲刺计划</h3>
+                    <table class="exam-table">
+                        <tr>
+                            <th>阶段</th>
+                            <th>时间</th>
+                            <th>内容</th>
+                        </tr>
+                        <tr>
+                            <td>基础阶段</td>
+                            <td>第1-3周</td>
+                            <td>熟悉Office各软件界面</td>
+                        </tr>
+                        <tr>
+                            <td>提升阶段</td>
+                            <td>第4-7周</td>
+                            <td>专项练习操作题</td>
+                        </tr>
+                        <tr>
+                            <td>冲刺阶段</td>
+                            <td>第8-10周</td>
+                            <td>做真题、模拟考试</td>
+                        </tr>
+                        <tr>
+                            <td>最后阶段</td>
+                            <td>最后1周</td>
+                            <td>复习错题、调整心态</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== Python课程 ==================== -->
+        <section id="python-course" class="course-section">
+            <div class="course-header">
+                <h2>🐍 Python语言程序设计</h2>
+                <p>适合编程零基础学生，考试内容为基础语法和简单程序设计</p>
+            </div>
+
+            <!-- 第1单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📋 第1单元：考试介绍与环境配置</h2>
+                <div class="lesson-content">
+                    <h3>🎯 考试基本信息</h3>
+                    <table class="exam-table">
+                        <tr>
+                            <th>考试内容</th>
+                            <th>分值</th>
+                            <th>考试形式</th>
+                        </tr>
+                        <tr>
+                            <td>选择题</td>
+                            <td>40分</td>
+                            <td>机考</td>
+                        </tr>
+                        <tr>
+                            <td>操作题</td>
+                            <td>60分</td>
+                            <td>编程实现</td>
+                        </tr>
+                    </table>
+
+                    <div class="key-box">
+                        <strong>📌 考试特点：</strong>Python二级考试相对简单，主要考察基础语法和简单算法的实现，不需要面向对象编程。
+                    </div>
+
+                    <h3>🐍 Python基础知识</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># 第一个Python程序</span><br>
+                        <span class="code-function">print</span>(<span class="code-string">"Hello, World!"</span>)<br><br>
+                        
+                        <span class="code-comment"># 变量定义</span><br>
+                        name = <span class="code-string">"李艺"</span><br>
+                        age = <span class="code-number">20</span><br>
+                        height = <span class="code-number">1.65</span><br><br>
+                        
+                        <span class="code-comment"># 数据类型</span><br>
+                        <span class="code-comment"># 整数int、浮点数float、字符串str、布尔bool</span>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 备考建议：</strong>Python二级考试重点是基础语法和简单算法的实现，建议多刷题库，熟悉常见题型。
+                    </div>
+                </div>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">1. Python中print函数的正确语法是？</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">A. print("Hello")</div>
+                        <div class="quiz-option" data-correct="false">B. print "Hello"</div>
+                        <div class="quiz-option" data-correct="false">C. print(Hello)</div>
+                        <div class="quiz-option" data-correct="false">D. Print("Hello")</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="checkQuiz(this)">提交答案</button>
+                    <div class="result-box">
+                        <div class="result-correct">✓ 正确！Python3中print是函数，必须加括号！</div>
+                        <div class="result-explanation">Python3语法：print("内容")，注意引号要成对出现。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第2单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">🔤 第2单元：Python基础语法</h2>
+                <div class="lesson-content">
+                    <h3>📝 变量与数据类型</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># 变量定义 - 不需要声明类型</span><br>
+                        name = <span class="code-string">"张三"</span>      <span class="code-comment"># 字符串</span><br>
+                        age = <span class="code-number">20</span>            <span class="code-comment"># 整数</span><br>
+                        height = <span class="code-number">1.75</span>       <span class="code-comment"># 浮点数</span><br>
+                        is_student = <span class="code-number">True</span>   <span class="code-comment"># 布尔值</span><br><br>
+                        
+                        <span class="code-comment"># type() 函数查看数据类型</span><br>
+                        <span class="code-function">print</span>(<span class="code-function">type</span>(name))     <span class="code-comment"># &lt;class 'str'&gt;</span><br>
+                        <span class="code-function">print</span>(<span class="code-function">type</span>(age))     <span class="code-comment"># &lt;class 'int'&gt;</span>
+                    </div>
+
+                    <h3>📝 运算符与表达式</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># 算术运算符</span><br>
+                        a, b = <span class="code-number">10</span>, <span class="code-number">3</span><br>
+                        <span class="code-function">print</span>(a + b)   <span class="code-comment"># 13 加法</span><br>
+                        <span class="code-function">print</span>(a - b)   <span class="code-comment"># 7  减法</span><br>
+                        <span class="code-function">print</span>(a * b)   <span class="code-comment"># 30 乘法</span><br>
+                        <span class="code-function">print</span>(a / b)   <span class="code-comment"># 3.333... 除法</span><br>
+                        <span class="code-function">print</span>(a // b)  <span class="code-comment"># 3  整除</span><br>
+                        <span class="code-function">print</span>(a % b)   <span class="code-comment"># 1  取余</span><br>
+                        <span class="code-function">print</span>(a ** b)  <span class="code-comment"># 1000 幂运算</span>
+                    </div>
+
+                    <div class="key-box">
+                        <strong>🌟 易错点：</strong>Python中除法(/)结果永远是浮点数，整除用(//)！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📝 第3单元：控制流程</h2>
+                <div class="lesson-content">
+                    <h3>🔄 条件语句</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># if-elif-else 语句</span><br>
+                        score = <span class="code-number">85</span><br><br>
+                        <span class="code-keyword">if</span> score >= <span class="code-number">90</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">"优秀"</span>)<br>
+                        <span class="code-keyword">elif</span> score >= <span class="code-number">80</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">"良好"</span>)<br>
+                        <span class="code-keyword">elif</span> score >= <span class="code-number">60</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">"及格"</span>)<br>
+                        <span class="code-keyword">else</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">"不及格"</span>)
+                    </div>
+
+                    <h3>🔁 循环语句</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># for循环 - 遍历列表</span><br>
+                        fruits = [<span class="code-string">"苹果"</span>, <span class="code-string">"香蕉"</span>, <span class="code-string">"橙子"</span>]<br>
+                        <span class="code-keyword">for</span> fruit <span class="code-keyword">in</span> fruits:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(fruit)<br><br>
+                        
+                        <span class="code-comment"># range()函数</span><br>
+                        <span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-function">range</span>(<span class="code-number">1</span>, <span class="code-number">11</span>):  <span class="code-comment"># 1到10</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(i)<br><br>
+                        
+                        <span class="code-comment"># while循环</span><br>
+                        count = <span class="code-number">0</span><br>
+                        <span class="code-keyword">while</span> count < <span class="code-number">5</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(count)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;count += <span class="code-number">1</span>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 考试重点：</strong>for循环和while循环是必考内容，特别是range()函数和列表遍历！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第4单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📚 第4单元：数据结构</h2>
+                <div class="lesson-content">
+                    <h3>📋 列表（List）</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># 创建列表</span><br>
+                        nums = [<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>, <span class="code-number">4</span>, <span class="code-number">5</span>]<br><br>
+                        
+                        <span class="code-comment"># 索引访问（从0开始）</span><br>
+                        <span class="code-function">print</span>(nums[<span class="code-number">0</span>])    <span class="code-comment"># 1  第一个元素</span><br>
+                        <span class="code-function">print</span>(nums[-<span class="code-number">1</span>])   <span class="code-comment"># 5  最后一个元素</span><br><br>
+                        
+                        <span class="code-comment"># 切片操作</span><br>
+                        <span class="code-function">print</span>(nums[<span class="code-number">1</span>:<span class="code-number">4</span>])  <span class="code-comment"># [2, 3, 4] 包含索引1-3</span><br><br>
+                        
+                        <span class="code-comment"># 常用方法</span><br>
+                        nums.append(<span class="code-number">6</span>)     <span class="code-comment"># 添加元素</span><br>
+                        nums.insert(<span class="code-number">0</span>, <span class="code-number">0</span>)  <span class="code-comment"># 指定位置插入</span><br>
+                        nums.remove(<span class="code-number">3</span>)     <span class="code-comment"># 删除第一个3</span><br>
+                        nums.sort()            <span class="code-comment"># 排序</span>
+                    </div>
+
+                    <h3>📖 字典（Dictionary）</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># 创建字典</span><br>
+                        student = {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"name"</span>: <span class="code-string">"李艺"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"age"</span>: <span class="code-number">20</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"major"</span>: <span class="code-string">"计算机"</span><br>
+                        }<br><br>
+                        
+                        <span class="code-comment"># 访问字典</span><br>
+                        <span class="code-function">print</span>(student[<span class="code-string">"name"</span>])  <span class="code-comment"># 李艺</span><br>
+                        <span class="code-function">print</span>(student.keys())   <span class="code-comment"># dict_keys(['name', 'age', 'major'])</span><br>
+                        <span class="code-function">print</span>(student.values()) <span class="code-comment"># dict_values(['李艺', 20, '计算机'])</span>
+                    </div>
+
+                    <div class="key-box">
+                        <strong>🌟 重点掌握：</strong>列表的增删改查、字典的键值对操作、字符串的常用方法！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第5单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📦 第5单元：函数与模块</h2>
+                <div class="lesson-content">
+                    <h3>📝 函数的定义与调用</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># 定义函数</span><br>
+                        <span class="code-keyword">def</span> <span class="code-function">greet</span>(name):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"""问候函数"""</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">f"你好，{name}！"</span>)<br><br>
+                        
+                        <span class="code-comment"># 调用函数</span><br>
+                        <span class="code-function">greet</span>(<span class="code-string">"李艺"</span>)  <span class="code-comment"># 输出：你好，李艺！</span><br><br>
+                        
+                        <span class="code-comment"># 带返回值的函数</span><br>
+                        <span class="code-keyword">def</span> <span class="code-function">add</span>(a, b):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> a + b<br><br>
+                        
+                        result = <span class="code-function">add</span>(<span class="code-number">3</span>, <span class="code-number">5</span>)<br>
+                        <span class="code-function">print</span>(result)  <span class="code-comment"># 8</span>
+                    </div>
+
+                    <h3>📦 模块的导入与使用</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># 导入整个模块</span><br>
+                        <span class="code-keyword">import</span> math<br>
+                        <span class="code-function">print</span>(math.pi)          <span class="code-comment"># 3.141592653589793</span><br>
+                        <span class="code-function">print</span>(math.sqrt(<span class="code-number">16</span>))  <span class="code-comment"># 4.0</span><br><br>
+                        
+                        <span class="code-comment"># 导入特定函数</span><br>
+                        <span class="code-keyword">from</span> random <span class="code-keyword">import</span> randint<br>
+                        <span class="code-function">print</span>(<span class="code-function">randint</span>(<span class="code-number">1</span>, <span class="code-number">100</span>))  <span class="code-comment"># 1-100之间的随机整数</span>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 考试重点：</strong>自定义函数的编写、函数的参数传递、常用模块（math、random、time）的使用！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第6单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">🚀 第6单元：文件操作与异常处理</h2>
+                <div class="lesson-content">
+                    <h3>📁 文件读写操作</h3>
+                    <div class="code-box">
+                        <span class="code-comment"># 写入文件</span><br>
+                        <span class="code-keyword">with</span> <span class="code-function">open</span>(<span class="code-string">"test.txt"</span>, <span class="code-string">"w"</span>, encoding=<span class="code-string">"utf-8"</span>) <span class="code-keyword">as</span> f:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;f.write(<span class="code-string">"Hello, Python!"</span>)<br><br>
+                        
+                        <span class="code-comment"># 读取文件</span><br>
+                        <span class="code-keyword">with</span> <span class="code-function">open</span>(<span class="code-string">"test.txt"</span>, <span class="code-string">"r"</span>, encoding=<span class="code-string">"utf-8"</span>) <span class="code-keyword">as</span> f:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;content = f.read()<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(content)<br><br>
+                        
+                        <span class="code-comment"># 按行读取</span><br>
+                        <span class="code-keyword">with</span> <span class="code-function">open</span>(<span class="code-string">"test.txt"</span>, <span class="code-string">"r"</span>) <span class="code-keyword">as</span> f:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">for</span> line <span class="code-keyword">in</span> f:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(line.strip())
+                    </div>
+
+                    <h3>⚠️ 异常处理</h3>
+                    <div class="code-box">
+                        <span class="code-keyword">try</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;num = <span class="code-function">int</span>(<span class="code-function">input</span>(<span class="code-string">"请输入一个数字："</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">f"你输入的是：{num}"</span>)<br>
+                        <span class="code-keyword">except</span> ValueError:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">"输入错误，请输入数字！"</span>)<br>
+                        <span class="code-keyword">finally</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">"程序结束"</span>)
+                    </div>
+
+                    <div class="key-box">
+                        <strong>🌟 必考内容：</strong>文件的读写操作（r/w/a模式）、with语句的使用、try-except异常处理结构！
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== WPS课程 ==================== -->
+        <section id="wps-course" class="course-section">
+            <div class="course-header">
+                <h2>📝 WPS Office高级应用</h2>
+                <p>与MS Office类似，但使用国产WPS软件，考试内容基本一致</p>
+            </div>
+
+            <!-- 第1单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📋 第1单元：考试介绍与WPS特色</h2>
+                <div class="lesson-content">
+                    <h3>🎯 考试基本信息</h3>
+                    <table class="exam-table">
+                        <tr>
+                            <th>考试内容</th>
+                            <th>分值</th>
+                            <th>考试时间</th>
+                        </tr>
+                        <tr>
+                            <td>选择题</td>
+                            <td>20分</td>
+                            <td rowspan="4">90分钟</td>
+                        </tr>
+                        <tr>
+                            <td>Word操作题</td>
+                            <td>30分</td>
+                        </tr>
+                        <tr>
+                            <td>Excel操作题</td>
+                            <td>30分</td>
+                        </tr>
+                        <tr>
+                            <td>PPT操作题</td>
+                            <td>20分</td>
+                        </tr>
+                    </table>
+
+                    <div class="key-box">
+                        <strong>📌 WPS与MS Office的区别：</strong>
+                        <ul>
+                            <li>WPS是国产软件，完全兼容MS Office格式</li>
+                            <li>界面和功能与MS Office基本一致</li>
+                            <li>考试难度相当，但WPS考生较少</li>
+                            <li>支持导出PDF、云文档等功能</li>
+                        </ul>
+                    </div>
+
+                    <h3>📚 WPS特色功能</h3>
+                    <ul>
+                        <li><strong>云文档</strong>：支持在线保存和同步</li>
+                        <li><strong>PDF转换</strong>：一键将文档转为PDF</li>
+                        <li><strong>文档助手</strong>：智能排版、一键美化</li>
+                        <li><strong>多人协作</strong>：支持实时协作编辑</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>💡 备考建议：</strong>WPS考试内容与MS Office类似，可以按照MS Office的方式备考，重点练习操作题！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第2-5单元简化版 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📝 第2-5单元：WPS操作要点</h2>
+                <div class="lesson-content">
+                    <h3>📝 Word操作要点</h3>
+                    <ul>
+                        <li>样式设置与多级列表</li>
+                        <li>页眉页脚与页码设置</li>
+                        <li>目录生成与更新</li>
+                        <li>表格绘制与公式计算</li>
+                        <li>邮件合并功能</li>
+                    </ul>
+
+                    <h3>📊 Excel操作要点</h3>
+                    <ul>
+                        <li>常用函数：SUM、AVERAGE、IF、VLOOKUP</li>
+                        <li>条件格式与数据验证</li>
+                        <li>数据透视表与透视图</li>
+                        <li>图表创建与编辑</li>
+                        <li>分类汇总与数据筛选</li>
+                    </ul>
+
+                    <h3>🎨 PPT操作要点</h3>
+                    <ul>
+                        <li>幻灯片母版设置</li>
+                        <li>动画效果设置</li>
+                        <li>切换效果设置</li>
+                        <li>SmartArt图形使用</li>
+                        <li>放映设置</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>💡 考试技巧：</strong>WPS的快捷键和界面布局与MS Office非常相似，可以相互参考学习！
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MySQL课程 ==================== -->
+        <section id="mysql-course" class="course-section">
+            <div class="course-header">
+                <h2>🗄️ MySQL数据库程序设计</h2>
+                <p>适合计算机专业学生，考试内容为数据库基础和SQL语言</p>
+            </div>
+
+            <!-- 第1单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📋 第1单元：数据库基础概念</h2>
+                <div class="lesson-content">
+                    <h3>🎯 考试基本信息</h3>
+                    <table class="exam-table">
+                        <tr>
+                            <th>考试内容</th>
+                            <th>分值</th>
+                            <th>考试形式</th>
+                        </tr>
+                        <tr>
+                            <td>选择题</td>
+                            <td>40分</td>
+                            <td>机考</td>
+                        </tr>
+                        <tr>
+                            <td>操作题</td>
+                            <td>60分</td>
+                            <td>SQL编程</td>
+                        </tr>
+                    </table>
+
+                    <div class="key-box">
+                        <strong>📌 数据库基本概念：</strong>
+                        <ul>
+                            <li><strong>数据库（DB）</strong>：长期存储在计算机内的、有组织的、可共享的数据集合</li>
+                            <li><strong>数据库管理系统（DBMS）</strong>：Oracle、MySQL、SQL Server等</li>
+                            <li><strong>关系数据库</strong>：以二维表的形式组织数据</li>
+                            <li><strong>SQL</strong>：结构化查询语言，用于操作数据库</li>
+                        </ul>
+                    </div>
+
+                    <h3>📊 关系数据库三要素</h3>
+                    <ul>
+                        <li><strong>数据结构</strong>：二维表（关系）</li>
+                        <li><strong>数据操作</strong>：增删改查（CRUD）</li>
+                        <li><strong>完整性约束</strong>：主键、外键、唯一约束等</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>💡 备考建议：</strong>MySQL考试需要扎实的SQL基础，建议多练习SQL语句，特别是SELECT查询！
+                    </div>
+                </div>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">1. MySQL是一种什么类型的数据库？</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">A. 关系型数据库</div>
+                        <div class="quiz-option" data-correct="false">B. 非关系型数据库</div>
+                        <div class="quiz-option" data-correct="false">C. 层次数据库</div>
+                        <div class="quiz-option" data-correct="false">D. 网状数据库</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="checkQuiz(this)">提交答案</button>
+                    <div class="result-box">
+                        <div class="result-correct">✓ 正确！MySQL是关系型数据库管理系统！</div>
+                        <div class="result-explanation">关系型数据库以表格形式存储数据，支持SQL语言操作。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第2单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">📝 第2单元：SQL基础语句</h2>
+                <div class="lesson-content">
+                    <h3>📝 数据定义语言（DDL）</h3>
+                    <div class="code-box">
+                        <span class="code-comment">-- 创建数据库</span><br>
+                        <span class="code-keyword">CREATE DATABASE</span> school;<br><br>
+                        
+                        <span class="code-comment">-- 使用数据库</span><br>
+                        <span class="code-keyword">USE</span> school;<br><br>
+                        
+                        <span class="code-comment">-- 创建表</span><br>
+                        <span class="code-keyword">CREATE TABLE</span> student (<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;id <span class="code-keyword">INT PRIMARY KEY AUTO_INCREMENT</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;name <span class="code-keyword">VARCHAR</span>(<span class="code-number">20</span>) <span class="code-keyword">NOT NULL</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;age <span class="code-keyword">INT</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;gender <span class="code-keyword">VARCHAR</span>(<span class="code-number">2</span>)<br>
+                        );
+                    </div>
+
+                    <h3>📝 数据操作语言（DML）</h3>
+                    <div class="code-box">
+                        <span class="code-comment">-- 插入数据</span><br>
+                        <span class="code-keyword">INSERT INTO</span> student (name, age, gender) <span class="code-keyword">VALUES</span><br>
+                        (<span class="code-string">'张三'</span>, <span class="code-number">20</span>, <span class="code-string">'男'</span>),<br>
+                        (<span class="code-string">'李四'</span>, <span class="code-number">21</span>, <span class="code-string">'女'</span>);<br><br>
+                        
+                        <span class="code-comment">-- 更新数据</span><br>
+                        <span class="code-keyword">UPDATE</span> student <span class="code-keyword">SET</span> age = <span class="code-number">22</span> <span class="code-keyword">WHERE</span> name = <span class="code-string">'张三'</span>;<br><br>
+                        
+                        <span class="code-comment">-- 删除数据</span><br>
+                        <span class="code-keyword">DELETE FROM</span> student <span class="code-keyword">WHERE</span> id = <span class="code-number">1</span>;
+                    </div>
+
+                    <div class="key-box">
+                        <strong>🌟 必考内容：</strong>CREATE TABLE、INSERT INTO、UPDATE SET、DELETE FROM语句的语法！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3单元 -->
+            <div class="lesson-card">
+                <h2 class="lesson-title">🔍 第3单元：SELECT查询语句</h2>
+                <div class="lesson-content">
+                    <h3>📝 基本查询</h3>
+                    <div class="code-box">
+                        <span class="code-comment">-- 查询所有字段</span><br>
+                        <span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> student;<br><br>
+                        
+                        <span class="code-comment">-- 查询指定字段</span><br>
+                        <span class="code-keyword">SELECT</span> name, age <span class="code-keyword">FROM</span> student;<br><br>
+                        
+                        <span class="code-comment">-- WHERE条件查询</span><br>
+                        <span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> student <span class="code-keyword">WHERE</span> age >= <span class="code-number">20</span>;<br><br>
+                        
+                        <span class="code-comment">-- DISTINCT去重</span><br>
+                        <span class="code-keyword">SELECT DISTINCT</span> gender <span class="code-keyword">FROM</span> student;
+                    </div>
+
+                    <h3>📝 聚合函数与分组</h3>
+                    <div class="code-box">
+                        <span class="code-comment">-- COUNT计数</span><br>
+                        <span class="code-keyword">SELECT COUNT</span>(*) <span class="code-keyword">FROM</span> student;<br><br>
+                        
+                        <span class="code-comment">-- SUM求和、AVG平均</span><br>
+                        <span class="code-keyword">SELECT SUM</span>(score), <span class="code-keyword">AVG</span>(score) <span class="code-keyword">FROM</span> grade;<br><br>
+                        
+                        <span class="code-comment">-- GROUP BY分组</span><br>
+                        <span class="code-keyword">SELECT</span> gender, <span class="code-keyword">COUNT</span>(*) <span class="code-keyword">FROM</span> student<br>
+                        <span class="code-keyword">GROUP BY</span> gender;<br><br>
+                        
+                        <span class="code-comment">-- HAVING子句（分组后筛选）</span><br>
+                        <span class="code-keyword">SELECT</span> class, <span class="code-keyword">AVG</span>(score) <span class="code-keyword">FROM</span> grade<br>
+                        <span class="code-keyword">GROUP BY</span> class<br>
+                        <span class="code-keyword">HAVING AVG</span>(score) >= <span class="code-number">60</span>;
+                    </div>
+
+                    <h3>📝 多表查询</h3>
+                    <div class="code-box">
+                        <span class="code-comment">-- INNER JOIN内连接</span><br>
+                        <span class="code-keyword">SELECT</span> s.name, g.score<br>
+                        <span class="code-keyword">FROM</span> student s<br>
+                        <span class="code-keyword">INNER JOIN</span> grade g <span class="code-keyword">ON</span> s.id = g.student_id;<br><br>
+                        
+                        <span class="code-comment">-- LEFT JOIN左连接</span><br>
+                        <span class="code-keyword">SELECT</span> s.name, g.score<br>
+                        <span class="code-keyword">FROM</span> student s<br>
+                        <span class="code-keyword">LEFT JOIN</span> grade g <span class="code-keyword">ON</span> s.id = g.student_id;
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 考试重点：</strong>SELECT查询是MySQL考试的核心！特别是WHERE条件、聚合函数、GROUP BY分组、多表连接！
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>💻 祝大家计算机二级考试顺利，一次通过！加油！💪</p>
+        </div>
+    </footer>
+
+    <script>
+        // 显示对应课程
+        function showCourse(examType) {
+            // 移除所有active类
+            document.querySelectorAll('.exam-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelectorAll('.course-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 添加active类
+            event.currentTarget.classList.add('active');
+            const targetSection = document.getElementById(examType + '-course');
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        }
+
+        // 点击选项
+        document.querySelectorAll('.quiz-option').forEach((option) => {
+            option.addEventListener('click', function() {
+                const quizSection = this.closest('.quiz-section');
+                quizSection.querySelectorAll('.quiz-option').forEach(o => {
+                    o.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+
+        // 检查答案
+        function checkQuiz(btn) {
+            const quizSection = btn.closest('.quiz-section');
+            const selected = quizSection.querySelector('.quiz-option.selected');
+            const resultBox = quizSection.querySelector('.result-box');
+
+            if (!selected) {
+                alert('请先选择一个答案！');
+                return;
+            }
+
+            const isCorrect = selected.dataset.correct === 'true';
+            
+            quizSection.querySelectorAll('.quiz-option').forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option.dataset.correct === 'true') {
+                    option.classList.add('correct');
+                } else if (option.classList.contains('selected') && !isCorrect) {
+                    option.classList.add('wrong');
+                }
+            });
+
+            resultBox.classList.add('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,10 +1,10 @@
 const lessons = [
     {
-        title: "第0单元：环境准备与快速入门",
+        title: "第0单元：快速入门与Hello World",
         content: `
             <div class="lesson-intro">
-                <h3>Python环境准备（小白必看）</h3>
-                <p>本单元将帮助你搭建Python开发环境，并写出你的第一行代码。这是所有学习的第一步，简单到只需10分钟！</p>
+                <h3>Python快速入门（小白必看）</h3>
+                <p>本单元将带你写出第一行Python代码，开启编程之旅！无需安装任何环境，直接在网页上就能运行！</p>
                 <div class="python-logo">
                     <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20programming%20language%20logo%20with%20snake%20symbol%2C%20colorful%2C%20friendly%20design%2C%20simple%20background&image_size=square" alt="Python Logo" style="width: 150px; height: 150px; margin: 20px auto; display: block;">
                 </div>
@@ -35,79 +35,29 @@ const lessons = [
                 </div>
             </div>
 
-            <h4>二、安装Python（图文教程）</h4>
+            <h4>二、第一个程序：Hello World</h4>
             
-            <h5>2.1 下载Python</h5>
+            <h5>2.1 编写第一行代码</h5>
             <div class="info-box">
-                <h5>📥 安装步骤</h5>
-                <ol>
-                    <li>打开浏览器，搜索"Python下载"或直接访问 <code>python.org</code></li>
-                    <li>点击"Downloads"按钮</li>
-                    <li>页面会自动推荐最新版本，点击"Download Python"下载</li>
-                    <li>等待下载完成（约25MB）</li>
-                </ol>
+                <h5>📝 直接尝试</h5>
+                <p>无需安装任何软件！直接在下方的代码练习区域输入下面的代码，点击运行即可看到结果！</p>
             </div>
 
-            <h5>2.2 安装Python</h5>
-            <div class="info-box">
-                <h5>⚠️ 重要提示</h5>
-                <p>安装时一定要<strong>勾选"Add Python to PATH"</strong>选项！</p>
-                <p>PATH就像电脑的"地址簿"，让电脑知道Python安装在哪里。勾选后，你在任何地方都能使用Python。</p>
-            </div>
-
-            <h5>2.3 验证安装</h5>
-            <pre><code># 打开命令行（Windows按Win+R，输入cmd；Mac按Command+空格，输入terminal）
-# 输入以下命令验证：
-
-python --version
-
-# 如果显示类似 "Python 3.11.5" 这样的版本号，说明安装成功！
-
-# 也可以用这个命令：
-python -V</code></pre>
-
-            <h4>三、第一个程序：Hello World</h4>
-            
-            <h5>3.1 创建第一个Python文件</h5>
-            <div class="info-box">
-                <h5>📝 创建步骤</h5>
-                <ol>
-                    <li>在电脑桌面或任意文件夹中，右键 → 新建 → 文本文档</li>
-                    <li>把文件名改成 <code>hello.py</code>（注意：不是.txt，是.py）</li>
-                    <li>用记事本打开这个文件</li>
-                    <li>输入下面的代码</li>
-                </ol>
-            </div>
-
-            <h5>3.2 编写代码</h5>
+            <h5>2.2 代码示例</h5>
             <pre><code>print("Hello, World!")
 print("你好，世界！")
 print("欢迎学习Python！")</code></pre>
 
-            <h5>3.3 运行代码</h5>
-            <pre><code># 方法1：双击运行
-# 直接双击 hello.py 文件，会弹出一个黑色窗口显示结果
-
-# 方法2：命令行运行（推荐）
-# 打开命令行，进入文件所在目录
-cd 桌面
-python hello.py
-
-# 运行结果：
-# Hello, World!
-# 你好，世界！
-# 欢迎学习Python！</code></pre>
-
-            <h4>四、代码解释（每行代码的意思）</h4>
+            <h4>三、代码解释（每行代码的意思）</h4>
             
-            <h5>4.1 print 是什么？</h5>
+            <h5>3.1 print 是什么？</h5>
             <div class="info-box">
                 <h5>💡 通俗理解</h5>
                 <p><code>print</code> 的中文意思是"打印"，但在编程中，"打印"不是用打印机，而是<strong>显示在屏幕上</strong>。</p>
                 <p><code>print("内容")</code> 的意思就是：<strong>在屏幕上显示"内容"</strong></p>
             </div>
 
-            <h5>4.2 引号的作用</h5>
+            <h5>3.2 引号的作用</h5>
             <pre><code># 有引号 - 显示原样文字
 print("Hello, World!")  # 显示：Hello, World!
 
@@ -121,30 +71,34 @@ print("""
 第三行
 """)</code></pre>
 
-            <h4>五、常见问题解答</h4>
+            <h4>四、常见问题解答</h4>
             
             <div class="faq">
-                <h5>Q1：为什么我的命令提示符显示"python不是内部命令"？</h5>
-                <p>这是因为安装时没有勾选"Add Python to PATH"。解决方法：重新安装Python，务必勾选这个选项。</p>
-            </div>
-
-            <div class="faq">
-                <h5>Q2：运行后窗口一闪而过怎么办？</h5>
-                <p>在代码最后加一行 <code>input("按回车键退出...")</code>，这样窗口就会等你按键后才关闭。</p>
-            </div>
-
-            <div class="faq">
-                <h5>Q3：报错"SyntaxError"是什么意思？</h5>
+                <h5>Q1：报错"SyntaxError"是什么意思？</h5>
                 <p>这说明代码有语法错误。常见原因：中文引号、缺少括号、拼写错误等。检查一下代码是否完全正确。</p>
             </div>
 
-            <h4>六、给你的小任务</h4>
+            <div class="faq">
+                <h5>Q2：如何在自己的电脑上运行Python？</h5>
+                <p>可以访问 python.org 下载安装Python，安装时记得勾选"Add Python to PATH"选项。</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q3：报错"IndentationError"是什么意思？</h5>
+                <p>这是缩进错误！Python对缩进非常严格，它用缩进来表示代码块。<br><strong>常见原因：</strong><br>1. 混用了Tab键和空格键<br>2. 同一代码块内的缩进不一致<br>3. if/for/while等语句后面没有缩进<br><strong>解决办法：</strong><br>1. 统一使用4个空格缩进<br>2. 确保代码块内的每一行缩进相同<br>3. 在冒号(:)后面的代码要缩进</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q4：为什么我的变量报错"NameError: name 'xxx' is not defined"？</h5>
+                <p>这说明变量没有被定义就被使用了！<br><strong>常见原因：</strong><br>1. 变量名拼写错误<br>2. 先使用变量后定义<br>3. 变量作用域问题（在函数外部定义的变量在函数内部使用）<br><strong>解决办法：</strong><br>1. 检查变量名拼写是否正确<br>2. 确保先定义变量再使用<br>3. 理解变量的作用域范围</p>
+            </div>
+
+            <h4>五、给你的小任务</h4>
             <div class="quiz-section">
                 <h5>🎯 实践任务</h5>
                 <ol>
-                    <li>安装Python环境</li>
-                    <li>创建 <code>hello.py</code> 文件</li>
-                    <li>写一段代码，显示：<br>
+                    <li>在下方代码练习区域尝试运行示例代码</li>
+                    <li>修改代码，显示：<br>
                         - 你的名字<br>
                         - 你的年龄<br>
                         - 一句你喜欢的座右铭</li>
@@ -159,7 +113,7 @@ print("""
 
             <div class="next-step">
                 <h5>🚀 下一步</h5>
-                <p>环境准备好了！现在让我们进入正式学习，先从Python最基础的概念开始。</p>
+                <p>太棒了！现在让我们进入正式学习，先从Python最基础的概念开始。</p>
             </div>
         `
     },
@@ -417,6 +371,28 @@ print("最高分学生:", system.get_highest_score())</code></pre>
                     <li>创建一个简单的类，实现学生信息的管理，包括添加学生和查询学生信息。</li>
                 </ol>
             </div>
+
+            <h4>六、常见问题解答</h4>
+            
+            <div class="faq">
+                <h5>Q1：为什么列表索引从0开始而不是1？</h5>
+                <p>这是Python（以及很多编程语言）的设计习惯！<br><strong>原因：</strong><br>1. 从0开始可以简化内存地址计算<br>2. 与很多数学概念保持一致<br>3. 切片操作更直观（如list[0:3]表示前3个元素）<br><strong>技巧：</strong>记住「第n个元素的索引是n-1」</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q2：列表(list)和元组(tuple)有什么区别？</h5>
+                <p><strong>主要区别：</strong><br>1. 列表用[]，元组用()<br>2. 列表是可变的（可以修改），元组是不可变的（创建后不能修改）<br>3. 元组性能更好，占用内存更小<br><strong>使用建议：</strong><br>- 需要修改数据用列表<br>- 固定不变的数据用元组</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q3：函数参数太多怎么办？</h5>
+                <p><strong>解决办法：</strong><br>1. 使用默认参数：def func(a, b=10, c=20)<br>2. 使用可变参数：def func(*args, **kwargs)<br>3. 将相关参数组织成字典或对象<br>4. 考虑函数是否职责过多，可以拆分成多个小函数</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q4：报错"TypeError: cannot concatenate 'str' and 'int' objects"？</h5>
+                <p>这是类型错误！字符串和数字不能直接拼接。<br><strong>解决办法：</strong><br>1. 用str()把数字转成字符串：print("年龄:" + str(age))<br>2. 用f-string（推荐）：print(f"年龄:{age}")<br>3. 用format()：print("年龄:{}".format(age))</p>
+            </div>
         `
     },
     {
@@ -656,6 +632,28 @@ plt.show()</code></pre>
                     <li>使用Pandas创建一个包含5个学生信息的DataFrame，并计算他们的平均成绩。</li>
                     <li>使用Matplotlib绘制一个简单的折线图，展示某个变量的变化趋势。</li>
                 </ol>
+            </div>
+
+            <h4>五、常见问题解答</h4>
+            
+            <div class="faq">
+                <h5>Q1：报错"ModuleNotFoundError: No module named 'numpy'"？</h5>
+                <p>这说明缺少NumPy库！<br><strong>解决办法：</strong><br>1. 在命令行运行：pip install numpy<br>2. 如果是Anaconda环境：conda install numpy<br>3. 同理安装pandas：pip install pandas<br>4. 安装matplotlib：pip install matplotlib</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q2：DataFrame显示不全怎么办？</h5>
+                <p>Pandas默认只显示部分行列。<br><strong>解决办法：</strong><br>1. pd.set_option('display.max_rows', None) - 显示所有行<br>2. pd.set_option('display.max_columns', None) - 显示所有列<br>3. pd.set_option('display.width', None) - 自动调整宽度<br>4. 使用df.head()查看前几行，df.tail()查看后几行</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q3：图表不显示或显示乱码？</h5>
+                <p><strong>图表不显示：</strong><br>1. 确保调用了plt.show()<br>2. 检查代码逻辑错误<br><strong>中文乱码：</strong><br>1. 添加中文字体设置：plt.rcParams['font.sans-serif'] = ['SimHei']<br>2. 解决负号问题：plt.rcParams['axes.unicode_minus'] = False</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q4：如何处理缺失值(NaN)？</h5>
+                <p><strong>常见方法：</strong><br>1. 删除缺失值：df.dropna()<br>2. 填充缺失值：df.fillna(0) 或 df.fillna(df.mean())<br>3. 检查缺失值：df.isnull().sum()<br>4. 插值填充：df.interpolate()</p>
             </div>
         `
     },
@@ -949,6 +947,28 @@ plt.show()</code></pre>
                     <li>使用Scikit-learn构建一个简单的分类模型，对给定的数据集进行分类。</li>
                     <li>尝试实现一个简单的推荐系统逻辑，基于用户的历史行为进行推荐。</li>
                 </ol>
+            </div>
+
+            <h4>五、常见问题解答</h4>
+            
+            <div class="faq">
+                <h5>Q1：模型准确率很低怎么办？</h5>
+                <p><strong>常见原因和解决办法：</strong><br>1. 数据质量问题：检查数据是否有噪声、缺失值<br>2. 特征选择不当：尝试不同的特征组合<br>3. 模型选择不当：换用其他模型<br>4. 数据量太少：收集更多数据<br>5. 过拟合：添加正则化，减少模型复杂度</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q2：过拟合(overfitting)是什么？怎么解决？</h5>
+                <p><strong>什么是过拟合：</strong>模型在训练集表现很好，但在测试集表现很差<br><strong>解决办法：</strong><br>1. 增加训练数据<br>2. 减少模型复杂度<br>3. 添加正则化(L1/L2)<br>4. 使用Dropout(深度学习)<br>5. 数据增强</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q3：如何选择合适的模型？</h5>
+                <p><strong>选择指南：</strong><br>1. 小数据集+线性关系：逻辑回归/线性回归<br>2. 需要解释性：决策树<br>3. 大数据集：随机森林/XGBoost<br>4. 图像/文本：深度学习<br>5. 先试试简单模型，再尝试复杂模型</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q4：什么是训练集、验证集、测试集？</h5>
+                <p><strong>作用：</strong><br>1. 训练集：用来训练模型(70%)<br>2. 验证集：用来调参和选择模型(20%)<br>3. 测试集：用来最终评估模型性能(10%)<br><strong>注意：</strong>千万不要用测试集调参！</p>
             </div>
         `
     },
@@ -1337,6 +1357,28 @@ print(platform.get_product_analysis())</code></pre>
                     <li>编写一个脚本，将指定目录下的所有.txt文件内容合并到一个文件中。</li>
                     <li>实现一个简单的类，包含数据的读取、处理和保存功能。</li>
                 </ol>
+            </div>
+
+            <h4>五、常见问题解答</h4>
+            
+            <div class="faq">
+                <h5>Q1：Git提交错误怎么办？</h5>
+                <p><strong>常见问题和解决：</strong><br>1. 未add文件：先git add . 再git commit<br>2. 提交信息为空：git commit -m "提交信息"<br>3. 合并冲突：手动解决冲突标记的文件<br>4. 撤销提交：git reset --soft HEAD~1</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q2：文件路径报错"FileNotFoundError"？</h5>
+                <p><strong>常见原因：</strong><br>1. 路径写错了<br>2. 文件不存在<br>3. 相对路径问题<br><strong>解决办法：</strong><br>1. 使用绝对路径<br>2. 确认文件存在<br>3. 用os.path.exists()检查路径<br>4. 注意Windows和Mac路径分隔符不同</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q3：代码运行太慢怎么优化？</h5>
+                <p><strong>优化建议：</strong><br>1. 用time模块测速：找出慢的部分<br>2. 避免循环中重复计算<br>3. 用列表推导式代替for循环<br>4. 使用NumPy/Pandas代替纯Python<br>5. 必要时使用多进程/多线程</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q4：如何debug(调试)代码？</h5>
+                <p><strong>调试技巧：</strong><br>1. print大法：在关键位置打印变量值<br>2. 使用IDE的调试工具<br>3. 用pdb模块：import pdb; pdb.set_trace()<br>4. 注释法：逐步注释代码定位问题<br>5. 写单元测试</p>
             </div>
         `
     },
@@ -1845,6 +1887,28 @@ print(f"fibonacci(35) = {fibonacci(35)}")</code></pre>
                     <li>创建一个装饰器，用于记录函数的调用次数。</li>
                     <li>创建一个简单的模块，包含几个常用的数学函数，然后在另一个脚本中导入并使用它。</li>
                 </ol>
+            </div>
+
+            <h4>五、常见问题解答</h4>
+            
+            <div class="faq">
+                <h5>Q1：报错"ModuleNotFoundError"导入模块失败？</h5>
+                <p><strong>常见原因和解决：</strong><br>1. 模块名写错了<br>2. 模块不在Python搜索路径中<br>3. 文件名和模块名冲突<br>4. 目录缺少__init__.py<br><strong>解决办法：</strong><br>1. 检查拼写<br>2. 用sys.path.append()添加路径<br>3. 避免用Python内置名当文件名</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q2：*args和**kwargs什么区别？</h5>
+                <p><strong>*args：</strong>接收任意数量的位置参数，返回元组<br><strong>**kwargs：</strong>接收任意数量的关键字参数，返回字典<br><strong>示例：</strong><br>def func(*args, **kwargs):<br>    print(args, kwargs)<br>func(1, 2, a=3, b=4)</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q3：装饰器的执行顺序？</h5>
+                <p><strong>多个装饰器：</strong>从下往上装饰，从上往下执行<br><strong>示例：</strong><br>@decorator1<br>@decorator2<br>def func():<br>    pass<br># 等价于 decorator1(decorator2(func))</p>
+            </div>
+
+            <div class="faq">
+                <h5>Q4：什么是命名空间和作用域？</h5>
+                <p><strong>作用域：</strong><br>1. L：Local（局部）<br>2. E：Enclosing（嵌套）<br>3. G：Global（全局）<br>4. B：Built-in（内置）<br><strong>查找顺序：</strong>L → E → G → B<br>用global声明全局变量，nonlocal声明外层变量</p>
             </div>
         `
     },
